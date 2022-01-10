@@ -1,0 +1,12 @@
+.username {
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.post {
+    width: 60%;
+    margin: 10px auto;
+    background-color: #F0F0F0;
+    padding: 10px;
+    border-radius: 10px;
+}

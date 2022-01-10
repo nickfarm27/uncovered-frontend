@@ -1,0 +1,18 @@
+.containers {
+	background-color: rgb(189, 226, 236);
+	border-radius: 25px;
+	margin: auto;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+
+h1.title {
+	color: black;
+	font-weight: bold;
+	
+}
+
+h1.desc {
+	color: black;
+	
+}

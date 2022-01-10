@@ -1,0 +1,22 @@
+.upload {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	margin: auto;
+    border-style: solid;
+    border-color: black;
+}
+
+.upload_button {
+	margin: auto;
+    margin-top: 20px;
+}
+
+.upload_field {
+    margin-top: 20px;
+    margin-left: 30%;
+    margin-right: 30%;
+    border: 1px black solid;
+    padding: 8px;
+    border-radius: 4px;
+}
