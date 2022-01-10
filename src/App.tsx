@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import Login from "./components/login/Login";
-// import SignUp from "./components/signup/SignUp";
+import SignUp from "./components/signup/SignUp";
 import Profile from "./components/profile/Profile";
 import "./App.css";
+
 
 function App() {
     // const checkUID = () => {
@@ -19,7 +20,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    {/* <Route path="/signup" element={<SignUp />} /> */}
+                    <Route path="/signup" element={<SignUp />} />
                     <Route path="/profile" element={<Profile />} />
 
                     {/* <Route path="/login">
