@@ -4,6 +4,9 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { get_Auth, get_Firestore } from "../../Firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { generateNewAccount } from "../blockchain/newAccount";
+import image from "../assets/SignUpImage.jpg";
+import GoogleSignUp from "./GoogleSignUp";
+import TwitterSignUp from "./TwitterSignUp";
 
 interface Props {}
 
@@ -24,7 +27,7 @@ const SignUp = (props: Props) => {
 		const enteredConfirmPassword = confirmPasswordInputRef.current?.value;
 		const db = get_Firestore;
 		const auth = get_Auth;
-        // const privateKey = generateNewAccount().privateKey;
+		// const privateKey = generateNewAccount().privateKey;
 		createUserWithEmailAndPassword(
 			auth,
 			String(enteredEmail),
@@ -51,7 +54,7 @@ const SignUp = (props: Props) => {
 							missions: [],
 							experiencePoints: 0,
 							numberOfVerifiedNews: 0,
-							privateKey: 'TEST' 
+							privateKey: "TEST",
 						}
 					);
 					console.log("Document written", docRef);
@@ -67,48 +70,73 @@ const SignUp = (props: Props) => {
 	};
 
 	return (
-		<div>
-            <div>Sign up with email</div>
-			<form onSubmit={submitHandler}>
-				<InputBox
-					type="text"
-					id="userName"
-					placeholder="Username"
-					ref={userNameInputRef}
-					className=""
-				/>
-				<br />
-				<InputBox
-					type="email"
-					id="signUpEmail"
-					placeholder="Email"
-					ref={emailInputRef}
-					className=""
-				/>
-				<br />
-				<InputBox
-					type="password"
-					id="signUpPassword"
-					placeholder="Password"
-					ref={passwordInputRef}
-					className=""
-				/>
-				<br />
-				<InputBox
-					type="password"
-					id="confirmPassword"
-					placeholder="Confirm Password"
-					ref={confirmPasswordInputRef}
-					className=""
-				/>
-				<br />
-				<button className="font-bold py-2 px-4 rounded bg-blue-500 text-white">
-					Sign Up
-				</button>
-			</form>
+		<div className="flex">
+			<div className="box-border h-128 w-128 pr-12 mr-12 mt-32 ml-32">
+				<img src={image} />
+			</div>
+
+			<div
+				className="flex flex-col 
+        items-start mt-48"
+			>
+				<h1 className="text-3xl mb-5">Sign up with email</h1>
+				<form onSubmit={submitHandler}>
+					<InputBox
+						type="text"
+						id="userName"
+						placeholder="Username"
+						ref={userNameInputRef}
+						className="mt-3 bg-gray-200 w-80 mb-5 pl-3 pb-2 pt-2 rounded-md"
+					/>
+					<br />
+					<InputBox
+						type="email"
+						id="signUpEmail"
+						placeholder="Email"
+						ref={emailInputRef}
+						className="bg-gray-200 w-80 mb-5 pl-3 pb-2 pt-2 rounded-md"
+					/>
+					<br />
+					<InputBox
+						type="password"
+						id="signUpPassword"
+						placeholder="Password"
+						ref={passwordInputRef}
+						className="bg-gray-200 w-80 mb-5 pl-3 pb-2 pt-2 rounded-md"
+					/>
+					<br />
+					<InputBox
+						type="password"
+						id="confirmPassword"
+						placeholder="Confirm Password"
+						ref={confirmPasswordInputRef}
+						className=" bg-gray-200 w-80 mb-10 pl-3 pb-2 pt-2 rounded-md"
+					/>
+					<br />
+
+					<div className="grid gap-x-8 gap-y-6 grid-cols-2 ">
+						<GoogleSignUp />
+						<TwitterSignUp />
+
+						<div>
+							<h1 className="">By signing up, I agree to the</h1>
+							<h1 className="">
+								terms of service and privacy policy
+							</h1>
+						</div>
+						<button className="w-60 shadow-lg rounded-lg font-bold py-3 px-4 bg-sky-500 text-white">
+							Sign Up
+						</button>
+					</div>
+				</form>
+
+				<div className="mt-36">
+					<h1>Already have an account?</h1>
+					<h1 className="text-sky-500">Sign in now</h1>
+				</div>
+			</div>
 		</div>
 	);
 };
 
 export default SignUp;
-

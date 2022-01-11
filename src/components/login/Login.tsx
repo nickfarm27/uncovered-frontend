@@ -43,7 +43,7 @@ const Login = (props: Props) => {
 
 	return (
 		<div className="flex flex-col ">
-			<h1 className="text-4xl text-center mt-40">Log In</h1>
+			<h1 className="text-3xl text-center mt-40">Log In</h1>
 
 			<div className="flex justify-center my-8 ">
 				<div className="mx-10 ">

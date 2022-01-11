@@ -37,7 +37,7 @@ const GoogleLogin = (props: Props) => {
 	return (
 		<div>
 			<button
-				className="flex shadow-lg border-solid border-2 border-sky-500 rounded-md py-3 px-4 bg-white"
+				className="flex shadow-lg border-solid border-2 border-sky-500 rounded-lg py-3 px-4 bg-white"
 				onClick={submitHandler}
 			>
 				<FcGoogle className="mr-2 flex text-2xl" /> Continue with Google

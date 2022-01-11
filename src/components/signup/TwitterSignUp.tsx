@@ -3,6 +3,7 @@ import { signInWithPopup, TwitterAuthProvider } from "firebase/auth";
 import { get_Auth, get_Firestore } from "../../Firebase";
 // import { useHistory } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
+import { FaTwitter } from "react-icons/fa";
 
 interface Props {}
 
@@ -67,10 +68,10 @@ const TwitterSignUp = (props: Props) => {
     return (
 		<div>
 			<button
-				className="font-bold py-2 px-4 rounded bg-blue-500 text-white"
+				className="w-60 flex shadow-lg border-solid border-2 border-sky-500 rounded-lg py-3 px-4 bg-white"
 				onClick={submitHandler}
 			>
-				Sign Up with Twitter
+				<FaTwitter className='mr-3 text-2xl text-sky-500'/> Continue with Twitter
 			</button>
 		</div>
 	);

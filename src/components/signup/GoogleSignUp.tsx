@@ -3,6 +3,7 @@ import { get_Auth, get_Firestore } from "../../Firebase";
 // import { useHistory } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
 import { generateNewAccount } from "../blockchain/newAccount";
+import { FcGoogle } from "react-icons/fc";
 
 interface Props {}
 
@@ -40,7 +41,7 @@ const GoogleSignUp = (props: Props) => {
 							missions: [],
 							experiencePoints: 0,
 							numberOfVerifiedNews: 0,
-							privateKey: generateNewAccount().privateKey
+							// privateKey: generateNewAccount().privateKey
 						}
 					);
 					console.log("Document written with ID: ", docRef);
@@ -64,10 +65,10 @@ const GoogleSignUp = (props: Props) => {
 	return (
 		<div>
 			<button
-				className="font-bold py-2 px-4 rounded bg-blue-500 text-white"
+				className="w-60 flex shadow-lg border-solid border-2 border-sky-500 rounded-lg py-3 px-4 bg-white"
 				onClick={submitHandler}
 			>
-				Sign Up with Google
+				<FcGoogle className="mr-3 flex text-2xl" /> Continue with Google
 			</button>
 		</div>
 	);
