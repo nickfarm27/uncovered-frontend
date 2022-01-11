@@ -1,16 +1,14 @@
-import React, { useRef } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { get_Auth } from '../../Firebase';
-import GoogleLogin from './GoogleLogin';
-import TwitterLogin from './TwitterLogin';
-import InputBox from '../ui/InputBox';
+import React, { useRef } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { get_Auth } from "../../Firebase";
+import GoogleLogin from "./GoogleLogin";
+import TwitterLogin from "./TwitterLogin";
+import InputBox from "../ui/InputBox";
 
-interface Props {
-    
-}
+interface Props {}
 
 const Login = (props: Props) => {
-    const emailInputRef = useRef<HTMLInputElement>(null);
+	const emailInputRef = useRef<HTMLInputElement>(null);
 	const passwordInputRef = useRef<HTMLInputElement>(null);
 	// const history = useHistory();
 
@@ -41,36 +39,59 @@ const Login = (props: Props) => {
 				// const errorCode = error.code;
 				// const errorMessage = error.message;
 			});
-
-		
 	};
 
 	return (
-		<div className="container">
-			<h1>Sign In</h1>
-			<GoogleLogin />
-			<TwitterLogin />
-			<form onSubmit={submitHandler} className="container">
-				<InputBox
-					type="email"
-					id="logInEmail"
-					placeholder="Email"
-					ref={emailInputRef}
-					className=""
-				/>
-				<InputBox
-					type="password"
-					id="logInPassword"
-					placeholder="Password"
-					ref={passwordInputRef}
-					className=""
-				/>
-				<button className="font-bold py-2 px-4 rounded bg-blue-500 text-white">
-					Login
-				</button>
-			</form>
-		</div>
-	);
-}
+		<div className="flex flex-col ">
+			<h1 className="text-4xl text-center mt-40">Log In</h1>
 
-export default Login
+			<div className="flex justify-center my-8 ">
+				<div className="mx-10 ">
+					<GoogleLogin />
+				</div>
+				<div className="mx-10">
+					<TwitterLogin />
+				</div>
+			</div>
+
+			<div className="flex justify-center mt-20">
+			<form onSubmit={submitHandler}>
+		
+					<div className="">
+						<InputBox
+							type="email"
+							id="logInEmail"
+							placeholder="Email"
+							ref={emailInputRef}
+							className="bg-gray-200 w-80 mb-5 pl-3 pb-2 pt-2 rounded-md"
+						/>
+					</div>
+
+					<div className="">
+						<InputBox
+							type="password"
+							id="logInPassword"
+							placeholder="Password"
+							ref={passwordInputRef}
+							className="bg-gray-200 w-80 mb-16 pl-3 pb-2 pt-2 rounded-md"
+						/>
+					</div>
+				
+				<button className="rounded-full w-80 font-bold py-2 px-4 bg-sky-500 text-white">
+					Log In
+				</button>
+				
+			</form>
+			</div>
+
+			<div className="flex justify-center mt-8">
+				<h1 className="mr-8 text-sky-500">Forgot Password</h1>
+				<h1 className="ml-8 text-sky-500">Sign Up a New Account</h1>
+			</div>
+
+			</div>
+		
+	);
+};
+
+export default Login;

@@ -68,6 +68,7 @@ const SignUp = (props: Props) => {
 
 	return (
 		<div>
+            <div>Sign up with email</div>
 			<form onSubmit={submitHandler}>
 				<InputBox
 					type="text"

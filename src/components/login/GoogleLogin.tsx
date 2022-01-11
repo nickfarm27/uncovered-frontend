@@ -1,13 +1,11 @@
-import React from 'react'
+import React from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { get_Auth } from "../../Firebase";
-
-interface Props {
-    
-}
+import { FcGoogle } from "react-icons/fc";
+interface Props {}
 
 const GoogleLogin = (props: Props) => {
-    const submitHandler = async () => {
+	const submitHandler = async () => {
 		const provider = new GoogleAuthProvider();
 		const auth = get_Auth;
 
@@ -39,13 +37,13 @@ const GoogleLogin = (props: Props) => {
 	return (
 		<div>
 			<button
-				className="font-bold py-2 px-4 rounded bg-blue-500 text-white"
+				className="flex shadow-lg border-solid border-2 border-sky-500 rounded-md py-3 px-4 bg-white"
 				onClick={submitHandler}
 			>
-				Sign In with Google
+				<FcGoogle className="mr-2 flex text-2xl" /> Continue with Google
 			</button>
 		</div>
 	);
-}
+};
 
-export default GoogleLogin
+export default GoogleLogin;

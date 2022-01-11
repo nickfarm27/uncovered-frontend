@@ -1,7 +1,7 @@
 import React from 'react'
 import { signInWithPopup, TwitterAuthProvider } from "firebase/auth";
 import { get_Auth } from "../../Firebase";
-
+import { FaTwitter } from "react-icons/fa";
 interface Props {
     
 }
@@ -39,10 +39,10 @@ const TwitterLogin = (props: Props) => {
 	return (
 		<div>
 			<button
-				className="font-bold py-2 px-4 rounded bg-blue-500 text-white"
+				className="flex shadow-lg border-solid border-2 border-sky-500 rounded-md py-3 px-4 bg-white"
 				onClick={submitHandler}
 			>
-				Sign In with Twitter
+				<FaTwitter className='mr-2 text-2xl text-sky-500'/> Continue with Twitter
 			</button>
 		</div>
 	);
