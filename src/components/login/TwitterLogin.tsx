@@ -39,13 +39,15 @@ const TwitterLogin = (props: Props) => {
 	return (
 		<div>
 			<button
-				className="flex shadow-lg border-solid border-2 border-sky-500 rounded-lg py-3 px-4 bg-white"
+				className="flex justify-center w-80 shadow-md border border-sky-500 rounded-full py-2 px-4 bg-white"
 				onClick={submitHandler}
 			>
-				<FaTwitter className='mr-2 text-2xl text-sky-500'/> Continue with Twitter
+				 <FaTwitter className='mr-3 text-2xl text-sky-500 '/> Continue with Twitter
 			</button>
 		</div>
 	);
 }
 
 export default TwitterLogin
+
+

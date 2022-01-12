@@ -4,6 +4,7 @@ import { get_Auth } from "../../Firebase";
 import GoogleLogin from "./GoogleLogin";
 import TwitterLogin from "./TwitterLogin";
 import InputBox from "../ui/InputBox";
+import Logo from '../assets/Logo.svg'
 
 interface Props {}
 
@@ -42,17 +43,12 @@ const Login = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col ">
-			<h1 className="text-3xl text-center mt-40">Log In</h1>
-
-			<div className="flex justify-center my-8 ">
-				<div className="mx-10 ">
-					<GoogleLogin />
-				</div>
-				<div className="mx-10">
-					<TwitterLogin />
-				</div>
+		<div className="flex flex-col items-center mt-32">
+			<div className="w-24 ">
+				<img src={Logo} alt="React Logo" />	
 			</div>
+			
+			<h1 className="text-3xl text-center mt-10 font-medium">Log In</h1>
 
 			<div className="flex justify-center mt-20">
 			<form onSubmit={submitHandler}>
@@ -77,16 +73,24 @@ const Login = (props: Props) => {
 						/>
 					</div>
 				
-				<button className="rounded-full w-80 font-bold py-2 px-4 bg-sky-500 text-white">
+				<button className="mb-4 rounded-full w-80 font-bold py-2 px-4 bg-sky-500 text-white">
 					Log In
 				</button>
+
+				<div className="mb-4 ">
+					<GoogleLogin />
+				</div>
+				<div className="mb-4 ">
+					<TwitterLogin />
+				</div>
 				
 			</form>
 			</div>
 
-			<div className="flex justify-center mt-8">
-				<h1 className="mr-8 text-sky-500">Forgot Password</h1>
-				<h1 className="ml-8 text-sky-500">Sign Up a New Account</h1>
+			
+
+			<div className="text-center mt-8">
+				<h1 className=" text-sky-500">Sign Up a New Account</h1>
 			</div>
 
 			</div>

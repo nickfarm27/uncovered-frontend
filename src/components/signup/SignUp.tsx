@@ -7,6 +7,7 @@ import { generateNewAccount } from "../blockchain/newAccount";
 import image from "../assets/SignUpImage.jpg";
 import GoogleSignUp from "./GoogleSignUp";
 import TwitterSignUp from "./TwitterSignUp";
+import Logo from "../assets/Logo.svg";
 
 interface Props {}
 
@@ -77,9 +78,12 @@ const SignUp = (props: Props) => {
 
 			<div
 				className="flex flex-col 
-        items-start mt-48"
+        items-center mt-24"
 			>
-				<h1 className="text-3xl mb-5">Sign up with email</h1>
+				<div className="w-24 ">
+					<img src={Logo} alt="React Logo" />
+				</div>
+				<h1 className="text-3xl mt-10 mb-5">Sign up with email</h1>
 				<form onSubmit={submitHandler}>
 					<InputBox
 						type="text"
@@ -110,29 +114,33 @@ const SignUp = (props: Props) => {
 						id="confirmPassword"
 						placeholder="Confirm Password"
 						ref={confirmPasswordInputRef}
-						className=" bg-gray-200 w-80 mb-10 pl-3 pb-2 pt-2 rounded-md"
+						className=" bg-gray-200 w-80 mb-6 pl-3 pb-2 pt-2 rounded-md"
 					/>
 					<br />
 
-					<div className="grid gap-x-8 gap-y-6 grid-cols-2 ">
-						<GoogleSignUp />
-						<TwitterSignUp />
-
+					<div className="flex flex-col">
 						<div>
-							<h1 className="">By signing up, I agree to the</h1>
-							<h1 className="">
+							<h1 className="text-center">By signing up, I agree to the</h1>
+							<h1 className="text-center mb-4">
 								terms of service and privacy policy
 							</h1>
 						</div>
-						<button className="w-60 shadow-lg rounded-lg font-bold py-3 px-4 bg-sky-500 text-white">
+						
+						<button className="mb-4 w-80 shadow-lg rounded-full font-bold py-2 px-4 bg-sky-500 text-white">
 							Sign Up
 						</button>
+						<div className="mb-4">
+							<GoogleSignUp />
+						</div>
+						<div className="mb-4">
+							<TwitterSignUp />
+						</div>
 					</div>
 				</form>
 
-				<div className="mt-36">
+				<div className="flex mt-10">
 					<h1>Already have an account?</h1>
-					<h1 className="text-sky-500">Sign in now</h1>
+					<h1 className="text-sky-500 ml-1"> Sign in now</h1>
 				</div>
 			</div>
 		</div>
