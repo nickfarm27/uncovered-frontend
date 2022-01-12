@@ -1,4 +1,6 @@
 import React from 'react'
+import Header from './Header'
+import Tabs from './Tabs'
 
 interface Props {
     
@@ -6,9 +8,10 @@ interface Props {
 
 const Home = (props: Props) => {
     return (
-        <div>
-            HOME PAGE
-        </div>
+        <>
+            <Header />
+            <Tabs />
+        </>
     )
 }
 
