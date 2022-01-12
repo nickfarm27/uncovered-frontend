@@ -120,12 +120,14 @@ const SignUp = (props: Props) => {
 
 					<div className="flex flex-col">
 						<div>
-							<h1 className="text-center">By signing up, I agree to the</h1>
+							<h1 className="text-center">
+								By signing up, I agree to the
+							</h1>
 							<h1 className="text-center mb-4">
 								terms of service and privacy policy
 							</h1>
 						</div>
-						
+
 						<button className="mb-4 w-80 shadow-lg rounded-full font-bold py-2 px-4 bg-sky-500 text-white">
 							Sign Up
 						</button>
