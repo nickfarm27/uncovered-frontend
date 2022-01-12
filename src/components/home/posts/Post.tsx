@@ -7,22 +7,20 @@ interface Props {
 
 const Post = (props: Props) => {
     return (
-        <div className='bg-slate-100 rounded-lg box-border p-4'>
-            <div className='bg-white flex flex-col'>
-                <div className='flex'>
-                    <div className='box-border h-12 w-12 rounded-full bg-black my-2'></div>
-                    <div>
-                        <div className='flex'>
-                            <h1>Mokey Gan</h1>
-                            <h2>@mokeygan</h2>
-                            <h2>2h</h2>
-                        </div>
-                        <p>I will rule China one day</p>
+        <div className='bg-white flex flex-col p-4 rounded-lg items-center mb-4 box-border border border-slate-300'>
+            <div className='flex pb-4 self-start'>
+                <div className='box-border h-12 w-12 min-w-[3rem] rounded-full bg-black'></div>
+                <div className='flex flex-col pl-3'>
+                    <div className='flex gap-2'>
+                        <h1 className='font-semibold'>Mokey Gan</h1>
+                        <h2 className='text-slate-500'>@mokeygan</h2>
+                        <h2 className='text-slate-500'>· 2h</h2>
                     </div>
+                    <p className='font-normal'>I will rule China one day. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque animi debitis veniam quod expedita inventore pariatur odit fugit, aut, fugiat sunt deserunt placeat voluptatum, dicta enim iure! Quia, culpa fugit.</p>
                 </div>
-                <div>PROGRESS BAR</div>
             </div>
-            <div className='flex'>
+            <div className='bg-green-300 rounded-full text-center w-full'>.</div>
+            <div className='flex text-xl gap-3 text-slate-400 self-start mt-4'>
                 <FiThumbsUp />
                 <FiThumbsDown />
                 <FiMessageSquare />
