@@ -1,6 +1,6 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 import Header from './Header'
-import Tabs from './Tabs'
 
 interface Props {
     
@@ -8,10 +8,10 @@ interface Props {
 
 const Home = (props: Props) => {
     return (
-        <>
+        <div className='min-h-screen bg-slate-50'>
             <Header />
-            <Tabs />
-        </>
+            <Outlet />
+        </div>
     )
 }
 

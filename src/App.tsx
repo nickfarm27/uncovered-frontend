@@ -5,6 +5,7 @@ import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import Profile from "./components/profile/Profile";
 import Introduction from "./components/introduction/Introduction";
+import Posts from "./components/home/posts/Posts";
 import "./App.css";
 
 
@@ -19,29 +20,25 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home />}>
+                        <Route index element={<Posts />} />
+                        <Route path="unverified" element={<p>Unverified</p>} />
+                        <Route path="upload" element={<p>Upload Link</p>} />
+                    </Route>
                     <Route path="introduction" element={<Introduction />} />
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<SignUp />} />
                     <Route path="profile" element={<Profile />} />
+                    <Route
+                        path="*"
+                        element={
+                            <main style={{ padding: "1rem" }}>
+                            <p>There's nothing here!</p>
+                            </main>
+                        }
+                    />
 
-                    {/* <Route path="/login">
-                        <LogIn />
-                        <br />
-						<GoogleSignIn />
-						<br />
-						<TwitterSignIn />
-                    </Route>
-
-                    <Route path="/signup">
-                        <SignUp />
-                        <br />
-                        <GoogleSignUp />
-                        <br />
-                        <TwitterSignUp />
-                    </Route>
-
-                    <Route path="/menu">
+                    {/* <Route path="/menu">
                         <Menu />
                     </Route>
 

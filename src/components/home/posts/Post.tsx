@@ -19,7 +19,7 @@ const Post = (props: Props) => {
                     <p className='font-normal'>I will rule China one day. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque animi debitis veniam quod expedita inventore pariatur odit fugit, aut, fugiat sunt deserunt placeat voluptatum, dicta enim iure! Quia, culpa fugit.</p>
                 </div>
             </div>
-            <div className='bg-green-300 rounded-full text-center w-full'>.</div>
+            <div className='bg-green-300 rounded-full text-center w-full min-h-[1.5rem]'></div>
             <div className='flex text-xl gap-3 text-slate-400 self-start mt-4'>
                 <FiThumbsUp />
                 <FiThumbsDown />
