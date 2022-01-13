@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
 import { get_Auth } from "../../Firebase";
 import GoogleLogin from "./GoogleLogin";
 import TwitterLogin from "./TwitterLogin";
 import InputBox from "../ui/InputBox";
-import Logo from '../assets/Logo.svg'
+import { ReactComponent as Logo } from '../assets/Logo.svg'
 
 interface Props {}
 
@@ -43,58 +44,52 @@ const Login = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col items-center mt-32">
-			<div className="w-24 ">
-				<img src={Logo} alt="React Logo" />	
+		<div className="flex flex-col items-center min-h-screen justify-evenly">
+			<div className="w-24 mt-4">
+				<Logo />
 			</div>
 			
-			<h1 className="text-3xl text-center mt-10 font-medium">Log In</h1>
+			<h1 className="text-2xl text-center font-semibold">Log In</h1>
 
-			<div className="flex justify-center mt-20">
-			<form onSubmit={submitHandler}>
-		
+			<div>
+				<form onSubmit={submitHandler}>
 					<div className="">
 						<InputBox
 							type="email"
 							id="logInEmail"
 							placeholder="Email"
 							ref={emailInputRef}
-							className="bg-gray-200 w-80 mb-5 pl-3 pb-2 pt-2 rounded-md"
+							className="bg-slate-100 w-80 mb-4 pl-3 py-2 rounded-md border-slate-200 border-2"
 						/>
 					</div>
-
 					<div className="">
 						<InputBox
 							type="password"
 							id="logInPassword"
 							placeholder="Password"
 							ref={passwordInputRef}
-							className="bg-gray-200 w-80 mb-16 pl-3 pb-2 pt-2 rounded-md"
+							className="bg-slate-100 w-80 mb-4 pl-3 py-2 rounded-md border-slate-200 border-2"
 						/>
 					</div>
+					<button className="mb-4 rounded-full w-80 font-bold py-2 px-4 bg-sky-500 text-white">
+						Log In
+					</button>
+				</form>
 				
-				<button className="mb-4 rounded-full w-80 font-bold py-2 px-4 bg-sky-500 text-white">
-					Log In
-				</button>
+				<hr className="w-80 bg-slate-200 h-[1px]" />
 
-				<div className="mb-4 ">
-					<GoogleLogin />
+				<div>
+					<div className="mt-4 mb-4 ">
+						<GoogleLogin />
+					</div>
+					<div className="mb-4 ">
+						<TwitterLogin />
+					</div>
 				</div>
-				<div className="mb-4 ">
-					<TwitterLogin />
-				</div>
-				
-			</form>
 			</div>
-
 			
-
-			<div className="text-center mt-8">
-				<h1 className=" text-sky-500">Sign Up a New Account</h1>
-			</div>
-
-			</div>
-		
+			<h1 className="text-sm">New to Uncovered? <Link to="/signup" className="font-medium text-center text-sky-500">Sign Up</Link></h1>
+		</div>
 	);
 };
 

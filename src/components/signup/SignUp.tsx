@@ -1,13 +1,14 @@
 import { useRef } from "react";
-import InputBox from "../ui/InputBox";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { get_Auth, get_Firestore } from "../../Firebase";
 import { setDoc, doc } from "firebase/firestore";
-import { generateNewAccount } from "../blockchain/newAccount";
-import image from "../assets/SignUpImage.jpg";
+import { Link } from "react-router-dom";
+import InputBox from "../ui/InputBox";
+import { get_Auth, get_Firestore } from "../../Firebase";
 import GoogleSignUp from "./GoogleSignUp";
 import TwitterSignUp from "./TwitterSignUp";
-import Logo from "../assets/Logo.svg";
+import image from "../assets/SignUpImage.jpg";
+import { ReactComponent as Logo } from "../assets/Logo.svg";
+import { generateNewAccount } from "../blockchain/newAccount";
 
 interface Props {}
 
@@ -71,79 +72,65 @@ const SignUp = (props: Props) => {
 	};
 
 	return (
-		<div className="flex">
-			<div className="box-border h-128 w-128 pr-12 mr-12 mt-32 ml-32">
-				<img src={image} />
+		<div className="flex min-h-screen">
+			<div className="flex justify-center w-1/2">
+				<img src={image} alt="random" className="w-[32rem] object-contain" />
 			</div>
 
-			<div
-				className="flex flex-col 
-        items-center mt-24"
-			>
-				<div className="w-24 ">
-					<img src={Logo} alt="React Logo" />
+			<div className="flex flex-col items-center w-1/2 justify-evenly pr-40">
+				<div className="w-24 mt-4">
+					<Logo />
 				</div>
-				<h1 className="text-3xl mt-10 mb-5">Sign up with email</h1>
-				<form onSubmit={submitHandler}>
+				
+				<h1 className="text-2xl text-center font-semibold">Sign Up</h1>
+				
+				<form onSubmit={submitHandler} className="flex flex-col items-center">
 					<InputBox
 						type="text"
 						id="userName"
 						placeholder="Username"
 						ref={userNameInputRef}
-						className="mt-3 bg-gray-200 w-80 mb-5 pl-3 pb-2 pt-2 rounded-md"
+						className="mt-3 bg-slate-100 w-80 mb-4 pl-3 py-2 rounded-md border-slate-200 border-2 text-sm"
 					/>
-					<br />
 					<InputBox
 						type="email"
 						id="signUpEmail"
 						placeholder="Email"
 						ref={emailInputRef}
-						className="bg-gray-200 w-80 mb-5 pl-3 pb-2 pt-2 rounded-md"
+						className="bg-slate-100 w-80 mb-4 pl-3 py-2 rounded-md border-slate-200 border-2 text-sm"
 					/>
-					<br />
 					<InputBox
 						type="password"
 						id="signUpPassword"
 						placeholder="Password"
 						ref={passwordInputRef}
-						className="bg-gray-200 w-80 mb-5 pl-3 pb-2 pt-2 rounded-md"
+						className="bg-slate-100 w-80 mb-4 pl-3 py-2 rounded-md border-slate-200 border-2 text-sm"
 					/>
-					<br />
 					<InputBox
 						type="password"
 						id="confirmPassword"
 						placeholder="Confirm Password"
 						ref={confirmPasswordInputRef}
-						className=" bg-gray-200 w-80 mb-6 pl-3 pb-2 pt-2 rounded-md"
+						className=" bg-slate-100 w-80 mb-4 pl-3 py-2 rounded-md border-slate-200 border-2 text-sm"
 					/>
-					<br />
-
-					<div className="flex flex-col">
-						<div>
-							<h1 className="text-center">
-								By signing up, I agree to the
-							</h1>
-							<h1 className="text-center mb-4">
-								terms of service and privacy policy
-							</h1>
-						</div>
-
-						<button className="mb-4 w-80 shadow-lg rounded-full font-bold py-2 px-4 bg-sky-500 text-white">
-							Sign Up
-						</button>
-						<div className="mb-4">
-							<GoogleSignUp />
-						</div>
-						<div className="mb-4">
-							<TwitterSignUp />
-						</div>
-					</div>
+					<button className="mb-4 w-80 shadow-lg rounded-full font-bold py-2 px-4 bg-sky-500 text-white">
+						Sign Up
+					</button>
+					<h1 className="text-center w-80 text-xs">By signing up, you are agreeing to the terms of service and privacy policy</h1>
 				</form>
-
-				<div className="flex mt-10">
-					<h1>Already have an account?</h1>
-					<h1 className="text-sky-500 ml-1"> Sign in now</h1>
+				
+				<hr className="w-80 bg-slate-200 h-[1px]" />
+				
+				<div>
+					<div className="mb-4">
+						<GoogleSignUp />
+					</div>
+					<div className="mb-4">
+						<TwitterSignUp />
+					</div>
 				</div>
+				
+				<h1 className="text-sm">Already have an account? <Link to="/login" className="text-sky-500 ml-1 text-sm font-medium">Sign In</Link></h1>
 			</div>
 		</div>
 	);
