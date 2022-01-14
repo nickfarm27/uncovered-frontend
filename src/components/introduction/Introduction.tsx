@@ -22,24 +22,24 @@ const Introduction = (props: Props) => {
 				</button>
 			</div>
 
-			<div className="pt-12 flex flex-col items-center box-border bg-blue-300 h-screen ">
-				<h1 className="text-6xl font-bold text-white mb-40">
+			<div className="flex flex-col items-center justify-evenly box-border bg-blue-300 h-screen ">
+				<h1 className="text-6xl font-bold text-white">
 					What We Use
 				</h1>
 
-				<div className="flex">
-					<div className="flex flex-col justify-space-around items-center mr-64">
+				<div className="flex justify-around w-full">
+					<div className="flex flex-col justify-space-around items-center">
 						<motion.div
 							whileHover={{ scale: 1.5, rotate: 90  }} 
-							className="box-border rounded-full h-72 w-72  bg-blue-400 pt-8 pb-8 pl-8 pr-8"
+							className="box-border rounded-full h-72 w-72 bg-blue-400 p-8"
 						>
 							<img src={Blockchain} alt="Blockchain" />
 						</motion.div>
 						<h1 className="text-5xl text-white mt-14">Blockchain</h1>
 					</div>
 
-					<div className=" flex flex-col items-center ml-64">
-						<div className="box-border rounded-full h-72 w-72  bg-blue-400 pt-14 pb-14 pl-14 pr-14">
+					<div className=" flex flex-col items-center">
+						<div className="box-border rounded-full h-72 w-72 bg-blue-400 p-14">
 							<img src={TrustIndex} alt="Trust Index" />
 						</div>
 						<h1 className="text-5xl text-white mt-14">Trust Index</h1>

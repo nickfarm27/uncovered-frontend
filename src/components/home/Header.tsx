@@ -16,7 +16,7 @@ const Header = (props: Props) => {
         <div className='bg-white flex flex-row flex-nowrap items-center shadow-md'>
             <div className='flex items-center w-1/3'>
                 <Logo className='h-12 ml-6 mr-4' />
-                <input type="text" className='h-12 w-72 rounded-full px-4 mr-10 bg-slate-100' placeholder='Search Posts'></input>
+                <input type="text" className='h-12 w-72 rounded-full px-4 bg-slate-100' placeholder='Search Posts'></input>
             </div>
             <nav className='flex items-center w-1/3 justify-center'>
                 <Link to="/">
