@@ -6,7 +6,7 @@ import InputBox from "../ui/InputBox";
 import { get_Auth, get_Firestore } from "../../Firebase";
 import GoogleSignUp from "./GoogleSignUp";
 import TwitterSignUp from "./TwitterSignUp";
-import image from "../assets/SignUpImage.jpg";
+import image from "../assets/SignUpImage.png";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
 import { generateNewAccount } from "../blockchain/newAccount";
 
@@ -73,11 +73,11 @@ const SignUp = (props: Props) => {
 
 	return (
 		<div className="flex min-h-screen">
-			<div className="flex justify-center w-1/2">
-				<img src={image} alt="random" className="w-[32rem] object-contain" />
+			<div className="flex justify-center w-1/2" >
+				<img src={image} alt="random" className="w-[42rem] object-contain ml-12" />
 			</div>
 
-			<div className="flex flex-col items-center w-1/2 justify-evenly pr-40">
+			<div className="flex flex-col items-center w-1/2 justify-evenly">
 				<div className="w-24 mt-4">
 					<Logo />
 				</div>
