@@ -19,13 +19,13 @@ const Investigation = (props: Props) => {
 					/>
 					<h1 className="text-5xl  mt-14">Captain</h1>
 				</div>
-				<div className="flex flex-col justify-evenly items-center">
+				<div className="flex flex-col justify-end items-center">
 					<img
 						src={Warrior}
 						alt="Sample"
-						className="w-[24rem] object-contain "
+						className="w-[18rem] object-contain "
 					/>
-					<h1 className="text-5xl  mt-14">Warrior</h1>
+					<h1 className="text-5xl mt-12">Warrior</h1>
 				</div>
 				<div className="flex flex-col justify-evenly items-center">
 					<img
