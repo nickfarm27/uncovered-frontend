@@ -7,7 +7,7 @@ const Start = (props: Props) => {
 		<div className="flex flex-col justify-center pt-28 pl-12 box-border bg-white h-screen">
 			<h1 className="text-6xl font-bold">Uncovered</h1>
 			<h1 className="pt-12 text-3xl leading-loose">
-				A platform allowing a community to identify new's genuinity.{" "}
+				A platform allowing a community to identify news genuinity.{" "}
 				<br /> Read and write reviews for every possible news found on
 				Twitter. <br /> Keep news honest. Look for credible news online.
 			</h1>
