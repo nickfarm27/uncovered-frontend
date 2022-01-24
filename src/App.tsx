@@ -28,7 +28,16 @@ function App() {
                     <Route path="introduction" element={<Introduction />} />
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<SignUp />} />
-                    <Route path="profile" element={<Profile />} />
+                    <Route path="profile" element={<Profile />}>
+                        <Route index element={<p>Dashboard</p>} />
+                        <Route path="view" element={<p>Profile</p>} />
+                        <Route path="edit" element={<p>Edit</p>} />
+                        <Route path="wallet" element={<p>Wallet</p>} />
+                        <Route path="feed" element={<p>My Feed</p>} />
+                        <Route path="missions" element={<p>Missions</p>} />
+                        <Route path="tasks" element={<p>Tasks</p>} />
+                        <Route path="leaderboard" element={<p>Leaderboard</p>} />
+                    </Route>
                     <Route
                         path="*"
                         element={
