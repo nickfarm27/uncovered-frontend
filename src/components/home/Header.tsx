@@ -45,7 +45,7 @@ const Header = (props: Props) => {
                 </Link>
             </nav>
             <div className='flex w-1/3 justify-end'>
-                <div className='box-border min-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] rounded-full bg-black mr-8'></div>
+                <Link to="/profile" className='box-border min-h-[2.5rem] min-w-[2.5rem] max-w-[2.5rem] rounded-full bg-black mr-8'></Link>
             </div>
         </div>
     )
