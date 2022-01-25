@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Blockchain from "../assets/Blockchain.png";
 import TrustIndex from "../assets/Percent.png";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { moveSyntheticComments } from "typescript";
 
 interface Props {}
@@ -10,11 +10,57 @@ const WhatWeUse = (props: Props) => {
 	const [showBlockchain, setShowBlockchain] = useState(false);
 	const [showTrustIndex, setShowTrustIndex] = useState(false);
 
+	const titleVariants: Variants = {
+		offscreen: {
+			y: 300,
+			opacity: 0,
+		},
+		onscreen: {
+			y: -50,
+			opacity: 1,
+			transition: {
+				type: "spring",
+				bounce: 0.4,
+				duration: 0.8,
+			},
+		},
+	};
+
+	const circleVariants: Variants = {
+		offscreen: {
+			y: 150,
+			opacity: 0,
+		},
+		onscreen: {
+			y: -50,
+			opacity: 1,
+			transition: {
+				type: "spring",
+				bounce: 0.4,
+				duration: 0.9,
+			},
+		},
+	};
+
 	return (
 		<div className="flex flex-col items-center justify-evenly box-border bg-[#9dbccf] h-screen ">
-			<h1 className="text-6xl font-bold text-white">What We Use</h1>
+			<motion.h1
+				initial="offscreen"
+				whileInView="onscreen"
+				viewport={{ once: true, amount: 0.8 }}
+				variants={titleVariants}
+				className="text-5xl font-bold text-white"
+			>
+				What We Use
+			</motion.h1>
 
-			<div className="z-10 flex justify-around w-full">
+			<motion.div
+				initial="offscreen"
+				whileInView="onscreen"
+				viewport={{ once: true, amount: 0.8 }}
+				variants={circleVariants}
+				className="z-10 flex justify-around w-full"
+			>
 				<motion.div
 					whileHover={{ scale: 0.5, opacity: 0 }}
 					onHoverStart={(e) => {
@@ -27,10 +73,12 @@ const WhatWeUse = (props: Props) => {
 					exit={{ y: -1000 }}
 					className=" flex static flex-col justify-space-around items-center "
 				>
-					<div className="box-border rounded-full h-72 w-72 bg-[#015a91] p-8">
+					<div className="box-border rounded-full h-56 w-56 bg-[#015a91] p-8">
 						<img src={Blockchain} alt="Blockchain" />
 					</div>
-					<h1 className="text-5xl text-white mt-14">Blockchain</h1>
+					<h1 className="text-2xl text-white mt-14 font-semibold">
+						Blockchain
+					</h1>
 				</motion.div>
 
 				<motion.div
@@ -44,12 +92,14 @@ const WhatWeUse = (props: Props) => {
 					transition={{ duration: 0.4, type: "spring" }}
 					className=" flex static flex-col justify-space-around items-center "
 				>
-					<div className="box-border rounded-full h-72 w-72 bg-[#015a91] p-14">
+					<div className="box-border rounded-full h-56 w-56 bg-[#015a91] p-14">
 						<img src={TrustIndex} alt="Trust Index" />
 					</div>
-					<h1 className="text-5xl text-white mt-14">Trust Index</h1>
+					<h1 className="text-2xl text-white mt-14 font-semibold">
+						Trust Index
+					</h1>
 				</motion.div>
-			</div>
+			</motion.div>
 
 			<div className=" z-0 absolute flex justify-around w-5/6 h-1/3 mt-12 gap-x-48 ">
 				<AnimatePresence>
@@ -58,8 +108,8 @@ const WhatWeUse = (props: Props) => {
 							initial={{ opacity: 0 }}
 							animate={{
 								opacity: 1,
-								scaleX: 1.3,
-								scaleY: 1.3,
+								scaleX: 1.2,
+								scaleY: 1.2,
 								translateY: 80,
 							}}
 							transition={{
@@ -67,11 +117,13 @@ const WhatWeUse = (props: Props) => {
 								type: "spring",
 								delay: 0.2,
 							}}
-							className=" bg-blue-400 box-border w-full h-full rounded-3xl p-8 shadow-2xl"
+							className=" bg-blue-400 box-border w-full h-3/5 rounded-3xl p-8 shadow-2xl"
 						>
 							<div>
-								<h1 className="pb-4">Blockchain</h1>
-								<h1 className="text-sm text-justify">
+								<h1 className="font-semibold pb-2">
+									Blockchain
+								</h1>
+								<h1 className="text-xs text-justify font-medium">
 									Lorem Ipsum is simply dummy text of the
 									printing and typesetting industry. Lorem
 									Ipsum has been the industry's standard dummy
@@ -80,12 +132,7 @@ const WhatWeUse = (props: Props) => {
 									it to make a type specimen book. It has
 									survived not only five centuries, but also
 									the leap into electronic typesetting,
-									remaining essentially unchanged. It was
-									popularised in the 1960s with the release of
-									Letraset sheets containing Lorem Ipsum
-									passages, and more recently with desktop
-									publishing software like Aldus PageMaker
-									including versions of Lorem Ipsum.
+									remaining essentially unchanged.
 								</h1>
 							</div>
 						</motion.div>
@@ -103,11 +150,13 @@ const WhatWeUse = (props: Props) => {
 								type: "spring",
 								delay: 0,
 							}}
-							className="bg-blue-400 border-hidden box-border w-full h-full rounded-3xl p-8 shadow-2xl"
+							className="bg-blue-400 border-hidden box-border w-full h-3/5 rounded-3xl p-8 shadow-2xl"
 						>
 							<div>
-								<h1 className="pb-4">Blockchain</h1>
-								<h1 className="text-sm text-justify">
+								<h1 className=" font-semibold pb-2">
+									Blockchain
+								</h1>
+								<h1 className="text-xs text-justify font-medium">
 									Lorem Ipsum is simply dummy text of the
 									printing and typesetting industry. Lorem
 									Ipsum has been the industry's standard dummy
@@ -116,12 +165,7 @@ const WhatWeUse = (props: Props) => {
 									it to make a type specimen book. It has
 									survived not only five centuries, but also
 									the leap into electronic typesetting,
-									remaining essentially unchanged. It was
-									popularised in the 1960s with the release of
-									Letraset sheets containing Lorem Ipsum
-									passages, and more recently with desktop
-									publishing software like Aldus PageMaker
-									including versions of Lorem Ipsum.
+									remaining essentially unchanged.
 								</h1>
 							</div>
 						</motion.div>
@@ -143,11 +187,13 @@ const WhatWeUse = (props: Props) => {
 								type: "spring",
 								delay: 0.2,
 							}}
-							className=" bg-blue-400 box-border w-full h-full rounded-3xl p-8 shadow-2xl"
+							className=" bg-blue-400 box-border w-full h-3/5 rounded-3xl p-8 shadow-2xl"
 						>
 							<div>
-								<h1 className="pb-4">Trust Index</h1>
-								<h1 className="text-sm text-justify">
+								<h1 className="font-semibold pb-2">
+									Trust Index
+								</h1>
+								<h1 className="text-xs text-justify font-medium">
 									Lorem Ipsum is simply dummy text of the
 									printing and typesetting industry. Lorem
 									Ipsum has been the industry's standard dummy
@@ -156,12 +202,7 @@ const WhatWeUse = (props: Props) => {
 									it to make a type specimen book. It has
 									survived not only five centuries, but also
 									the leap into electronic typesetting,
-									remaining essentially unchanged. It was
-									popularised in the 1960s with the release of
-									Letraset sheets containing Lorem Ipsum
-									passages, and more recently with desktop
-									publishing software like Aldus PageMaker
-									including versions of Lorem Ipsum.
+									remaining essentially unchanged.
 								</h1>
 							</div>
 						</motion.div>
@@ -179,11 +220,13 @@ const WhatWeUse = (props: Props) => {
 								type: "spring",
 								delay: 0,
 							}}
-							className=" bg-blue-400 box-border w-full h-full rounded-3xl p-8 shadow-2xl"
+							className=" bg-blue-400 box-border w-full h-3/5 rounded-3xl p-8 shadow-2xl"
 						>
 							<div>
-								<h1 className="pb-4">Trust Index</h1>
-								<h1 className="text-sm text-justify">
+								<h1 className="font-semibold pb-2">
+									Trust Index
+								</h1>
+								<h1 className="text-xs text-justify font-medium">
 									Lorem Ipsum is simply dummy text of the
 									printing and typesetting industry. Lorem
 									Ipsum has been the industry's standard dummy
@@ -192,12 +235,7 @@ const WhatWeUse = (props: Props) => {
 									it to make a type specimen book. It has
 									survived not only five centuries, but also
 									the leap into electronic typesetting,
-									remaining essentially unchanged. It was
-									popularised in the 1960s with the release of
-									Letraset sheets containing Lorem Ipsum
-									passages, and more recently with desktop
-									publishing software like Aldus PageMaker
-									including versions of Lorem Ipsum.
+									remaining essentially unchanged.
 								</h1>
 							</div>
 						</motion.div>
