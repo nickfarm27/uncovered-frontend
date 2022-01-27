@@ -1,18 +1,25 @@
-import React, { useRef } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { Link } from "react-router-dom";
+import React, { useContext, useRef } from "react";
+import { browserLocalPersistence, browserSessionPersistence, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { get_Auth } from "../../Firebase";
 import GoogleLogin from "./GoogleLogin";
 import TwitterLogin from "./TwitterLogin";
 import InputBox from "../ui/InputBox";
 import { ReactComponent as Logo } from '../assets/Logo.svg'
+import { User } from "firebase/auth";
+import AuthContext from "../../store/auth-context";
 
-interface Props {}
+interface Props {
+	setAuth: React.Dispatch<React.SetStateAction<User | null>>
+}
 
 const Login = (props: Props) => {
 	const emailInputRef = useRef<HTMLInputElement>(null);
 	const passwordInputRef = useRef<HTMLInputElement>(null);
-	// const history = useHistory();
+	const location = useLocation();
+	const navigate = useNavigate();
+	const authCtx = useContext(AuthContext);
+	// console.log(get_Auth.currentUser);
 
 	//For extracting the current value of email and password
 	const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,27 +27,70 @@ const Login = (props: Props) => {
 		const enteredEmail = emailInputRef.current?.value;
 		const enteredPassword = passwordInputRef.current?.value;
 
-		signInWithEmailAndPassword(
-			get_Auth,
-			String(enteredEmail),
-			String(enteredPassword)
-		)
-			.then((userCredential) => {
-				// Signed in
-				const user = userCredential.user;
-				console.log("Login");
-				console.log(user.uid);
-				console.log(user.email);
-				console.log(get_Auth.currentUser);
+		const response = await authCtx.login(enteredEmail as string, enteredPassword as string)
+		const from = location.state ? location.state as string : "/";
+		navigate(from, { replace: true});
 
-				if (get_Auth.currentUser?.uid != null) {
-					// history.replace("/menu");
-				}
-			})
-			.catch((error) => {
-				// const errorCode = error.code;
-				// const errorMessage = error.message;
-			});
+		console.log("WORKS???");
+		
+
+		// setPersistence(get_Auth, browserLocalPersistence)
+		// 	.then(() => {
+		// 		// Existing and future Auth states are now persisted in the current
+		// 		// session only. Closing the window would clear any existing state even
+		// 		// if a user forgets to sign out.
+		// 		// ...
+		// 		// New sign-in will be persisted with session persistence.
+		// 		signInWithEmailAndPassword(get_Auth, enteredEmail as string, enteredPassword as string)
+		// 		.then((userCredential) => {
+		// 				// console.log(get_Auth.currentUser);
+		// 				// console.log(userCredential);
+		// 				props.setAuth(get_Auth.currentUser);
+		
+		// 				if (get_Auth.currentUser?.uid != null) {
+		// 					const from = location.state ? location.state as string : "/";
+		// 					navigate(from, { replace: true});
+		// 					// console.log(location.state);
+		// 				}
+		// 			})
+		// 			.catch((error) => {
+		// 				// const errorCode = error.code;
+		// 				// const errorMessage = error.message;
+		// 			});
+		// 	})
+		// 	.catch((error) => {
+		// 		// Handle Errors here.
+		// 		const errorCode = error.code;
+		// 		const errorMessage = error.message;
+		// 	});
+
+		// signInWithEmailAndPassword(
+		// 	get_Auth,
+		// 	String(enteredEmail),
+		// 	String(enteredPassword)
+		// )
+		// 	.then((userCredential) => {
+		// 		// Signed in
+		// 		// const user = userCredential.user;
+		// 		// console.log(userCredential);
+				
+		// 		// console.log("Login");
+		// 		// console.log(user.uid);
+		// 		// console.log(user.email);
+		// 		console.log(get_Auth.currentUser);
+		// 		console.log(userCredential);
+		// 		props.setAuth(get_Auth.currentUser);
+
+		// 		if (get_Auth.currentUser?.uid != null) {
+		// 			const from = location.state ? location.state as string : "/";
+		// 			navigate(from, { replace: true});
+		// 			console.log(location.state);
+		// 		}
+		// 	})
+		// 	.catch((error) => {
+		// 		// const errorCode = error.code;
+		// 		// const errorMessage = error.message;
+		// 	});
 	};
 
 	return (
