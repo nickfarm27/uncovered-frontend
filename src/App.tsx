@@ -75,7 +75,7 @@ function App() {
                         }
                     />
                 </Routes>
-                {/* <button onClick={() => {signOut(get_Auth)}}>LOGOUT</button> */}
+                <button onClick={() => {signOut(get_Auth)}}>LOGOUT</button>
         </div>
     );
 }
