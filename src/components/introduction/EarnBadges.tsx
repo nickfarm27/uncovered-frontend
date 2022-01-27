@@ -7,7 +7,7 @@ interface Props {}
 const Badges = (props: Props) => {
 	const titleVariants: Variants = {
 		offscreen: {
-			y: 100,
+			y: 50,
 			opacity: 0,
 		},
 		onscreen: {

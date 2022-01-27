@@ -69,7 +69,7 @@ const Team = (props: Props) => {
 					onHoverEnd={(e) => {
 						setShowFirst(false);
 					}}
-					transition={{ duration: 0.4, type: "spring" }}
+					transition={{ duration: 0.2, type: "spring" }}
 					className=" flex flex-col items-center h-56 w-1/5"
 				>
 					<img
@@ -98,8 +98,8 @@ const Team = (props: Props) => {
 					onHoverEnd={(e) => {
 						setShowSecond(false);
 					}}
-					transition={{ duration: 0.4, type: "spring" }}
-					className=" flex flex-col items-center h-56 w-1/5 "
+					transition={{ duration: 0.2, type: "spring" }}
+					className=" flex flex-col items-center h-56 w-1/5"
 				>
 					<img
 						src={Nic}
@@ -129,7 +129,7 @@ const Team = (props: Props) => {
 					onHoverEnd={(e) => {
 						setShowThird(false);
 					}}
-					transition={{ duration: 0.4, type: "spring" }}
+					transition={{ duration: 0.2, type: "spring" }}
 					className=" flex flex-col items-center h-56 w-1/5 "
 				>
 					<img
@@ -158,7 +158,7 @@ const Team = (props: Props) => {
 					onHoverEnd={(e) => {
 						setShowFourth(false);
 					}}
-					transition={{ duration: 0.4, type: "spring" }}
+					transition={{ duration: 0.2, type: "spring" }}
 					className=" flex flex-col items-center h-56 w-1/5 "
 				>
 					<img
