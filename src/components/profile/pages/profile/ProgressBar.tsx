@@ -2,22 +2,33 @@ import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
-interface Props {}
+
+interface Props {
+	color: string
+	percentage: number
+	text: string
+	textSize: string
+
+}
 
 const ProgressBar = (props: Props) => {
-	const percentage = 65;
+
+	const Color = props.color
+	const textSize = props.textSize
 	return (
 		<div className="box-border w-36 h-36">
 			<CircularProgressbar
-				value={percentage}
-				text={`${percentage}%`}
+				value={props.percentage}
+				text= {props.text}
 				styles={buildStyles({
+
+
 	
 					// Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-					strokeLinecap: "butt",
+					strokeLinecap: "round",
 
 					// Text size
-					textSize: "24px",
+					textSize: textSize,
 
 					// How long animation takes to go from one percentage to another, in seconds
 					pathTransitionDuration: 0.5,
@@ -26,7 +37,8 @@ const ProgressBar = (props: Props) => {
 					// pathTransition: 'none',
 
 					// Colors
-					textColor: "#015a91",
+					pathColor: Color,
+					textColor: Color,
 					trailColor: "#d6d6d6",
 				
 				})}

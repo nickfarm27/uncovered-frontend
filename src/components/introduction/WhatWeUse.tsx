@@ -101,7 +101,7 @@ const WhatWeUse = (props: Props) => {
 				</motion.div>
 			</motion.div>
 
-			<div className=" z-0 absolute flex justify-around w-5/6 h-1/3 mt-12 gap-x-48 ">
+			<div className=" z-0 absolute flex justify-around w-5/6 h-1/5 mt-12 gap-x-48 ">
 				<AnimatePresence>
 					{showBlockchain ? (
 						<motion.div
@@ -110,14 +110,14 @@ const WhatWeUse = (props: Props) => {
 								opacity: 1,
 								scaleX: 1.2,
 								scaleY: 1.2,
-								translateY: 80,
+								translateY: 50,
 							}}
 							transition={{
 								duration: 0.5,
 								type: "spring",
 								delay: 0.2,
 							}}
-							className=" bg-blue-400 box-border w-full h-3/5 rounded-3xl p-8 shadow-2xl"
+							className=" bg-blue-400 box-border w-full h-full rounded-3xl p-4 flex items-center shadow-2xl"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">
@@ -150,7 +150,7 @@ const WhatWeUse = (props: Props) => {
 								type: "spring",
 								delay: 0,
 							}}
-							className="bg-blue-400 border-hidden box-border w-full h-3/5 rounded-3xl p-8 shadow-2xl"
+							className="bg-blue-400 box-border w-full h-full rounded-3xl p-4 flex items-center shadow-2xl"
 						>
 							<div>
 								<h1 className=" font-semibold pb-2">
@@ -178,16 +178,16 @@ const WhatWeUse = (props: Props) => {
 							initial={{ opacity: 0 }}
 							animate={{
 								opacity: 1,
-								scaleX: 1.3,
-								scaleY: 1.3,
-								translateY: 80,
+								scaleX: 1.2,
+								scaleY: 1.2,
+								translateY: 50,
 							}}
 							transition={{
 								duration: 0.5,
 								type: "spring",
 								delay: 0.2,
 							}}
-							className=" bg-blue-400 box-border w-full h-3/5 rounded-3xl p-8 shadow-2xl"
+							className=" bg-blue-400 box-border w-full h-full rounded-3xl p-4 flex items-center shadow-2xl"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">
@@ -220,7 +220,7 @@ const WhatWeUse = (props: Props) => {
 								type: "spring",
 								delay: 0,
 							}}
-							className=" bg-blue-400 box-border w-full h-3/5 rounded-3xl p-8 shadow-2xl"
+							className=" bg-blue-400 box-border w-full h-full rounded-3xl p-4 flex items-center shadow-2xl"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">

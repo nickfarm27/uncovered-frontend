@@ -8,6 +8,8 @@ import Introduction from "./components/introduction/Introduction";
 import Posts from "./components/home/posts/Posts";
 import "./App.css";
 import ProfileView from "./components/profile/pages/profile/ProfileView";
+import WalletView from "./components/profile/pages/wallet/WalletView";
+import DashboardView from "./components/profile/pages/dashboard/DashboardView";
 
 
 function App() {
@@ -30,10 +32,10 @@ function App() {
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<SignUp />} />
                     <Route path="profile" element={<Profile />}>
-                        <Route index element={<p>Dashboard</p>} />
+                        <Route index element={<p>{<DashboardView />}</p>} />
                         <Route path="view" element={<p>{<ProfileView />}</p>} />
                         <Route path="edit" element={<p>Edit</p>} />
-                        <Route path="wallet" element={<p>Wallet</p>} />
+                        <Route path="wallet" element={<p>{<WalletView/>}</p>} />
                         <Route path="feed" element={<p>My Feed</p>} />
                         <Route path="missions" element={<p>Missions</p>} />
                         <Route path="tasks" element={<p>Tasks</p>} />

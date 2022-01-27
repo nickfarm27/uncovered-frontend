@@ -2,11 +2,11 @@ import React from "react";
 import Questions from "./Questions";
 import Team from "./Team";
 import Problems from "./Problems";
-import Badges from "./Badges";
 import Investigation from "./Investigation";
 import FunWay from "./FunWay";
 import WhatWeUse from "./WhatWeUse";
 import Start from "./Start";
+import EarnBadges from "./EarnBadges";
 
 interface Props {}
 
@@ -17,7 +17,7 @@ const Introduction = (props: Props) => {
 			<WhatWeUse />
 			<FunWay />
 			<Investigation />
-			<Badges />
+			<EarnBadges />
 			<Problems />
 			<Team />
 			<Questions />

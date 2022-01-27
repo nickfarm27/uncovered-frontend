@@ -9,7 +9,7 @@ interface Props {}
 const Investigation = (props: Props) => {
 	const titleVariants: Variants = {
 		offscreen: {
-			y: 200,
+			y: 150,
 			opacity: 0,
 		},
 		onscreen: {
@@ -25,7 +25,7 @@ const Investigation = (props: Props) => {
 
 	const classVariants: Variants = {
 		offscreen: {
-			y: 200,
+			y: 150,
 			opacity: 0,
 		},
 		onscreen: {
@@ -196,8 +196,8 @@ const Investigation = (props: Props) => {
 									animate={{ scale: 1.3, translateX: -30 }}
 									transition={{ delay: 0 }}
 								>
-									+15% EXP <br />
-									+News Options
+									+15% EXP 
+									
 								</motion.h1>
 							) : (
 								<motion.h1
@@ -208,8 +208,7 @@ const Investigation = (props: Props) => {
 									}}
 									transition={{ delay: 0.2 }}
 								>
-									+15% EXP <br />
-									+News Options
+									+15% EXP 
 								</motion.h1>
 							)}
 						</AnimatePresence>
@@ -221,16 +220,14 @@ const Investigation = (props: Props) => {
 									animate={{ scale: 1.3 }}
 									transition={{ delay: 0.1 }}
 								>
-									+15% Rewards <br />
-									+News shuffling ability
+									+15% Rewards 
 								</motion.h1>
 							) : (
 								<motion.h1
 									animate={{ scale: 0, opacity: 0 }}
 									transition={{ delay: 0.1 }}
 								>
-									+15% Rewards <br />
-									+News shuffling ability
+									+15% Rewards 
 								</motion.h1>
 							)}
 						</AnimatePresence>
@@ -243,8 +240,7 @@ const Investigation = (props: Props) => {
 									transition={{ delay: 0.2 }}
 								>
 									+7.5% Rewards & EXP
-									<br />
-									+1 chance to select news of choice
+									
 								</motion.h1>
 							) : (
 								<motion.h1
@@ -256,8 +252,7 @@ const Investigation = (props: Props) => {
 									transition={{ delay: 0 }}
 								>
 									+7.5% Rewards & EXP
-									<br />
-									+1 chance to select news of choice
+									
 								</motion.h1>
 							)}
 						</AnimatePresence>

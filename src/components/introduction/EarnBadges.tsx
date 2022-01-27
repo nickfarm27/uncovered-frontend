@@ -23,7 +23,7 @@ const Badges = (props: Props) => {
 
 	const imageVariants: Variants = {
 		offscreen: {
-			y: 120,
+			y: 100,
 			opacity: 0,
 			rotate: -180,
 		},

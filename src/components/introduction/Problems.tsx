@@ -123,7 +123,7 @@ const Problems = (props: Props) => {
 				</motion.div>
 			</motion.div>
 
-			<div className=" z-0 absolute flex justify-around w-5/6 h-1/3 mt-12 gap-x-48 ">
+			<div className=" z-0 absolute flex justify-around w-5/6 h-1/4 mt-12 gap-x-48 ">
 				<AnimatePresence>
 					{showAlgorithm ? (
 						<motion.div
@@ -139,7 +139,7 @@ const Problems = (props: Props) => {
 								type: "spring",
 								delay: 0.2,
 							}}
-							className=" bg-teal-400 box-border w-full h-4/5 rounded-3xl p-6 shadow-2xl"
+							className=" bg-teal-400 box-border w-full rounded-3xl p-4 shadow-2xl flex item-center"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">
@@ -172,7 +172,7 @@ const Problems = (props: Props) => {
 								type: "spring",
 								delay: 0,
 							}}
-							className=" bg-teal-400 box-border w-full h-4/5 rounded-3xl p-6 shadow-2xl"
+							className=" bg-teal-400 box-border w-full rounded-3xl p-4 shadow-2xl flex item-center"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">
@@ -209,7 +209,7 @@ const Problems = (props: Props) => {
 								type: "spring",
 								delay: 0.2,
 							}}
-							className=" bg-lime-400 box-border w-full h-4/5 rounded-3xl p-6 shadow-2xl"
+							className=" bg-lime-400 box-border w-full rounded-3xl p-4 shadow-2xl flex item-center"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">
@@ -242,7 +242,7 @@ const Problems = (props: Props) => {
 								type: "spring",
 								delay: 0,
 							}}
-							className=" bg-lime-400 box-border w-full h-4/5 rounded-3xl p-6 shadow-2xl"
+							className=" bg-lime-400 box-border w-full rounded-3xl p-4 shadow-2xl flex item-center"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">
@@ -279,13 +279,13 @@ const Problems = (props: Props) => {
 								type: "spring",
 								delay: 0.2,
 							}}
-							className=" bg-amber-400 box-border w-full h-4/5 rounded-3xl p-6 shadow-2xl"
+							className=" bg-amber-400 box-border w-full rounded-3xl p-4 shadow-2xl flex item-center"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">
 									Blockchain
 								</h1>
-								<h1 className="text-xs text-justify font-medium">
+								<h1 className="text-xs text-justify font-medium ">
 									Lorem Ipsum is simply dummy text of the
 									printing and typesetting industry. Lorem
 									Ipsum has been the industry's standard dummy
@@ -312,7 +312,7 @@ const Problems = (props: Props) => {
 								type: "spring",
 								delay: 0,
 							}}
-							className=" bg-amber-400 box-border w-full h-4/5 rounded-3xl p-6 shadow-2xl"
+							className=" bg-amber-400 box-border w-full rounded-3xl p-4 shadow-2xl flex item-center"
 						>
 							<div>
 								<h1 className="font-semibold pb-2">
