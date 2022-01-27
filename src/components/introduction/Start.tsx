@@ -32,7 +32,7 @@ const Start = (props: Props) => {
 				type: "spring",
 				bounce: 0.4,
 				duration: 0.8,
-				delay: 0.9,
+				delay: 0.8,
 			},
 		},
 	};
@@ -49,7 +49,7 @@ const Start = (props: Props) => {
 				type: "spring",
 				bounce: 0.4,
 				duration: 0.8,
-				delay: 1,
+				delay: 0.9,
 			},
 		},
 	};
