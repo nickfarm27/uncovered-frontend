@@ -12,6 +12,9 @@ import ProfileView from "./components/profile/pages/profile/ProfileView";
 import RequireAuth from "./components/auth/RequireAuth";
 import AuthContext, { AuthContextProvider } from "./store/auth-context";
 import { signOut } from "firebase/auth";
+import WalletView from "./components/profile/pages/wallet/WalletView";
+import DashboardView from "./components/profile/pages/dashboard/DashboardView";
+
 
 function App() {
     const [auth, setAuth] = useState(get_Auth.currentUser);
@@ -20,8 +23,8 @@ function App() {
 
     return (
         <div className="App">
-                {authCtx.user?.email ? authCtx.user.email : "NOTHING"}
-                {authCtx.num}
+                {/* {authCtx.user?.email ? authCtx.user.email : "NOTHING"}
+                {authCtx.num} */}
                 <Routes>
                     <Route path="introduction" element={<Introduction />} />
 
@@ -49,10 +52,10 @@ function App() {
                             </RequireAuth>
                         }
                     >
-                        <Route index element={<p>Dashboard</p>} />
+                        <Route index element={<DashboardView />} />
                         <Route path="view" element={<ProfileView />} />
                         <Route path="edit" element={<p>Edit</p>} />
-                        <Route path="wallet" element={<p>Wallet</p>} />
+                        <Route path="wallet" element={<p>{<WalletView/>}</p>} />
                         <Route path="feed" element={<p>My Feed</p>} />
                         <Route path="missions" element={<p>Missions</p>} />
                         <Route path="tasks" element={<p>Tasks</p>} />
@@ -72,7 +75,7 @@ function App() {
                         }
                     />
                 </Routes>
-                <button onClick={() => {signOut(get_Auth)}}>LOGOUT</button>
+                {/* <button onClick={() => {signOut(get_Auth)}}>LOGOUT</button> */}
         </div>
     );
 }

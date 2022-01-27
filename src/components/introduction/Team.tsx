@@ -32,7 +32,7 @@ const Team = (props: Props) => {
 
 	const circleVariants: Variants = {
 		offscreen: {
-			x: 200,
+			x: -200,
 			opacity: 0,
 		},
 		onscreen: {
@@ -70,7 +70,7 @@ const Team = (props: Props) => {
 						setShowFirst(false);
 					}}
 					transition={{ duration: 0.4, type: "spring" }}
-					className=" flex flex-col items-center h-56 w-1/4"
+					className=" flex flex-col items-center h-56 w-1/5"
 				>
 					<img
 						src={Sachin}
@@ -99,7 +99,7 @@ const Team = (props: Props) => {
 						setShowSecond(false);
 					}}
 					transition={{ duration: 0.4, type: "spring" }}
-					className=" flex flex-col items-center h-56 w-1/4 "
+					className=" flex flex-col items-center h-56 w-1/5 "
 				>
 					<img
 						src={Nic}
@@ -130,7 +130,7 @@ const Team = (props: Props) => {
 						setShowThird(false);
 					}}
 					transition={{ duration: 0.4, type: "spring" }}
-					className=" flex flex-col items-center h-56 w-1/4 "
+					className=" flex flex-col items-center h-56 w-1/5 "
 				>
 					<img
 						src={Yy}
@@ -159,7 +159,7 @@ const Team = (props: Props) => {
 						setShowFourth(false);
 					}}
 					transition={{ duration: 0.4, type: "spring" }}
-					className=" flex flex-col items-center h-56 w-1/4 "
+					className=" flex flex-col items-center h-56 w-1/5 "
 				>
 					<img
 						src={Gan}
