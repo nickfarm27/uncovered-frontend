@@ -23,7 +23,7 @@ const Questions = (props: Props) => {
 
 	const titleVariants: Variants = {
 		offscreen: {
-			y: 200,
+			y: 100,
 			opacity: 0,
 		},
 		onscreen: {
@@ -55,6 +55,9 @@ const Questions = (props: Props) => {
 				<div className="z-30 flex flex-col justify-center items-center w-2/4 ">
 					<div className="rounded-3xl box-border flex flex-col justify-center h-2/6 w-9/12 p-8 bg-white">
 						<motion.h1
+							whileHover={{
+								scale: 1.1
+							}}
 							initial="offscreen"
 							whileInView="onscreen"
 							viewport={{ once: true, amount: 0.6 }}
@@ -70,6 +73,7 @@ const Questions = (props: Props) => {
 						</motion.h1>
 
 						<motion.h1
+							whileHover={{ scale: 1.1}}
 							initial="offscreen"
 							whileInView="onscreen"
 							viewport={{ once: true, amount: 0.7 }}
@@ -85,6 +89,7 @@ const Questions = (props: Props) => {
 						</motion.h1>
 
 						<motion.h1
+							whileHover={{ scale: 1.1 }}
 							initial="offscreen"
 							whileInView="onscreen"
 							viewport={{ once: true, amount: 0.8 }}
@@ -100,6 +105,7 @@ const Questions = (props: Props) => {
 						</motion.h1>
 
 						<motion.h1
+							whileHover={{ scale: 1.1}}
 							initial="offscreen"
 							whileInView="onscreen"
 							viewport={{ once: true, amount: 0.9 }}

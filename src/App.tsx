@@ -7,6 +7,7 @@ import Profile from "./components/profile/Profile";
 import Introduction from "./components/introduction/Introduction";
 import Posts from "./components/home/posts/Posts";
 import "./App.css";
+import ProfileView from "./components/profile/pages/profile/ProfileView";
 
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
                     <Route path="signup" element={<SignUp />} />
                     <Route path="profile" element={<Profile />}>
                         <Route index element={<p>Dashboard</p>} />
-                        <Route path="view" element={<p>Profile</p>} />
+                        <Route path="view" element={<p>{<ProfileView />}</p>} />
                         <Route path="edit" element={<p>Edit</p>} />
                         <Route path="wallet" element={<p>Wallet</p>} />
                         <Route path="feed" element={<p>My Feed</p>} />

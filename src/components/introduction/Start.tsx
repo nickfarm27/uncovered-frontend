@@ -6,7 +6,7 @@ interface Props {}
 const Start = (props: Props) => {
 	const titleVariants: Variants = {
 		offscreen: {
-			y: 500,
+			y: 300,
 			opacity: 0,
 		},
 		onscreen: {
@@ -22,7 +22,7 @@ const Start = (props: Props) => {
 
 	const descVariants: Variants = {
 		offscreen: {
-			y: 300,
+			y: 150,
 			opacity: 0,
 		},
 		onscreen: {
@@ -39,7 +39,7 @@ const Start = (props: Props) => {
 
 	const buttonVariants: Variants = {
 		offscreen: {
-			y: 200,
+			y: 150,
 			opacity: 0,
 		},
 		onscreen: {
@@ -79,6 +79,13 @@ const Start = (props: Props) => {
 				</motion.h1>
 
 				<motion.button
+					whileHover={{
+						scale: 1.1,
+						backgroundColor: "#00c2ff",
+						transition : {
+							duration: 0.1
+						}
+					}}
 					initial="offscreen"
 					whileInView="onscreen"
 					viewport={{ once: true, amount: 0.8 }}
