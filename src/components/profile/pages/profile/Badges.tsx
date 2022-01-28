@@ -19,7 +19,7 @@ const Badges = (props: Props) => {
 				alt="Award"
 				className=" w-[6rem] object-contain items-center"
 			/>
-			<h1 className="pt-1 font-medium">{props.name}</h1>
+			<h1 className="pt-1 font-medium text-sm">{props.name}</h1>
 		</motion.div>
 	);
 };

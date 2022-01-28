@@ -58,6 +58,7 @@ function App() {
                         <Route path="wallet" element={<p>{<WalletView/>}</p>} />
                         <Route path="feed" element={<p>My Feed</p>} />
                         <Route path="missions" element={<p>Missions</p>} />
+                        <Route path="rewards" element={<p>Rewards</p>} />
                         <Route path="tasks" element={<p>Tasks</p>} />
                         <Route
                             path="leaderboard"
