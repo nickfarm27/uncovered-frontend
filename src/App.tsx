@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route,  } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
@@ -31,7 +31,14 @@ function App() {
                         </LoggedIn>
                     }
                 />
-                <Route path="signup" element={<SignUp />} />
+                <Route
+                    path="signup"
+                    element={
+                        <LoggedIn>
+                            <SignUp />
+                        </LoggedIn>
+                    }
+                />
 
                 <Route
                     path="/"

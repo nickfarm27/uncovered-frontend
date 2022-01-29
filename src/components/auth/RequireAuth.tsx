@@ -13,7 +13,9 @@ const RequireAuth = (props: Props) => {
         // trying to go to when they were redirected. This allows us to send them
         // along to that page after they login, which is a nicer user experience
         // than dropping them off on the home page.
-        return <Navigate to="/login" state={ location.pathname } replace={true} />;
+        return (
+            <Navigate to="/login" state={location.pathname} replace={true} />
+        );
     }
 
     return props.children;

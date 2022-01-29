@@ -8,9 +8,13 @@ const LoggedIn = (props: Props) => {
     const auth = get_Auth;
     const location = useLocation();
 
-    if (auth.currentUser) {
-        return <Navigate to={location.state ? location.state as string : "/"} replace={true} />;
-    }
+    if (auth.currentUser)
+        return (
+            <Navigate
+                to={location.state ? (location.state as string) : "/"}
+                replace={true}
+            />
+        );
 
     return props.children;
 };
