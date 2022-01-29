@@ -5,26 +5,25 @@ import {
     onAuthStateChanged,
     signInWithEmailAndPassword,
     signInWithPopup,
+    TwitterAuthProvider,
     User,
 } from "firebase/auth";
 import { get_Auth, get_Firestore } from "../Firebase";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 type ContextState = {
     user: User | null;
     login: (email: string, password: string) => void;
-    googleLogin: () => void;
     signUp: (email: string, password: string, username: string) => void;
-    googleSignUp: () => void;
+    externalAuth: (googleOrTwitter: boolean) => void;
 };
 
 const AuthContext = React.createContext<ContextState>({
     user: null,
     login: () => {},
-    googleLogin: () => {},
     signUp: () => {},
-    googleSignUp: () => {},
+    externalAuth: () => {}
 });
 
 type Props = { children: React.ReactNode };
@@ -58,31 +57,8 @@ export const AuthContextProvider = (props: Props) => {
                 password
             );
             setCurrentUser(user.user);
-            // const from = location.state ? location.state as string : "/";
-            // navigate(from, { replace: true, state: null });
             redirectUser();
             console.log(user);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const googleLogin = async () => {
-        const provider = new GoogleAuthProvider();
-        const auth = get_Auth;
-
-        try {
-            const result = await signInWithPopup(auth, provider);
-
-            // The signed-in user info.
-            const user = result.user;
-            setCurrentUser(user);
-
-            //? This gives you a Google Access Token.
-            // const credential = GoogleAuthProvider.credentialFromResult(result);
-            // const token = credential?.accessToken;
-
-            redirectUser();
         } catch (error) {
             console.log(error);
         }
@@ -125,8 +101,8 @@ export const AuthContextProvider = (props: Props) => {
         }
     };
 
-    const googleSignUp = async () => {
-        const provider = new GoogleAuthProvider();
+    const externalAuth = async (googleOrTwitter: boolean) => {
+        const provider = googleOrTwitter ? new GoogleAuthProvider() : new TwitterAuthProvider()
         const auth = get_Auth;
 
         try {
@@ -135,22 +111,27 @@ export const AuthContextProvider = (props: Props) => {
             // The signed-in user info.
             const user = result.user;
             setCurrentUser(user);
-            await uploadUserData(user);
+
+            const docRef = doc(get_Firestore, "Users", user.uid)
+            const docSnap = await getDoc(docRef);
+            
+            if (!docSnap.exists()) {
+                await uploadUserData(user);
+            }
 
             redirectUser();
         } catch (error) {
             console.log(error);
         }
-    };
+    }
 
     return (
         <AuthContext.Provider
             value={{
                 user: currentUser,
                 login: login,
-                googleLogin: googleLogin,
                 signUp: signUp,
-                googleSignUp: googleSignUp,
+                externalAuth: externalAuth,
             }}
         >
             {!loading && props.children}

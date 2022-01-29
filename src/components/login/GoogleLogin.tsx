@@ -8,7 +8,7 @@ const GoogleLogin = (props: Props) => {
 	const authCtx = useContext(AuthContext)
 
 	const submitHandler = async () => {
-		await authCtx.googleLogin()
+		await authCtx.externalAuth(true)
 	};
 
 	return (
