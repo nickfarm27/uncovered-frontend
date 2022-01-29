@@ -136,7 +136,7 @@ const DashboardView = (props: Props) => {
 			</div>
 
 			{/* Rewards */}
-			<div className="flex flex-col w-1/2  gap-y-8 ">
+			<div className="flex flex-col w-1/2 gap-y-8 ">
 				<Cards
 					height="h-3/6"
 					width="w-full"
@@ -147,24 +147,25 @@ const DashboardView = (props: Props) => {
 							</h1>
 
 							<Dividers />
-							<div className="flex flex-col justify-between pt-2  ">
-								<div className="flex justify-around">
+							<div className="flex flex-col pt-2 ">
+								<div className="flex justify-around ">
 									<Badges
 										image={Award}
-										name="Completion Badge"
+										name="Investigator Role"
+										description="Become an investigator."
+										opacity={1}
 									/>
-									<Badges
-										image={Law}
-										name="Outstanding Verified"
-									/>
+									
 									<Badges
 										image={Newspaper}
-										name="Contribuion Badge"
+										name="Contributor"
+										description="Submit 5 news tweet to Uncovered."
+										opacity={1}
 									/>
 								</div>
 
-								<div className="flex justify-center">
-									<h1 className="font-medium text-sm italic pt-8">
+								<div className="flex justify-center mt-4 ">
+									<h1 className="font-medium text-sm italic ">
 										Click to view more
 									</h1>
 								</div>
