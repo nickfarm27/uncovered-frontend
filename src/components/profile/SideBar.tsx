@@ -1,5 +1,6 @@
 import React from "react";
 import { CgProfile } from 'react-icons/cg'
+import { FiAward } from 'react-icons/fi'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { IoPodiumOutline } from 'react-icons/io5'
 import { BiTask, BiWallet, BiGridAlt, BiNews } from 'react-icons/bi'
@@ -32,6 +33,7 @@ const SideBar = (props: Props) => {
                 <Bars icon={BiWallet} name="Wallet" link="/profile/wallet" />
                 <Bars icon={BiNews} name="My Feed" link="/profile/feed" />
                 <Bars icon={GrTarget} name="Missions" link="/profile/missions" />
+                <Bars icon={FiAward} name="Rewards" link="/profile/rewards" />
                 <Bars icon={BiTask} name="Tasks" link="/profile/tasks" />
                 <Bars icon={IoPodiumOutline} name="Leaderboard" link="/profile/leaderboard" />
                 <Bars icon={HiOutlineLogout} name="Log Out" link="/logout" />

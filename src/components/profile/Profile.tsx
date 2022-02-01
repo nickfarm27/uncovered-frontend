@@ -29,6 +29,9 @@ const Profile = (props: Props) => {
             case "/profile/missions":
                 setTitle("Missions")
                 break;
+            case "/profile/rewards":
+                setTitle("Rewards")
+                break;
             case "/profile/tasks":
                 setTitle("Tasks")
                 break;

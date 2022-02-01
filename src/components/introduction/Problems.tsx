@@ -123,7 +123,7 @@ const Problems = (props: Props) => {
 				</motion.div>
 			</motion.div>
 
-			<div className=" z-0 absolute flex justify-around w-5/6 h-1/4 mt-12 gap-x-48 ">
+			<div className=" z-0 absolute flex justify-around w-5/6 mt-12 gap-x-48 ">
 				<AnimatePresence>
 					{showAlgorithm ? (
 						<motion.div
