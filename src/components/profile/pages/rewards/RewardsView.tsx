@@ -28,20 +28,20 @@ const RewardsView = (props: Props) => {
 						image={Award}
 						name="Investigator Role"
 						description="Become an investigator."
-						opacity={100}
+						earned={1}
 					/>
 
 					<Badges
 						image={Newspaper}
 						name="Contributor"
 						description="Submit 5 news tweet to Uncovered. Submit 5 news tweet to Uncovered."
-						opacity={100}
+						earned={1}
 					/>
 					<Badges
 						image={Law}
 						name="Virtual Lawyer"
 						description="Verify 5 news tweets."
-						opacity={100}
+						earned={1}
 					/>
 				</div>
 			</div>
@@ -55,59 +55,59 @@ const RewardsView = (props: Props) => {
 						image={Time}
 						name="Speedy"
 						description="Complete 5 news verifications in 2 days."
-						opacity={25}
+						earned={0}
 					/>
 
 					<Badges
 						image={Correct}
 						name="High Accuracy"
 						description="Correctly verify 5 news tweets."
-						opacity={25}
+						earned={0}
 					/>
 					<Badges
 						image={Hundred}
 						name="Green Streak"
 						description="Correctly verify 10 news tweets straight."
-						opacity={25}
+						earned={0}
 					/>
 
 					<Badges
 						image={Sad}
 						name="It's Okay"
 						description="Verify 1 news incorrectly."
-						opacity={25}
+						earned={0}
 					/>
 					<Badges
 						image={Calender}
 						name="Full Attendance"
 						description="Login to Uncovered for a month straight."
-						opacity={25}
+						earned={0}
 					/>
 
 					<Badges
 						image={Level}
 						name="Consistency"
 						description="React level 25."
-						opacity={25}
+						earned={0}
 					/>
 					<Badges
 						image={Champion}
 						name="It's a Flex"
 						description="Achieve top 10 in the leaderboard"
-						opacity={25}
+						earned={0}
 					/>
 
 					<Badges
 						image={Login}
 						name="Welcome Back"
 						description="Login to Uncovered for 10 times."
-						opacity={25}
+						earned={0}
 					/>
 					<Badges
 						image={Cup}
 						name="Supreme Verifier"
 						description="Become #1 in the leaderboard."
-						opacity={25}
+						earned={0}
 					/>
 				</div>
 			</div>

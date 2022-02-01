@@ -15,71 +15,79 @@ import { signOut } from "firebase/auth";
 import WalletView from "./components/profile/pages/wallet/WalletView";
 import DashboardView from "./components/profile/pages/dashboard/DashboardView";
 import RewardsView from "./components/profile/pages/rewards/RewardsView";
-
+import TasksView from "./components/profile/pages/tasks/TasksView";
+import FeedView from "./components/profile/pages/feed/FeedView";
 
 function App() {
-    const [auth, setAuth] = useState(get_Auth.currentUser);
-    const navigate = useNavigate();
-    const authCtx = useContext(AuthContext);
+	const [auth, setAuth] = useState(get_Auth.currentUser);
+	const navigate = useNavigate();
+	const authCtx = useContext(AuthContext);
 
-    return (
-        <div className="App">
-                {/* {authCtx.user?.email ? authCtx.user.email : "NOTHING"}
+	return (
+		<div className="App">
+			{/* {authCtx.user?.email ? authCtx.user.email : "NOTHING"}
                 {authCtx.num} */}
-                <Routes>
-                    <Route path="introduction" element={<Introduction />} />
+			<Routes>
+				<Route path="introduction" element={<Introduction />} />
 
-                    <Route path="login" element={<Login setAuth={setAuth} />} />
-                    <Route path="signup" element={<SignUp />} />
+				<Route path="login" element={<Login setAuth={setAuth} />} />
+				<Route path="signup" element={<SignUp />} />
 
-                    <Route
-                        path="/"
-                        element={
-                            <RequireAuth>
-                                <Home />
-                            </RequireAuth>
-                        }
-                    >
-                        <Route index element={<Posts />} />
-                        <Route path="unverified" element={<p>Unverified</p>} />
-                        <Route path="upload" element={<p>Upload Link</p>} />
-                    </Route>
+				<Route
+					path="/"
+					element={
+						<RequireAuth>
+							<Home />
+						</RequireAuth>
+					}
+				>
+					<Route index element={<Posts />} />
+					<Route path="unverified" element={<p>Unverified</p>} />
+					<Route path="upload" element={<p>Upload Link</p>} />
+				</Route>
 
-                    <Route
-                        path="profile"
-                        element={
-                            <RequireAuth>
-                                <Profile />
-                            </RequireAuth>
-                        }
-                    >
-                        <Route index element={<DashboardView />} />
-                        <Route path="view" element={<ProfileView />} />
-                        <Route path="edit" element={<p>Edit</p>} />
-                        <Route path="wallet" element={<p>{<WalletView/>}</p>} />
-                        <Route path="feed" element={<p>My Feed</p>} />
-                        <Route path="missions" element={<p>Missions</p>} />
-                        <Route path="rewards" element={<p>{<RewardsView/>}</p>} />
-                        <Route path="tasks" element={<p>Tasks</p>} />
-                        <Route
-                            path="leaderboard"
-                            element={<p>Leaderboard</p>}
-                        />
-                    </Route>
+				<Route
+					path="profile"
+					element={
+						<RequireAuth>
+							<Profile />
+						</RequireAuth>
+					}
+				>
+					<Route index element={<DashboardView />} />
+					<Route path="view" element={<ProfileView />} />
+					<Route path="edit" element={<p>Edit</p>} />
+					<Route path="wallet" element={<p>{<WalletView />}</p>} />
+					<Route path="feed" element={<p>{<FeedView />}</p>} />
+					<Route path="missions" element={<p>Missions</p>} />
+					<Route path="rewards" element={<p>{<RewardsView />}</p>} />
+					<Route path="tasks" element={<p>{<TasksView />}</p>} />
+					<Route path="leaderboard" element={<p>Leaderboard</p>} />
+				</Route>
 
-                    <Route
-                        path="*"
-                        element={
-                            <main style={{ padding: "1rem" }}>
-                                <p onClick={authCtx.increase}>There's nothing here!</p>
-                                <button onClick={authCtx.increase}>INCREASE</button>
-                            </main>
-                        }
-                    />
-                </Routes>
-                {/* <button onClick={() => {signOut(get_Auth)}}>LOGOUT</button> */}
-        </div>
-    );
+				<Route
+					path="*"
+					element={
+						<div className="items-center w-screen h-screen flex flex-col justify-center bg-[#9dbccf]">
+							<h1 className="text-9xl text-white font-bold mb-4">
+								404
+							</h1>
+							<h1 className="text-6xl text-white font-medium mt-4">
+								There is nothing here!
+							</h1>
+						</div>
+					}
+				/>
+			</Routes>
+			{/* <button
+				onClick={() => {
+					signOut(get_Auth);
+				}}
+			>
+				LOGOUT
+			</button> */}
+		</div>
+	);
 }
 
 export default App;

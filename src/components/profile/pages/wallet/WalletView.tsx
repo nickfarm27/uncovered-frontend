@@ -30,7 +30,7 @@ const WalletView = (props: Props) => {
 								RM420.69
 							</h1>
 							<motion.button
-								whileHover={{ scale: 1.1 }}
+								whileHover={{ scale: 1.03 }}
 								className="bg-[#015a91] rounded-lg"
 							>
 								<h1 className="font-medium p-4 text-white">
@@ -80,7 +80,7 @@ const WalletView = (props: Props) => {
 							</h1>
 
 							<motion.button
-								whileHover={{ scale: 1.1 }}
+								whileHover={{ scale: 1.02 }}
 								className="bg-[#015a91] rounded-lg "
 							>
 								<h1 className="font-medium p-4 text-white">

@@ -29,7 +29,7 @@ const ProfileView = (props: Props) => {
 						</motion.div>
 					</div>
 					<Dividers />
-					<div className="flex gap-x-24 items-center pt-4">
+					<div className="flex gap-x-24 items-center justify-between pt-4">
 						<div className="flex flex-col justify-between">
 							<h1 className="font-medium pb-2 ">
 								Name: Mokey Gan
@@ -42,7 +42,7 @@ const ProfileView = (props: Props) => {
 								XPX Private Key: 97nnsv786HKHK7t78
 							</h1>
 						</div>
-						<div className="flex flex-col items-center">
+						<div className="">
 							<motion.img
 								whileHover={{ scale: 1.3 }}
 								src={User}

@@ -14,7 +14,7 @@ interface Props {}
 const DashboardView = (props: Props) => {
 	const missionPercentage = 50;
 	return (
-		<div className="flex w-full h-5/6 p-8 gap-x-8 ">
+		<div className="flex w-full h-4/6 p-8 gap-x-8 ">
 			<div className="flex flex-col w-1/2  gap-y-8 ">
 				<div className="flex w-full h-3/4 gap-x-8">
 					{/* Wallet */}
@@ -153,14 +153,14 @@ const DashboardView = (props: Props) => {
 										image={Award}
 										name="Investigator Role"
 										description="Become an investigator."
-										opacity={1}
+										earned = {1}
 									/>
 									
 									<Badges
 										image={Newspaper}
 										name="Contributor"
 										description="Submit 5 news tweet to Uncovered."
-										opacity={1}
+										earned = {1}
 									/>
 								</div>
 
@@ -186,7 +186,7 @@ const DashboardView = (props: Props) => {
 
 							<Dividers />
 
-							<div className="flex flex-col justify-between">
+							<div className="flex flex-col justify-between ">
 								<div className="">
 								<FeedPost
 									title="Are Valorant players gay?"
