@@ -70,7 +70,7 @@ export const AuthContextProvider = (props: Props) => {
             const docRef = await setDoc(
                 doc(get_Firestore, "Users", user.uid),
                 {
-                    userName: username || email?.split("@")[0] + Date.now().toString().substring(0, 4),
+                    userName: username || email?.split("@")[0] + Date.now().toString().slice(-4),
                     email: email,
                     investigator: false,
                     userRating: 0,
