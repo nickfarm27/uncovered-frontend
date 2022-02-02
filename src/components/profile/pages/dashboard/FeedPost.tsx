@@ -12,7 +12,7 @@ const FeedPost = (props: Props) => {
 
 	switch (props.color) {
 		case 0:
-			backgroundColor = "bg-white";
+			backgroundColor = "bg-blue-200";
 			break;
 		case 1:
 			backgroundColor = "bg-red-300";

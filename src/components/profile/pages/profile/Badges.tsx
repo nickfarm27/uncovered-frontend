@@ -26,7 +26,7 @@ const Badges = (props: Props) => {
 	return (
 		<div className="flex flex-col items-center  w-2/3 p-2 h-36 ">
 			<motion.img
-				whileHover={{ scale: 1.1 }}
+				whileHover={{ scale: 1.2 }}
 				transition={{ duration: 0.1, type: "tween" }}
 				onHoverStart={(e) => {
 					setShow(true);
@@ -41,7 +41,7 @@ const Badges = (props: Props) => {
 
 			{show ? (
 				<motion.h1
-					animate={{ scale: 1.1, translateY: 15 }}
+					animate={{ scale: 1.2, translateY: 15 }}
 					transition={{ duration: 0.1, type: "tween" }}
 					className="pt-1 font-medium text-xs text-center"
 				>

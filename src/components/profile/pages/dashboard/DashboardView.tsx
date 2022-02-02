@@ -14,7 +14,7 @@ interface Props {}
 const DashboardView = (props: Props) => {
 	const missionPercentage = 50;
 	return (
-		<div className="flex w-full h-4/6 p-8 gap-x-8 ">
+		<div className="flex w-full h-4/6 p-6 gap-x-8 ">
 			<div className="flex flex-col w-1/2  gap-y-8 ">
 				<div className="flex w-full h-3/4 gap-x-8">
 					{/* Wallet */}

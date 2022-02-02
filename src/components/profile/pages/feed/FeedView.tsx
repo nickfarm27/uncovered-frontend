@@ -6,7 +6,7 @@ type Props = {};
 
 const FeedView = (props: Props) => {
   return <div>
-      <Posts />
+      <Post verified={true}  />
   </div>;
 };
 

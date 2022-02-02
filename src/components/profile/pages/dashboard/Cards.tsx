@@ -10,7 +10,7 @@ interface Props {
 const Cards = (props: Props) => {
 	return (
 		<motion.div
-			whileHover={{ scale: 1.02 }}
+			whileHover={{ scale: 1.03, backgroundColor: "white" }}
 			className={`cursor-pointer box-border bg-zinc-100 ${props.width} drop-shadow-lg rounded-xl p-6 ${props.height}`}
 		>
 			{props.content}

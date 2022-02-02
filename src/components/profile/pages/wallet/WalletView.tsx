@@ -7,7 +7,7 @@ interface Props {}
 
 const WalletView = (props: Props) => {
 	return (
-		<div className="flex w-full h-full p-8 gap-x-8 ">
+		<div className="flex w-full h-full p-6 gap-x-8 ">
 
 
 			<div className="flex flex-col w-1/2 gap-y-8 ">
@@ -80,7 +80,7 @@ const WalletView = (props: Props) => {
 							</h1>
 
 							<motion.button
-								whileHover={{ scale: 1.02 }}
+								whileHover={{ scale: 1.03 }}
 								className="bg-[#015a91] rounded-lg "
 							>
 								<h1 className="font-medium p-4 text-white">

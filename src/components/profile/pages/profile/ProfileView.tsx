@@ -17,7 +17,7 @@ const ProfileView = (props: Props) => {
 	const userLevel = 50;
 
 	return (
-		<div className="flex w-full p-8 gap-x-8 ">
+		<div className="flex w-full p-6 gap-x-8 ">
 			<div className="flex flex-col w-1/2  gap-y-8 ">
 				<div className="box-border bg-zinc-100 w-full drop-shadow-lg h-full rounded-xl p-6 ">
 					<div className="flex justify-between">

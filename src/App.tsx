@@ -16,66 +16,73 @@ import LoggedIn from "./components/auth/LoggedIn";
 import RewardsView from "./components/profile/pages/rewards/RewardsView";
 import TasksView from "./components/profile/pages/tasks/TasksView";
 import FeedView from "./components/profile/pages/feed/FeedView";
+import UploadView from "./components/home/upload/UploadView";
+import LeaderboardView from "./components/profile/pages/leaderboard/LeaderboardView";
+import MissionsView from "./components/profile/pages/missions/MissionsView";
+import UnverifiedView from "./components/home/unverified/UnverifiedView";
 
 function App() {
-    const history = window.history;
-    console.log(history);
+	const history = window.history;
+	console.log(history);
 
-    return (
-        <div className="App">
-            <Routes>
-                <Route path="introduction" element={<Introduction />} />
+	return (
+		<div className="App">
+			<Routes>
+				<Route path="introduction" element={<Introduction />} />
 
-                <Route
-                    path="login"
-                    element={
-                        <LoggedIn>
-                            <Login />
-                        </LoggedIn>
-                    }
-                />
-                <Route
-                    path="signup"
-                    element={
-                        <LoggedIn>
-                            <SignUp />
-                        </LoggedIn>
-                    }
-                />
+				<Route
+					path="login"
+					element={
+						<LoggedIn>
+							<Login />
+						</LoggedIn>
+					}
+				/>
+				<Route
+					path="signup"
+					element={
+						<LoggedIn>
+							<SignUp />
+						</LoggedIn>
+					}
+				/>
 
-                <Route
-                    path="/"
-                    element={
-                        <RequireAuth>
-                            <Home />
-                        </RequireAuth>
-                    }
-                >
-                    <Route index element={<Posts />} />
-                    <Route path="unverified" element={<p>Unverified</p>} />
-                    <Route path="upload" element={<p>Upload Link</p>} />
-                </Route>
+				<Route
+					path="/"
+					element={
+						<RequireAuth>
+							<Home />
+						</RequireAuth>
+					}
+				>
+					<Route index element={<Posts />} />
+					<Route path="unverified" element={<p>{<UnverifiedView />}</p>} />
+					<Route path="upload" element={<p>{<UploadView />}</p>} />
+				</Route>
 
-                <Route
-                    path="profile"
-                    element={
-                        <RequireAuth>
-                            <Profile />
-                        </RequireAuth>
-                    }
-                >
-                    <Route index element={<DashboardView />} />
+				<Route
+					path="profile"
+					element={
+						<RequireAuth>
+							<Profile />
+						</RequireAuth>
+					}
+				>
+					<Route index element={<DashboardView />} />
 					<Route path="view" element={<ProfileView />} />
 					<Route path="edit" element={<p>Edit</p>} />
 					<Route path="wallet" element={<p>{<WalletView />}</p>} />
 					<Route path="feed" element={<p>{<FeedView />}</p>} />
-					<Route path="missions" element={<p>Missions</p>} />
+					<Route path="missions" element={<p>{<MissionsView />}</p>}/>
 					<Route path="rewards" element={<p>{<RewardsView />}</p>} />
 					<Route path="tasks" element={<p>{<TasksView />}</p>} />
-					<Route path="leaderboard" element={<p>Leaderboard</p>} />
-                </Route>
+					<Route
+						path="leaderboard"
+						element={<p>{<LeaderboardView />}</p>}
+					/>
+				</Route>
 
-                <Route
+				<Route
 					path="*"
 					element={
 						<div className="items-center w-screen h-screen flex flex-col justify-center bg-[#9dbccf]">
@@ -88,16 +95,16 @@ function App() {
 						</div>
 					}
 				/>
-            </Routes>
-            <button
-                onClick={() => {
-                    signOut(get_Auth);
-                }}
-            >
-                LOGOUT
-            </button>
-        </div>
-    );
+			</Routes>
+			<button
+				onClick={() => {
+					signOut(get_Auth);
+				}}
+			>
+				LOGOUT
+			</button>
+		</div>
+	);
 }
 
 export default App;
