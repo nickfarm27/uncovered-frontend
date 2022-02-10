@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 
 interface Props {
 	verified: boolean;
+	name: string;
+	username: string;
+	text: string
 }
 
 const Post = (props: Props) => {
-
 
 	return (
 		<motion.div whileHover={{ scale: 1.02, backgroundColor: "white" }}>
@@ -21,16 +23,12 @@ const Post = (props: Props) => {
 					<div className="box-border h-12 w-12 min-w-[3rem] rounded-full bg-black"></div>
 					<div className="flex flex-col pl-3">
 						<div className="flex gap-2">
-							<h1 className="font-semibold">Mokey Gan</h1>
-							<h2 className="text-slate-500">@mokeygan</h2>
+							<h1 className="font-semibold">{props.name}</h1>
+							<h2 className="text-slate-500">@{props.username}</h2>
 							<h2 className="text-slate-500">· 2h</h2>
 						</div>
 						<p className="font-medium">
-							I will rule China one day. Lorem ipsum dolor sit
-							amet consectetur adipisicing elit. Itaque animi
-							debitis veniam quod expedita inventore pariatur odit
-							fugit, aut, fugiat sunt deserunt placeat voluptatum,
-							dicta enim iure! Quia, culpa fugit.
+							{props.text}
 						</p>
 					</div>
 				</div>

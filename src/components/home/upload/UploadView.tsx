@@ -2,14 +2,33 @@
 import React, { useRef } from "react";
 import BlueButton from "../../ui/BlueButton";
 import InputBox from "../../ui/InputBox";
+import axios from "axios"
 
 type Props = {};
 
 const UploadView = (props: Props) => {
 	const linkRef = useRef<HTMLInputElement>(null);
+	
+	const uploadPost = async (url: string) => {
+		try {
+			const response = await axios.post("http://localhost:3030/post", {
+				url: url
+			})
+			console.log(response.data);
+			if (response.data.data) {
+				// redirect
+			} else {
+				// show error
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-	const submitHandler = () => {
+	const submitHandler = (event: React.MouseEvent) => {
+		event.preventDefault()
 		console.log("Verify");
+		uploadPost(linkRef.current?.value as string)
 	};
 
 	return (
@@ -20,7 +39,6 @@ const UploadView = (props: Props) => {
 				</h1>
 
 				<form
-					onSubmit={submitHandler}
 					className="flex flex-col w-full items-center"
 				>
 					<InputBox

@@ -61,10 +61,10 @@ function App() {
 					<Route index element={<VerifiedView />} />
 					<Route
 						path="unverified"
-						element={<p>{<UnverifiedView />}</p>}
+						element={<UnverifiedView />}
 					/>
-					<Route path="upload" element={<p>{<UploadView />}</p>} />
-					<Route path=":postId" element={<p>{<PostDetails />}</p>} />
+					<Route path="upload" element={<UploadView />} />
+					<Route path=":postId" element={<PostDetails />} />
 				</Route>
 
 
@@ -78,22 +78,22 @@ function App() {
 				>
 					<Route index element={<DashboardView />} />
 					<Route path="view" element={<ProfileView />} />
-					<Route path="edit" element={<p>Edit</p>} />
-					<Route path="wallet" element={<p>{<WalletView />}</p>} />
-					<Route path="feed" element={<p>{<FeedView />}</p>} />
+					<Route path="edit" element={<>Edit</>} />
+					<Route path="wallet" element={<>{<WalletView />}</>} />
+					<Route path="feed" element={<>{<FeedView />}</>} />
 					<Route
 						path="missions"
-						element={<p>{<MissionsView />}</p>}
+						element={<>{<MissionsView />}</>}
 					/>
-					<Route path="rewards" element={<p>{<RewardsView />}</p>} />
-					<Route path="tasks" element={<p>{<TasksView />}</p>} />
+					<Route path="rewards" element={<>{<RewardsView />}</>} />
+					<Route path="tasks" element={<>{<TasksView />}</>} />
 					<Route
 						path="leaderboard"
-						element={<p>{<LeaderboardView />}</p>}
+						element={<>{<LeaderboardView />}</>}
 					/>
 					<Route
 						path="upgrade"
-						element={<p>{<UpgradeView />}</p>}
+						element={<>{<UpgradeView />}</>}
 					/>
 				</Route>
 
