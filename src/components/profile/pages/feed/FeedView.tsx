@@ -1,11 +1,10 @@
 import React from 'react';
 import Post from '../../../home/posts/Post';
-import Posts from '../../../home/posts/Posts';
 
 type Props = {};
 
 const FeedView = (props: Props) => {
-  return <div>
+  return <div className='p-8'>
       <Post verified={true}  />
   </div>;
 };

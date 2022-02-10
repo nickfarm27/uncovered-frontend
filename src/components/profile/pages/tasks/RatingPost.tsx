@@ -80,8 +80,8 @@ const RatingPost = (props: Props) => {
 						labelColor="black"
 					/>
 				</div>
-				<h1 className="font-medium text-sm">
-					Assigned Date: {props.date}
+				<h1 className="font-medium text-sm text-center">
+					Assigned Date: <br/> {props.date}
 				</h1>
 			</div>
 

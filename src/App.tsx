@@ -5,7 +5,6 @@ import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import Profile from "./components/profile/Profile";
 import Introduction from "./components/introduction/Introduction";
-import Posts from "./components/home/posts/Posts";
 import { get_Auth } from "./Firebase";
 import ProfileView from "./components/profile/pages/profile/ProfileView";
 import RequireAuth from "./components/auth/RequireAuth";
@@ -20,6 +19,10 @@ import UploadView from "./components/home/upload/UploadView";
 import LeaderboardView from "./components/profile/pages/leaderboard/LeaderboardView";
 import MissionsView from "./components/profile/pages/missions/MissionsView";
 import UnverifiedView from "./components/home/unverified/UnverifiedView";
+import VerifiedView from "./components/home/verified/VerifiedView";
+import PostDetails from "./components/home/posts/postDetails/PostDetails";
+import UpgradeView from "./components/profile/pages/upgrade/UpgradeView";
+
 
 function App() {
 	const history = window.history;
@@ -55,10 +58,15 @@ function App() {
 						</RequireAuth>
 					}
 				>
-					<Route index element={<Posts />} />
-					<Route path="unverified" element={<p>{<UnverifiedView />}</p>} />
+					<Route index element={<VerifiedView />} />
+					<Route
+						path="unverified"
+						element={<p>{<UnverifiedView />}</p>}
+					/>
 					<Route path="upload" element={<p>{<UploadView />}</p>} />
+					<Route path=":postId" element={<p>{<PostDetails />}</p>} />
 				</Route>
+
 
 				<Route
 					path="profile"
@@ -73,12 +81,19 @@ function App() {
 					<Route path="edit" element={<p>Edit</p>} />
 					<Route path="wallet" element={<p>{<WalletView />}</p>} />
 					<Route path="feed" element={<p>{<FeedView />}</p>} />
-					<Route path="missions" element={<p>{<MissionsView />}</p>}/>
+					<Route
+						path="missions"
+						element={<p>{<MissionsView />}</p>}
+					/>
 					<Route path="rewards" element={<p>{<RewardsView />}</p>} />
 					<Route path="tasks" element={<p>{<TasksView />}</p>} />
 					<Route
 						path="leaderboard"
 						element={<p>{<LeaderboardView />}</p>}
+					/>
+					<Route
+						path="upgrade"
+						element={<p>{<UpgradeView />}</p>}
 					/>
 				</Route>
 

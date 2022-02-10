@@ -10,7 +10,7 @@ const MissionsView = (props: Props) => {
 	const missionPercentage = 50;
 	return (
 		<div className="flex flex-col gap-y-8 drop-shadow-xl rounded-lg p-6  ">
-			<div className="box-border bg-zinc-100 w-1/3 drop-shadow-lg rounded-xl p-6 ">
+			<div className="box-border bg-zinc-100 w-2/3 drop-shadow-lg rounded-xl p-6 ">
 				<h1 className="font-semibold text-lg pb-2">Ongoing Missions</h1>
 				<Dividers />
 
@@ -42,7 +42,7 @@ const MissionsView = (props: Props) => {
 					Available Missions
 				</h1>
 				<Dividers />
-				<div className="grid grid-cols-4 gap-x-8 gap-y-8 p-8">
+				<div className="grid grid-cols-3 gap-x-8 gap-y-8 p-8">
 					<MissionCard
 						title={"Full Attendance"}
 						description={"Login to Uncovered for a week straight."}

@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+
 import React, { useRef } from "react";
-import Cards from "../../profile/pages/dashboard/Cards";
+import BlueButton from "../../ui/BlueButton";
 import InputBox from "../../ui/InputBox";
 
 type Props = {};
@@ -8,7 +8,9 @@ type Props = {};
 const UploadView = (props: Props) => {
 	const linkRef = useRef<HTMLInputElement>(null);
 
-	const submitHandler = () => {};
+	const submitHandler = () => {
+		console.log("Verify");
+	};
 
 	return (
 		<div className="flex justify-center h-screen items-start mt-8">
@@ -28,14 +30,7 @@ const UploadView = (props: Props) => {
 						ref={linkRef}
 						className="bg-slate-100 mb-4 pl-3 py-2 rounded-md border-slate-200 border-2 m-8 w-1/2"
 					/>
-					<motion.button
-						whileHover={{ scale: 1.02 }}
-						className="bg-[#015a91] rounded-lg w-1/6"
-					>
-						<h1 className="font-medium p-4 text-white">
-							Verify Now!
-						</h1>
-					</motion.button>
+					<BlueButton text="Verify Now!" submit={submitHandler} />
 				</form>
 			</div>
 		</div>

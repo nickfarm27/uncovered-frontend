@@ -1,12 +1,8 @@
 import React from "react";
 import User from "../../../assets/User.png";
-import Law from "../../../assets/Law.png";
-import Newspaper from "../../../assets/Newspaper.png";
-import Award from "../../../assets/Award.png";
 import Dividers from "@mui/material/Divider";
 import { AiOutlineEdit } from "react-icons/ai";
 import ProgressBar from "./ProgressBar";
-import Badges from "./Badges";
 import { motion } from "framer-motion";
 
 interface Props {}
