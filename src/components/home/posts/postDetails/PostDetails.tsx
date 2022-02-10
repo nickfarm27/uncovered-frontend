@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Dividers from "@mui/material/Divider";
 import { useParams } from "react-router-dom";
 import TrustIndex from "./TrustIndex";
 import SubmitReview from "./SubmitReview";
-
+import axios from "axios"
 
 interface Props {}
 
 const PostDetails = (props: Props) => {
 	const { postId } = useParams();
-	const verified = false;
+	const [post, setPost] = useState<any>(null);
+
+	const getPostData = async () => {
+		const response = await axios.get(`http://localhost:3030/post/${postId as string}`);
+		if (response.data.data) {
+			setPost(response.data.data)
+		}
+	}
+
+	useEffect(() => {
+	  	getPostData()
+	}, [post]);
 
 	return (
 		<div className="flex w-full ">
-			<div className="flex-col w-1/2 ">
+			{post ? <div className="flex-col w-1/2 ">
 				<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 ">
 					<div className="w-full mb-4">
 						<h1 className="font-semibold text-lg pb-2">{`Post ID: ${postId}`}</h1>
@@ -21,18 +32,14 @@ const PostDetails = (props: Props) => {
 						<Dividers />
 					</div>
 					<div className="flex  justify-between w-full ">
-						<h1 className="font-medium">Mokey Gan</h1>
-						<h1 className="font-medium">@mokeygan</h1>
+						<h1 className="font-medium">{post.author_name}</h1>
+						<h1 className="font-medium">@{post.author_username}</h1>
 						<h1 className="font-medium">2h</h1>
 					</div>
 
 					<div className="mt-8">
 						<h1 className="text-justify font-medium">
-							I will rule China one day. Lorem ipsum dolor sit
-							amet consectetur adipisicing elit. Itaque animi
-							debitis veniam quod expedita inventore pariatur odit
-							fugit, aut, fugiat sunt deserunt placeat voluptatum,
-							dicta enim iure! Quia, culpa fugit.
+							{post.text}
 						</h1>
 					</div>
 				</div>
@@ -56,9 +63,9 @@ const PostDetails = (props: Props) => {
 						</h1>
 					</div>
 				</div>
-			</div>
+			</div> : "NOTHING HERE"}
 
-			{verified ? <TrustIndex /> : <SubmitReview />}
+			{post ? post.verified ? <TrustIndex /> : <SubmitReview /> : null}
 		</div>
 	);
 };

@@ -10,7 +10,7 @@ const UnverifiedView = (props: Props) => {
     const fetchUnverifiedPosts = async () => {
         try {
             const response = await axios.get(
-                "http://localhost:3030/post/unverifie"
+                "http://localhost:3030/post/unverified"
             );
             if (response.data.data) {
                 setPosts(response.data.data);
@@ -30,6 +30,7 @@ const UnverifiedView = (props: Props) => {
                         return (
                             <Post
                                 key={post.tweet_id}
+                                id={post.tweet_id}
                                 name={post.author_name}
                                 username={post.author_username}
                                 text={post.text}
