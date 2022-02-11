@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Post from "../posts/Post";
 import axios from "axios";
+import Post from "../posts/Post";
 
 type Props = {};
 
@@ -19,7 +19,8 @@ const VerifiedView = (props: Props) => {
 	};
 
 	useEffect(() => {
-		fetchVerifiedPosts();
+		const timeout = setTimeout(() => fetchVerifiedPosts(), 1000);
+        console.log("Verified")
 	}, []);
 
 	return (

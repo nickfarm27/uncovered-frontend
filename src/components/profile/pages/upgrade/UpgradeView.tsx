@@ -5,7 +5,7 @@ import Jury from "./Jury";
 type Props = {};
 
 const UpgradeView = (props: Props) => {
-	const investigator = true;
+	const investigator = false;
 
 	return <div>{investigator ? <Jury /> : <Investigator />}</div>;
 };

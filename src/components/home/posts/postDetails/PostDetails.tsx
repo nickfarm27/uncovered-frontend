@@ -19,8 +19,9 @@ const PostDetails = (props: Props) => {
 	}
 
 	useEffect(() => {
-	  	getPostData()
-	}, [post]);
+		const timeout = setTimeout(() => getPostData(), 1000);
+	  	console.log("PostDetail")
+	}, []);
 
 	return (
 		<div className="flex w-full ">
@@ -65,7 +66,7 @@ const PostDetails = (props: Props) => {
 				</div>
 			</div> : "NOTHING HERE"}
 
-			{post ? post.verified ? <TrustIndex /> : <SubmitReview /> : null}
+			{post ? post.verified ? <TrustIndex /> : <SubmitReview jury={false}/> : null}
 		</div>
 	);
 };
