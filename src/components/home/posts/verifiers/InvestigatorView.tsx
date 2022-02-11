@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dividers from "@mui/material/Divider";
 import Slider from "@mui/material/Slider";
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { BallTriangle } from "react-loader-spinner";
 
-type Props = {
-	jury: Boolean;
-	verified: Boolean;
-};
+type Props = {};
 
-const SubmitReview = (props: Props) => {
+const InvestigatorView = (props: Props) => {
 	const [selected, setSelected] = useState(0);
+	let jury = Boolean(false);
+	let verified = Boolean(true);
 
 	let Color = "";
 
@@ -26,8 +28,26 @@ const SubmitReview = (props: Props) => {
 			break;
 	}
 
+	const { postId } = useParams();
+	const [post, setPost] = useState<any>(null);
+
+	const getPostData = async () => {
+		const response = await axios.get(
+			`http://localhost:3030/post/${postId as string}`
+		);
+		if (response.data.data) {
+			setPost(response.data.data);
+		}
+	};
+
+	useEffect(() => {
+		const timeout = setTimeout(() => getPostData(), 1000);
+		console.log("PostDetail");
+		console.log(timeout);
+	}, []);
+
 	const PrettoSlider = styled(Slider)({
-		color: "#2563eb",
+		color: "#015a91",
 		height: 8,
 		"& .MuiSlider-track": {
 			border: "none",
@@ -52,7 +72,7 @@ const SubmitReview = (props: Props) => {
 			width: 32,
 			height: 32,
 			borderRadius: "50% 50% 50% 0",
-			backgroundColor: "#2563eb",
+			backgroundColor: "#015a91",
 			transformOrigin: "bottom left",
 			transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
 			"&:before": { display: "none" },
@@ -66,18 +86,57 @@ const SubmitReview = (props: Props) => {
 	});
 
 	return (
-		<div className="w-1/2">
-			{props.verified ? (
-				<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6">
-					<h1 className="font-semibold text-lg pb-2">
-						Pending Verifications
-					</h1>
-				</div>
-			) : (
-				<div className="w-full">
+		<div>
+			{post ? (
+				<div className="w-full flex">
+					<div className="flex-col w-1/2 ">
+						<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 ">
+							<div className="w-full mb-4">
+								<h1 className="font-semibold text-lg pb-2">{`Post ID: ${postId}`}</h1>
+
+								<Dividers />
+							</div>
+							<div className="flex  justify-between w-full ">
+								<h1 className="font-medium">
+									{post.author_name}
+								</h1>
+								<h1 className="font-medium">
+									@{post.author_username}
+								</h1>
+								<h1 className="font-medium">2h</h1>
+							</div>
+
+							<div className="mt-8">
+								<h1 className="text-justify font-medium">
+									{post.text}
+								</h1>
+							</div>
+						</div>
+
+						<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 ">
+							<div className="w-full mb-4">
+								<h1 className="font-semibold text-lg pb-2">
+									Author's Information
+								</h1>
+
+								<Dividers />
+							</div>
+							<div className="flex flex-col justify-between w-full ">
+								<h1 className="font-medium">Name: Gan</h1>
+								<h1 className="font-medium">Rating: 4.5</h1>
+								<h1 className="font-medium">
+									Total submitted tweets: 5
+								</h1>
+								<h1 className="font-medium">
+									Average trust index of submitted tweets: 65%
+								</h1>
+							</div>
+						</div>
+					</div>
+
 					<motion.div
 						animate={{ backgroundColor: Color }}
-						className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6  "
+						className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 w-1/2 "
 					>
 						<div className="w-full mb-4">
 							<h1 className="font-semibold text-lg pb-2">
@@ -95,7 +154,7 @@ const SubmitReview = (props: Props) => {
 								className="w-full p-2 resize-none rounded-lg bg-blue-50"
 							></textarea>
 
-							{props.jury ? (
+							{jury ? (
 								<div className="w-2/3 m-4 flex flex-col items-center">
 									<h1 className="font-medium m-2">
 										How trustable is this tweet on the scale
@@ -160,9 +219,18 @@ const SubmitReview = (props: Props) => {
 						</form>
 					</motion.div>
 				</div>
+			) : (
+				<div className=" flex absolute top-0 bottom-0 left-0 right-0 w-full items-center justify-center">
+					<BallTriangle
+						height="100"
+						width="100"
+						color="#015a91"
+						ariaLabel="loading"
+					/>
+				</div>
 			)}
 		</div>
 	);
 };
 
-export default SubmitReview;
+export default InvestigatorView;

@@ -73,7 +73,7 @@ const WhatWeUse = (props: Props) => {
 					exit={{ y: -1000 }}
 					className=" flex static flex-col justify-space-around items-center "
 				>
-					<div className="box-border rounded-full h-56 w-56 bg-[#015a91] p-8">
+					<div className="box-border rounded-full h-56 w-56 bg-[#2563eb] p-8">
 						<img src={Blockchain} alt="Blockchain" />
 					</div>
 					<h1 className="text-2xl text-white mt-14 font-semibold">
@@ -92,7 +92,7 @@ const WhatWeUse = (props: Props) => {
 					transition={{ duration: 0.4, type: "spring" }}
 					className=" flex static flex-col justify-space-around items-center "
 				>
-					<div className="box-border rounded-full h-56 w-56 bg-[#015a91] p-14">
+					<div className="box-border rounded-full h-56 w-56 bg-[#2563eb] p-14">
 						<img src={TrustIndex} alt="Trust Index" />
 					</div>
 					<h1 className="text-2xl text-white mt-14 font-semibold">

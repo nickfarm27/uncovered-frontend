@@ -40,7 +40,9 @@ const JurySlots = (props: Props) => {
 		}
 	}, [jury]);
 
-	const submitHandler = () => {};
+	const submitHandler = () => {
+		console.log("juryTest");
+	};
 
 	return (
 		<div className="w-full flex flex-col items-center gap-y-4">
@@ -60,7 +62,7 @@ const JurySlots = (props: Props) => {
 			</div>
 
 			{juryView ? (
-				<Link to={`/${props.id}`}>
+				<Link to={`/${props.id}/jury`}>
 					<BlueButton
 						text="Verify this news!"
 						submit={submitHandler}

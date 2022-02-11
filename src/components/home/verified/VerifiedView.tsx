@@ -47,7 +47,7 @@ const VerifiedView = (props: Props) => {
 						<BallTriangle
 							height="100"
 							width="100"
-							color="#015a91"
+							color="#2563eb"
 							ariaLabel="loading"
 						/>
 					</div>

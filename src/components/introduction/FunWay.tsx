@@ -56,7 +56,7 @@ const FunWay = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col box-border items-center justify-evenly bg-[#015a91] h-screen">
+		<div className="flex flex-col box-border items-center justify-evenly bg-[#2563eb] h-screen">
 			<motion.h1
 				initial="offscreen"
 				whileInView="onscreen"

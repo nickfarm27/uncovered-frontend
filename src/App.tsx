@@ -16,20 +16,22 @@ import FeedView from "./components/profile/pages/feed/FeedView";
 import UploadView from "./components/home/upload/UploadView";
 import LeaderboardView from "./components/profile/pages/leaderboard/LeaderboardView";
 import MissionsView from "./components/profile/pages/missions/MissionsView";
-import UnverifiedView from "./components/home/unverified/UnverifiedView";
-import VerifiedView from "./components/home/verified/VerifiedView";
 import PostDetails from "./components/home/posts/postDetails/PostDetails";
 import UpgradeView from "./components/profile/pages/upgrade/UpgradeView";
 import Review from "./components/profile/pages/tasks/Review";
 import UserContext from "./store/user-context";
-
+import UnverifiedView from "./components/home/unverified/UnverifiedView";
+import VerifiedView from "./components/home/verified/VerifiedView";
+import ReviewNews from "./components/home/posts/verifiers/InvestigatorView";
+import InvestigatorView from "./components/home/posts/verifiers/InvestigatorView";
+import JuryView from "./components/home/posts/verifiers/JuryView";
 
 function App() {
 	const history = window.history;
 	console.log(history);
-	const userCtx = useContext(UserContext)
+	const userCtx = useContext(UserContext);
 	console.log(userCtx.user);
-	
+
 	return (
 		<div className="App">
 			<Routes>
@@ -61,14 +63,15 @@ function App() {
 					}
 				>
 					<Route index element={<VerifiedView />} />
-					<Route
-						path="unverified"
-						element={<UnverifiedView />}
-					/>
+					<Route path="unverified" element={<UnverifiedView />} />
 					<Route path="upload" element={<UploadView />} />
 					<Route path=":postId" element={<PostDetails />} />
+					<Route
+						path=":postId/investigator"
+						element={<InvestigatorView />}
+					/>
+					<Route path=":postId/jury" element={<JuryView />} />
 				</Route>
-
 
 				<Route
 					path="profile"
@@ -83,20 +86,11 @@ function App() {
 					<Route path="edit" element={<p>Edit</p>} />
 					<Route path="wallet" element={<WalletView />} />
 					<Route path="feed" element={<FeedView />} />
-					<Route
-						path="missions"
-						element={<MissionsView />}
-					/>
+					<Route path="missions" element={<MissionsView />} />
 					<Route path="rewards" element={<RewardsView />} />
 					<Route path="tasks" element={<TasksView />} />
-					<Route
-						path="leaderboard"
-						element={<LeaderboardView />}
-					/>
-					<Route
-						path="upgrade"
-						element={<UpgradeView />}
-					/>
+					<Route path="leaderboard" element={<LeaderboardView />} />
+					<Route path="upgrade" element={<UpgradeView />} />
 					<Route path=":taskId" element={<Review />} />
 				</Route>
 
