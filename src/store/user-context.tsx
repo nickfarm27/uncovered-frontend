@@ -45,7 +45,7 @@ export const UserContextProvider = (props: Props) => {
     useEffect(() => {
         getUserInfo()
         setLoading(false)
-    }, [getUserInfo]);
+    }, [getUserInfo, authCtx.user]);
 
     return (
         <UserContext.Provider
