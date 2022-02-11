@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Post from "../posts/Post";
+import { BallTriangle } from "react-loader-spinner";
 
 type Props = {};
 
@@ -20,7 +21,8 @@ const VerifiedView = (props: Props) => {
 
 	useEffect(() => {
 		const timeout = setTimeout(() => fetchVerifiedPosts(), 1000);
-        console.log("Verified")
+		console.log("Verified");
+        console.log(timeout)
 	}, []);
 
 	return (
@@ -36,11 +38,19 @@ const VerifiedView = (props: Props) => {
 								username={post.author_username}
 								text={post.text}
 								verified={true}
+                                verifiedByInvestigator={false}
 							/>
 						);
 					})
 				) : (
-					<h1>No posts</h1>
+					<div className="flex absolute top-0 bottom-0 left-0 right-0 w-full items-center justify-center">
+						<BallTriangle
+							height="100"
+							width="100"
+							color="#015a91"
+							ariaLabel="loading"
+						/>
+					</div>
 				)}
 			</div>
 		</div>

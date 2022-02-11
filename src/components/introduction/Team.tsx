@@ -3,7 +3,7 @@ import Gan from "../assets/Gan.png";
 import Nic from "../assets/Nicholas.jpeg";
 import Yy from "../assets/Yy.jpeg";
 import Sachin from "../assets/Sachin.jpg";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface Props {}
 

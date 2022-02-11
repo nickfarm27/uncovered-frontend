@@ -1,5 +1,4 @@
 import React from "react";
-import Cards from "../dashboard/Cards";
 import Ranking from "./Ranking";
 
 type Props = {};

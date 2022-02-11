@@ -1,5 +1,5 @@
-import { animate, motion } from "framer-motion";
-import React, { useState } from "react";
+import { motion } from "framer-motion";
+import React  from "react";
 
 type Props = {
 	class: string;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import PremiumUser from "./unverified/PremiumUser";
 import TrustBar from "./verified/TrustBar";
-import Slots from "./verifiers/Slots";
+import InvestigatorSlots from "./verifiers/InvestigatorSlots";
+import JurySlots from "./verifiers/JurySlots";
 
 interface Props {
 	verified: boolean;
@@ -11,10 +11,28 @@ interface Props {
 	username: string;
 	text: string;
 	id: string;
+	verifiedByInvestigator: boolean;
 }
 
 const Post = (props: Props) => {
+	const [selected, setSelected] = useState(0);
+
+	let Color = "";
+
+	switch (selected) {
+		case 0:
+			Color = "#f4f4f5";
+			break;
+		case 1:
+			Color = "#ffece6";
+			break;
+		case 2:
+			Color = "#e6ffe6";
+			break;
+	}
+
 	let verifier = Boolean(true);
+	
 
 	return (
 		<motion.div whileHover={{ scale: 1.02, backgroundColor: "white" }}>
@@ -57,11 +75,21 @@ const Post = (props: Props) => {
 					)}
 
 					<div className="w-full flex items-center justify-center">
-						{props.verified ? <TrustBar /> : <Slots id = {props.id}/>}
+						{props.verified ? (
+							<TrustBar />
+						) : props.verifiedByInvestigator ? (
+							<JurySlots id={props.id} />
+						) : (
+							<InvestigatorSlots id={props.id} />
+						)}
 					</div>
 				</div>
 			) : (
-				<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 cursor-pointer">
+				<motion.div
+					initial={{ backgroundColor: "white" }}
+					animate={{ backgroundColor: Color }}
+					className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 cursor-pointer"
+				>
 					<div className="flex pb-4 self-start">
 						<div className="box-border h-12 w-12 min-w-[3rem] rounded-full bg-black"></div>
 						<div className="flex flex-col pl-3">
@@ -77,9 +105,45 @@ const Post = (props: Props) => {
 					</div>
 
 					<div className="w-full flex items-center justify-center">
-						{props.verified ? <TrustBar /> : <PremiumUser />}
+						{props.verified ? (
+							<TrustBar />
+						) : (
+							<div className="flex justify-around w-2/3">
+								<motion.div
+									onTap={(e) => {
+										setSelected(2);
+									}}
+									whileHover={{
+										scale: 1.02,
+										backgroundColor: "#008000",
+									}}
+									transition={{ duration: 0.2 }}
+									className="bg-green-500 rounded-xl w-1/3 cursor-pointer"
+								>
+									<h1 className="text-white font-medium p-4 text-center">
+										True
+									</h1>
+								</motion.div>
+
+								<motion.div
+									onTap={(e) => {
+										setSelected(1);
+									}}
+									whileHover={{
+										scale: 1.02,
+										backgroundColor: "#b30000",
+									}}
+									transition={{ duration: 0.2 }}
+									className="bg-red-500 rounded-xl w-1/3 cursor-pointer"
+								>
+									<h1 className="text-white font-medium p-4 text-center">
+										False
+									</h1>
+								</motion.div>
+							</div>
+						)}
 					</div>
-				</div>
+				</motion.div>
 			)}
 		</motion.div>
 	);
