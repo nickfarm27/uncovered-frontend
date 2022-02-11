@@ -10,7 +10,8 @@ import {
 } from "firebase/auth";
 import { get_Auth, get_Firestore } from "../Firebase";
 import { useLocation, useNavigate } from "react-router-dom";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+import axios from "axios";
 
 type ContextState = {
     user: User | null;
@@ -67,21 +68,16 @@ export const AuthContextProvider = (props: Props) => {
     const uploadUserData = async (user: User, username?: string) => {
         const email = user.email as string
         try {
-            const docRef = await setDoc(
-                doc(get_Firestore, "Users", user.uid),
-                {
-                    userName: username || email?.split("@")[0] + Date.now().toString().slice(-4),
-                    email: email,
-                    investigator: false,
-                    userRating: 0,
-                    onGoingTask: [],
-                    missions: [],
-                    experiencePoints: 0,
-                    numberOfVerifiedNews: 0,
-                    privateKey: "TEST",
-                }
-            );
-            console.log("Document written", docRef);
+            const response = await axios.post("http://localhost:3030/user/new", {
+                email: email,
+                username: username || email?.split("@")[0] + Date.now().toString().slice(-4),
+                uid: user.uid
+            })
+            console.log(response.data);
+            if (response.data.user) {
+                console.log("USER ADDED SUCCESSFULLY");        
+            }
+            console.log("DONE WITH UPLOAD");
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -112,7 +108,7 @@ export const AuthContextProvider = (props: Props) => {
             const user = result.user;
             setCurrentUser(user);
 
-            const docRef = doc(get_Firestore, "Users", user.uid)
+            const docRef = doc(get_Firestore, "users", user.uid)
             const docSnap = await getDoc(docRef);
             
             if (!docSnap.exists()) {

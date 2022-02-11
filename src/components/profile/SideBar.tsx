@@ -9,6 +9,8 @@ import { ReactComponent as Logo } from "../assets/Logo.svg";
 import Bars from "./Bars";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { signOut } from "firebase/auth";
+import { get_Auth } from "../../Firebase";
 
 type Props = {};
 
@@ -81,11 +83,15 @@ const SideBar = (props: Props) => {
 				</motion.div>
 
 				<motion.div whileHover={{ scale: 1.05 }}>
-					<Bars
-						icon={HiOutlineLogout}
-						name="Log Out"
-						link="/logout"
-					/>
+					<div 
+						onClick={() => {
+							signOut(get_Auth)
+						}} 
+						className="flex p-[0.6rem] cursor-pointer hover:bg-slate-200 rounded-md items-center pl-4"
+					>
+						<HiOutlineLogout className="h-7 w-7" />
+						<p className="font-medium pl-4">Log Out</p>
+					</div>
 				</motion.div>
 			</div>
 		</div>

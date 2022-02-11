@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import Profile from "./components/profile/Profile";
 import Introduction from "./components/introduction/Introduction";
-import { get_Auth } from "./Firebase";
 import ProfileView from "./components/profile/pages/profile/ProfileView";
 import RequireAuth from "./components/auth/RequireAuth";
-import { signOut } from "firebase/auth";
 import WalletView from "./components/profile/pages/wallet/WalletView";
 import DashboardView from "./components/profile/pages/dashboard/DashboardView";
 import LoggedIn from "./components/auth/LoggedIn";
@@ -22,12 +20,15 @@ import UnverifiedView from "./components/home/unverified/UnverifiedView";
 import VerifiedView from "./components/home/verified/VerifiedView";
 import PostDetails from "./components/home/posts/postDetails/PostDetails";
 import UpgradeView from "./components/profile/pages/upgrade/UpgradeView";
+import UserContext from "./store/user-context";
 
 
 function App() {
 	const history = window.history;
 	console.log(history);
-
+	const userCtx = useContext(UserContext)
+	console.log(userCtx.user);
+	
 	return (
 		<div className="App">
 			<Routes>
@@ -78,22 +79,22 @@ function App() {
 				>
 					<Route index element={<DashboardView />} />
 					<Route path="view" element={<ProfileView />} />
-					<Route path="edit" element={<>Edit</>} />
-					<Route path="wallet" element={<>{<WalletView />}</>} />
-					<Route path="feed" element={<>{<FeedView />}</>} />
+					<Route path="edit" element={<p>Edit</p>} />
+					<Route path="wallet" element={<WalletView />} />
+					<Route path="feed" element={<FeedView />} />
 					<Route
 						path="missions"
-						element={<>{<MissionsView />}</>}
+						element={<MissionsView />}
 					/>
-					<Route path="rewards" element={<>{<RewardsView />}</>} />
-					<Route path="tasks" element={<>{<TasksView />}</>} />
+					<Route path="rewards" element={<RewardsView />} />
+					<Route path="tasks" element={<TasksView />} />
 					<Route
 						path="leaderboard"
-						element={<>{<LeaderboardView />}</>}
+						element={<LeaderboardView />}
 					/>
 					<Route
 						path="upgrade"
-						element={<>{<UpgradeView />}</>}
+						element={<UpgradeView />}
 					/>
 				</Route>
 
@@ -111,13 +112,6 @@ function App() {
 					}
 				/>
 			</Routes>
-			<button
-				onClick={() => {
-					signOut(get_Auth);
-				}}
-			>
-				LOGOUT
-			</button>
 		</div>
 	);
 }
