@@ -22,6 +22,7 @@ import UnverifiedView from "./components/home/unverified/UnverifiedView";
 import VerifiedView from "./components/home/verified/VerifiedView";
 import PostDetails from "./components/home/posts/postDetails/PostDetails";
 import UpgradeView from "./components/profile/pages/upgrade/UpgradeView";
+import Review from "./components/profile/pages/tasks/Review";
 
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
 						path="upgrade"
 						element={<>{<UpgradeView />}</>}
 					/>
+					<Route path=":taskId" element={<Review />} />
 				</Route>
 
 				<Route

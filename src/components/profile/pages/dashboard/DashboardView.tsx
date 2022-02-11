@@ -1,11 +1,9 @@
 import React from "react";
-import { motion } from "framer-motion";
 import Dividers from "@mui/material/Divider";
 import Cards from "./Cards";
 import ProgressBar from "../profile/ProgressBar";
 import Badges from "../profile/Badges";
 import Award from "../../../assets/Award.png";
-import Law from "../../../assets/Law.png";
 import Newspaper from "../../../assets/Newspaper.png";
 import FeedPost from "./FeedPost";
 
@@ -153,14 +151,14 @@ const DashboardView = (props: Props) => {
 										image={Award}
 										name="Investigator Role"
 										description="Become an investigator."
-										earned = {1}
+										earned={1}
 									/>
-									
+
 									<Badges
 										image={Newspaper}
 										name="Contributor"
 										description="Submit 5 news tweet to Uncovered."
-										earned = {1}
+										earned={1}
 									/>
 								</div>
 
@@ -188,24 +186,24 @@ const DashboardView = (props: Props) => {
 
 							<div className="flex flex-col justify-between ">
 								<div className="">
-								<FeedPost
-									title="Are Valorant players gay?"
-									status="Status: Unverified"
-									rating="Unknown"
-									color={0}
-								/>
-								<FeedPost
-									title="Are Valorant players gay?"
-									status="Status: Verified"
-									rating={`${60}/100%`}
-									color={2}
-								/>
-								<FeedPost
-									title="Are Valorant players gay?"
-									status="Status: Verified"
-									rating={`${80}/100%`}
-									color={3}
-								/>
+									<FeedPost
+										title="Are Valorant players gay?"
+										status="Status: Unverified"
+										rating="Unknown"
+										color={0}
+									/>
+									<FeedPost
+										title="Are Valorant players gay?"
+										status="Status: Verified"
+										rating={`${60}/100%`}
+										color={2}
+									/>
+									<FeedPost
+										title="Are Valorant players gay?"
+										status="Status: Verified"
+										rating={`${80}/100%`}
+										color={3}
+									/>
 								</div>
 								<div className="flex justify-center">
 									<h1 className="font-medium text-sm italic pt-4">

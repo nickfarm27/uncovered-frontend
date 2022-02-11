@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Dividers from "@mui/material/Divider";
+
 
 interface Props {
 	image: any;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Post from "../posts/Post";
+import { BallTriangle } from "react-loader-spinner";
 
 type Props = {};
 
@@ -9,21 +10,20 @@ const UnverifiedView = (props: Props) => {
 
 	const fetchUnverifiedPosts = async () => {
 		try {
-            
 			const response = await axios.get(
 				"http://localhost:3030/post/unverified"
 			);
 			if (response.data.data) {
 				setPosts(response.data.data);
-                console.log(response.data);
-                
+				console.log(response.data);
 			}
 		} catch (error) {}
 	};
 
 	useEffect(() => {
 		const timeout = setTimeout(() => fetchUnverifiedPosts(), 1000);
-        console.log("Unverified");
+		console.log("Unverified");
+        console.log(timeout)
 	}, []);
 
 	return (
@@ -39,11 +39,19 @@ const UnverifiedView = (props: Props) => {
 								username={post.author_username}
 								text={post.text}
 								verified={false}
+                                verifiedByInvestigator={true}
 							/>
 						);
 					})
 				) : (
-					<h1>No posts</h1>
+					<div className=" flex absolute top-0 bottom-0 left-0 right-0 w-full items-center justify-center">
+						<BallTriangle
+							height="100"
+							width="100"
+							color="#015a91"
+							ariaLabel="loading"
+						/>
+					</div>
 				)}
 			</div>
 		</div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Blockchain from "../assets/Blockchain.png";
 import TrustIndex from "../assets/Percent.png";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { moveSyntheticComments } from "typescript";
+
 
 interface Props {}
 

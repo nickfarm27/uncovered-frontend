@@ -1,5 +1,5 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BlueButton from "../../../ui/BlueButton";
 
@@ -7,11 +7,13 @@ type Props = {
 	id: string;
 };
 
-const Slots = (props: Props) => {
-	let color = "";
-	let participants = 3;
+const JurySlots = (props: Props) => {
+	const [juryView, setJuryView] = useState(true);
 
-	switch (participants) {
+	let color = "";
+	let jury = 3;
+
+	switch (jury) {
 		case 0:
 			color = "#DC0E0E";
 			break;
@@ -32,29 +34,22 @@ const Slots = (props: Props) => {
 			break;
 	}
 
+	useEffect(() => {
+		if (jury === 5) {
+			setJuryView(false);
+		}
+	}, [jury]);
+
 	const submitHandler = () => {};
 
 	return (
 		<div className="w-full flex flex-col items-center gap-y-4">
-			<div className="w-full flex flex-col gap-y-8 justify-around mt-8 items-center">
+			<div className="w-full flex flex-col gap-y-8 justify-around mt-4 items-center">
 				<div className="w-2/3">
-					<h1 className="font-medium">Participated Investigators</h1>
+					<h1 className="font-medium">Participated Jury</h1>
 					<ProgressBar
-						completed={`${(participants / 5) * 100}`}
-						customLabel={`${participants}/5`}
-						bgColor={color}
-						baseBgColor="white"
-						labelAlignment="outside"
-						width="90%"
-						labelColor="black"
-					/>
-				</div>
-
-				<div className="w-2/3">
-					<h1 className="font-medium">Participated Juries</h1>
-					<ProgressBar
-						completed={`${(participants / 5) * 100}`}
-						customLabel={`${participants}/5`}
+						completed={`${(jury / 5) * 100}`}
+						customLabel={`${jury}/5`}
 						bgColor={color}
 						baseBgColor="white"
 						labelAlignment="outside"
@@ -63,16 +58,17 @@ const Slots = (props: Props) => {
 					/>
 				</div>
 			</div>
-			<div className="w-1/3 flex justify-center items-center">
+
+			{juryView ? (
 				<Link to={`/${props.id}`}>
 					<BlueButton
 						text="Verify this news!"
 						submit={submitHandler}
 					/>
 				</Link>
-			</div>
+			) : null}
 		</div>
 	);
 };
 
-export default Slots;
+export default JurySlots;

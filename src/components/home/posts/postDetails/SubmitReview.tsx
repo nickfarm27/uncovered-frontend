@@ -3,19 +3,21 @@ import Dividers from "@mui/material/Divider";
 import Slider from "@mui/material/Slider";
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
-import PremiumUser from "../unverified/PremiumUser";
-import Button from "../unverified/Button";
+
 
 type Props = {
 	jury: Boolean;
 };
 
 const SubmitReview = (props: Props) => {
-	const [selected, setSelected] = useState(1)
+	const [selected, setSelected] = useState(0);
 
 	let Color = "";
 
 	switch (selected) {
+		case 0:
+			Color = "#f4f4f5";
+			break;
 		case 1:
 			Color = "#ffece6";
 			break;

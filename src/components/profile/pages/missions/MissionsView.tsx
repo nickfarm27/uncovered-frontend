@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+
 import React from "react";
 import MissionCard from "./MissionCard";
 import Dividers from "@mui/material/Divider";

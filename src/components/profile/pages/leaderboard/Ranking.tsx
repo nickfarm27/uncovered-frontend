@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import Cards from "../dashboard/Cards";
+
 
 type Props = {
 	rank: number;

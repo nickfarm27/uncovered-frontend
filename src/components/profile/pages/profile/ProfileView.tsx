@@ -10,7 +10,7 @@ interface Props {}
 const ProfileView = (props: Props) => {
 	const levelPercentage = 65;
 	const juryPercentage = 40;
-	const userLevel = 50;
+
 
 	return (
 		<div className="flex w-full p-6 gap-x-8 ">
