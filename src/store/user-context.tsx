@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import axios from "axios";
 import AuthContext from "./auth-context";
+import { doc, onSnapshot } from "firebase/firestore";
+import { get_Firestore } from "../Firebase";
 
 type ContextState = {
     user: any;
@@ -25,6 +27,9 @@ export const UserContextProvider = (props: Props) => {
                     const response = await axios.get(`http://localhost:3030/user/${authCtx.user.uid}`)
                     if (response.data.user) {
                         setCurrentUser(response.data.user)
+                        const unsubscribe = onSnapshot(doc(get_Firestore, "users", authCtx.user.uid), (doc) => {
+                            setCurrentUser(doc.data());
+                        });
                         console.log("USER IS SET");
                     } else {
                         console.log("USER IS NULL");

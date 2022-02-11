@@ -1,22 +1,27 @@
 
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import BlueButton from "../../ui/BlueButton";
 import InputBox from "../../ui/InputBox";
 import axios from "axios"
+import UserContext from "../../../store/user-context";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const UploadView = (props: Props) => {
+	const userCtx = useContext(UserContext)
 	const linkRef = useRef<HTMLInputElement>(null);
+	const navigate = useNavigate()
 	
 	const uploadPost = async (url: string) => {
 		try {
 			const response = await axios.post("http://localhost:3030/post", {
-				url: url
+				url: url,
+				uid: userCtx.user.uid
 			})
-			console.log(response.data);
+			console.log("RESPONSE: ", response.data.data.tweet_id);
 			if (response.data.data) {
-				// redirect
+				navigate(`/${response.data.data.tweet_id}`)
 			} else {
 				// show error
 			}

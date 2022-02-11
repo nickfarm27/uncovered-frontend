@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Menu.css";
 import { collection, query, getDocs } from "firebase/firestore";
 import { get_Auth, get_Firestore } from "../../../Firebase";
-import { UploadPost } from "../../home/UploadPost";
+// import { UploadPost } from "../../home/UploadPost";
 import Logout from "../../logout/Logout";
 
 interface Props {}
@@ -59,7 +59,7 @@ export const Menu = (props: Props) => {
             <h1 className="username">
                 Username: {get_Auth.currentUser?.displayName}
             </h1>
-            <UploadPost />
+            {/* <UploadPost /> */}
 
             <div>{/* <TweetEmbed id="692527862369357824" /> */}</div>
             <div>{posts}</div>
