@@ -90,7 +90,7 @@ const Start = (props: Props) => {
 					whileInView="onscreen"
 					viewport={{ once: true, amount: 0.8 }}
 					variants={buttonVariants}
-					className="mt-16 rounded-lg font-bold py-4 px-10 bg-sky-500 text-white"
+					className="mt-16 rounded-lg font-bold py-4 px-10 bg-blue-600 text-white"
 				>
 					Get Started!
 				</motion.button>

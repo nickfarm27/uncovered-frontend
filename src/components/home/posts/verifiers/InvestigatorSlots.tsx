@@ -11,7 +11,7 @@ const InvestigatorSlots = (props: Props) => {
 	const [investigatorView, setInvestigatorView] = useState(true);
 
 	let color = "";
-	let investigators = 5;
+	let investigators = 4;
 
 	switch (investigators) {
 		case 0:
@@ -40,10 +40,12 @@ const InvestigatorSlots = (props: Props) => {
 		}
 	}, [investigators]);
 
-	const submitHandler = () => {};
+	const submitHandler = () => {
+		console.log("verifynews!!!!")
+	};
 
 	return (
-		<div className="w-full flex flex-col items-center gap-y-4">
+		<div className="w-full flex flex-col items-center gap-y-4 relative">
 			<div className="w-full flex flex-col gap-y-8 justify-around mt-4 items-center">
 				<div className="w-2/3">
 					<h1 className="font-medium">Participated Investigators</h1>
@@ -60,7 +62,7 @@ const InvestigatorSlots = (props: Props) => {
 			</div>
 
 			{investigatorView ? (
-				<Link to={`/${props.id}`}>
+				<Link to={`/${props.id}/investigator`}>
 					<BlueButton
 						text="Verify this news!"
 						submit={submitHandler}

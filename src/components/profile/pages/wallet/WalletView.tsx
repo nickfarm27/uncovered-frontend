@@ -39,7 +39,7 @@ const WalletView = (props: Props) => {
 				</div>
 
 				{/* Second Box */}
-				<div className="box-border bg-zinc-100 w-full h-full drop-shadow-lg rounded-xl p-6 ">
+				<div className="box-border bg-zinc-100 w-full drop-shadow-lg rounded-xl p-6 ">
 					<div className="">
 						<h1 className="font-semibold text-lg pb-2">
 							ProximaX Price (XPX)

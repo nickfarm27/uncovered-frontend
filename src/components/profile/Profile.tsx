@@ -43,14 +43,18 @@ const Profile = (props: Props) => {
 			case "/profile/leaderboard":
 				setTitle("Leaderboard");
 				break;
-			default:
+			case "/profile/upgrade":
 				setTitle("Upgrade Role");
+				break;
+
+			default:
+				setTitle("Verifier Rating");
 				break;
 		}
 	}, [pathName]);
 
 	return (
-		<div className="min-h-full flex">
+		<div className="min-h-screen flex">
 			<SideBar />
 			<div className="w-full">
 				<div className="w-full flex justify-between border-b-2 border-slate-100 font-medium text-xl py-7 pl-10 items-center">

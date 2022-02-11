@@ -1,3 +1,5 @@
+//CHANGE UNVERIFIED PAGE VIEW (INVESTIGATOR/JURY)
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Post from "../posts/Post";
@@ -39,7 +41,7 @@ const UnverifiedView = (props: Props) => {
 								username={post.author_username}
 								text={post.text}
 								verified={false}
-                                verifiedByInvestigator={true}
+                                verifiedByInvestigator={false}
 							/>
 						);
 					})
@@ -48,7 +50,7 @@ const UnverifiedView = (props: Props) => {
 						<BallTriangle
 							height="100"
 							width="100"
-							color="#015a91"
+							color="#2563eb"
 							ariaLabel="loading"
 						/>
 					</div>

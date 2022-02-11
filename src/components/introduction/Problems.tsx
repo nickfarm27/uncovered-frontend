@@ -44,7 +44,7 @@ const Problems = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col justify-evenly items-center box-border bg-[#015a91] h-screen ">
+		<div className="flex flex-col justify-evenly items-center box-border bg-[#2563eb] h-screen ">
 			<motion.h1
 				initial="offscreen"
 				whileInView="onscreen"

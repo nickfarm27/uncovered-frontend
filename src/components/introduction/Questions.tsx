@@ -67,7 +67,7 @@ const Questions = (props: Props) => {
 								setShowAnswer(true);
 								setShowSelected(0);
 							}}
-							className="cursor-pointer text-[#015a91] text-xl text-justify p-4 font-medium"
+							className="cursor-pointer text-[#2563eb] text-xl text-justify p-4 font-medium"
 						>
 							1. How to subscribe to Premium plan?
 						</motion.h1>
@@ -83,7 +83,7 @@ const Questions = (props: Props) => {
 								setShowAnswer(true);
 								setShowSelected(1);
 							}}
-							className="cursor-pointer text-[#015a91] text-xl text-justify p-4 font-medium"
+							className="cursor-pointer text-[#2563eb] text-xl text-justify p-4 font-medium"
 						>
 							2. Do I need an account to use Uncovered?
 						</motion.h1>
@@ -99,7 +99,7 @@ const Questions = (props: Props) => {
 								setShowAnswer(true);
 								setShowSelected(2);
 							}}
-							className=" cursor-pointer text-[#015a91] text-xl text-justify p-4 font-medium"
+							className=" cursor-pointer text-[#2563eb] text-xl text-justify p-4 font-medium"
 						>
 							3. How does it work?
 						</motion.h1>
@@ -115,7 +115,7 @@ const Questions = (props: Props) => {
 								setShowAnswer(true);
 								setShowSelected(3);
 							}}
-							className=" cursor-pointer text-[#015a91] text-xl text-justify p-4 font-medium"
+							className=" cursor-pointer text-[#2563eb] text-xl text-justify p-4 font-medium"
 						>
 							4. Can I use Uncovered on my smartphone?
 						</motion.h1>
