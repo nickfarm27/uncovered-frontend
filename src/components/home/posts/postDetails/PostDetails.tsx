@@ -61,7 +61,7 @@ const PostDetails = (props: Props) => {
 							<Dividers />
 						</div>
 						<div className="flex flex-col justify-between w-full ">
-							<h1 className="font-medium">Name: Gan</h1>
+							<h1 className="font-medium">Name: {post.author_name}</h1>
 							<h1 className="font-medium">Rating: 4.5</h1>
 							<h1 className="font-medium">
 								Total submitted tweets: 5

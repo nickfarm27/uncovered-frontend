@@ -6,13 +6,14 @@ import { styled } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { BallTriangle } from "react-loader-spinner";
+import Reviews from "./Reviews";
 
 type Props = {};
 
 const JuryView = (props: Props) => {
 	const [selected, setSelected] = useState(0);
 	let jury = Boolean(true);
-	let verified = Boolean(true);
+	let investigatorFilled = Boolean(false);
 
 	let Color = "";
 
@@ -30,6 +31,7 @@ const JuryView = (props: Props) => {
 
 	const { postId } = useParams();
 	const [post, setPost] = useState<any>(null);
+	const [reviews, setReviews] = useState<any[]>([]);
 
 	const getPostData = async () => {
 		const response = await axios.get(
@@ -37,6 +39,7 @@ const JuryView = (props: Props) => {
 		);
 		if (response.data.data) {
 			setPost(response.data.data);
+			setReviews(response.data.data.investigator_info);
 		}
 	};
 
@@ -47,7 +50,7 @@ const JuryView = (props: Props) => {
 	}, []);
 
 	const PrettoSlider = styled(Slider)({
-		color: "#015a91",
+		color: "#2563eb",
 		height: 8,
 		"& .MuiSlider-track": {
 			border: "none",
@@ -72,7 +75,7 @@ const JuryView = (props: Props) => {
 			width: 32,
 			height: 32,
 			borderRadius: "50% 50% 50% 0",
-			backgroundColor: "#015a91",
+			backgroundColor: "#2563eb",
 			transformOrigin: "bottom left",
 			transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
 			"&:before": { display: "none" },
@@ -88,7 +91,9 @@ const JuryView = (props: Props) => {
 	return (
 		<div>
 			{post ? (
-				<div className="w-full flex">
+				<div className="w-full h-screen flex">
+					{/* LEFT BOXES */}
+
 					<div className="flex-col w-1/2 ">
 						<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 ">
 							<div className="w-full mb-4">
@@ -113,7 +118,7 @@ const JuryView = (props: Props) => {
 							</div>
 						</div>
 
-						<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 ">
+						<div className="bg-zinc-100  flex  flex-col items-center box-border drop-shadow-lg rounded-xl p-6 m-6 ">
 							<div className="w-full mb-4">
 								<h1 className="font-semibold text-lg pb-2">
 									Author's Information
@@ -132,8 +137,36 @@ const JuryView = (props: Props) => {
 								</h1>
 							</div>
 						</div>
+
+						<div className="bg-zinc-100 flex flex-col items-start mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6">
+							<div className="w-full mb-4">
+								<h1 className="font-semibold text-lg pb-2">
+									Investigator Reviews
+								</h1>
+
+								<Dividers />
+							</div>
+
+							{reviews.map((post) => {
+								return (
+									<Reviews
+										key={post.uid}
+										name={post.uid}
+										vote="True"
+										rating={4.5}
+										text="Lorem Ipsum is simply dummy text of the
+									printing and typesetting industry. Lorem
+									Ipsum has been the industry's standard dummy
+									text ever since the 1500s, when an unknown
+									printer took a galley of type and scrambled
+									it to make a type specimen book."
+									/>
+								);
+							})}
+						</div>
 					</div>
 
+					{/* RIGHT BOX */}
 					<motion.div
 						animate={{ backgroundColor: Color }}
 						className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 w-1/2 "
@@ -150,11 +183,11 @@ const JuryView = (props: Props) => {
 								required={true}
 								autoFocus={true}
 								placeholder="Type your review here and include all sources ...  "
-								rows={15}
+								rows={20}
 								className="w-full p-2 resize-none rounded-lg bg-blue-50"
 							></textarea>
 
-							{jury ? (
+							{jury && !investigatorFilled ? (
 								<div className="w-2/3 m-4 flex flex-col items-center">
 									<h1 className="font-medium m-2">
 										How trustable is this tweet on the scale

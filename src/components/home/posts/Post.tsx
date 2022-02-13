@@ -1,25 +1,34 @@
 //CHANGE UNVERIFIED VIEW (NORMAL/VERIFIER)
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Award from "../../assets/Award.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import TrustBar from "./verified/TrustBar";
 import InvestigatorSlots from "./verifiers/InvestigatorSlots";
 import JurySlots from "./verifiers/JurySlots";
+import UserContext from "../../../store/user-context";
+import axios from "axios";
 // @ts-ignore
 import { Checkmark } from "react-checkmark";
 
 
 interface Props {
+	investigatorIdentifier: number;
+	juryIdentifier: number;
 	verified: boolean;
 	name: string;
 	username: string;
 	text: string;
 	id: string;
 	verifiedByInvestigator: boolean;
+	role: string;
+	image: string;
 }
 
 const Post = (props: Props) => {
+	const userCtx = useContext(UserContext);
+
 	const [selected, setSelected] = useState(0);
 	const [chosen, setChosen] = useState(false);
 
@@ -41,6 +50,15 @@ const Post = (props: Props) => {
 	}
 
 	let verifier = Boolean(true);
+	if (userCtx.user.role === "NORMAL") {
+		verifier = Boolean(false);
+	} else {
+		verifier = Boolean(true);
+	}
+
+
+	console.log("image")
+	console.log(props.image)
 
 	return (
 		<motion.div whileHover={{ scale: 1.02, backgroundColor: "white" }}>
@@ -48,7 +66,18 @@ const Post = (props: Props) => {
 				<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 cursor-pointer">
 					<Link to={`/${props.id}`}>
 						<div className="flex pb-4 self-start">
-							<div className="box-border h-12 w-12 min-w-[3rem] rounded-full bg-black"></div>
+							{props.image == null ? (
+								<div className="box-border h-12 w-12 min-w-[3rem] rounded-full bg-black"></div>
+							) : (
+								<div className="box-border h-12 w-12 min-w-[3rem] rounded-full ">
+									<img
+										src={props.image}
+										alt="Award"
+										className="w-[3rem] object-contain items-center rounded-full"
+									/>
+								</div>
+							)}
+
 							<div className="flex flex-col pl-3">
 								<div className="flex gap-2">
 									<h1 className="font-semibold">
@@ -67,10 +96,19 @@ const Post = (props: Props) => {
 					<div className="w-full flex items-center justify-center">
 						{props.verified ? (
 							<TrustBar />
-						) : props.verifiedByInvestigator ? (
-							<JurySlots id={props.id} />
+						) : props.verifiedByInvestigator &&
+						  props.role === "JURY" ? (
+							<JurySlots
+								id={props.id}
+								identifier={props.juryIdentifier}
+							/>
 						) : (
-							<InvestigatorSlots id={props.id} />
+							<InvestigatorSlots
+								id={props.id}
+								role={props.role}
+								identifier={props.investigatorIdentifier}
+								status={props.verifiedByInvestigator}
+							/>
 						)}
 					</div>
 				</div>

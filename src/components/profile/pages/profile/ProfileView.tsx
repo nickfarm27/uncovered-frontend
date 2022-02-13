@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import User from "../../../assets/User.png";
 import Dividers from "@mui/material/Divider";
 import { AiOutlineEdit } from "react-icons/ai";
 import ProgressBar from "./ProgressBar";
 import { motion } from "framer-motion";
+import UserContext from "../../../../store/user-context";
 
 interface Props {}
 
 const ProfileView = (props: Props) => {
-	const levelPercentage = 65;
-	const juryPercentage = 40;
+	const userCtx = useContext(UserContext);
+
+	let experiencePoints = userCtx.user.experiencePoints;
+	let juryPercentage = (userCtx.user.numberOfVerifiedNews/50)*100;
+
+	let level = 0;
+	level = Math.floor(experiencePoints / 100);
+
+	let experienceMeter = parseInt((experiencePoints / 100).toFixed(2)) * 100;
+	experienceMeter = experienceMeter - experiencePoints;
+
+
+
 
 
 	return (
@@ -28,14 +40,19 @@ const ProfileView = (props: Props) => {
 					<div className="flex gap-x-24 items-center justify-between pt-4">
 						<div className="flex flex-col justify-between">
 							<h1 className="font-medium pb-2 ">
-								Name: Mokey Gan
+								Name: {userCtx.user.username}
 							</h1>
 
 							<h1 className="font-medium pb-2">
-								Email: ganzj45@gmail.com
+								Email: {userCtx.user.email}
 							</h1>
-							<h1 className="font-medium pb-2">
-								XPX Private Key: 97nnsv786HKHK7t78
+							<h1 className="font-medium pb-2 ">Private Key:</h1>
+							<h1 className="font-medium pb-2 text-xs">
+								{userCtx.user.privateKey}
+							</h1>
+							<h1 className="font-medium pb-2 ">Public Key:</h1>
+							<h1 className="font-medium pb-2 text-xs">
+								{userCtx.user.publicKey}
 							</h1>
 						</div>
 						<div className="">
@@ -55,12 +72,12 @@ const ProfileView = (props: Props) => {
 
 					<div className="flex justify-between">
 						<div className="flex flex-col pt-4 ">
-							<h1 className="font-medium pb-2">Level: 50</h1>
+							<h1 className="font-medium pb-2">Level: {level}</h1>
 							<h1 className="font-medium pb-2">
-								User Rating: 4.3/5.0
+								User Rating: {userCtx.user.userRating}/5.0
 							</h1>
 							<h1 className="font-medium pb-2">
-								Role: Investigator
+								Role: {userCtx.user.role}
 							</h1>
 							<h1 className="font-medium pb-2">Class: Captain</h1>
 							<h1 className="font-medium pb-2">
@@ -73,8 +90,8 @@ const ProfileView = (props: Props) => {
 								Experience Points
 							</h1>
 							<ProgressBar
-								percentage={levelPercentage}
-								text={`${levelPercentage}%`}
+								percentage={-experienceMeter}
+								text={`${-experienceMeter}%`}
 								textSize="18px"
 								color={"rgb(1, 90, 145)"}
 							/>
@@ -95,7 +112,8 @@ const ProfileView = (props: Props) => {
 							Applied for investigator role on: 28/1/2022
 						</h1>
 						<h1 className="font-medium pb-2">
-							Total number of verified news: 25
+							Total number of verified news:{" "}
+							{userCtx.user.numberOfVerifiedNews}
 						</h1>
 						<h1 className="font-medium pb-2">
 							News verification accuracy: 70%

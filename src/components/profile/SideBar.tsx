@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FiAward } from "react-icons/fi";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -11,11 +11,16 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { signOut } from "firebase/auth";
 import { get_Auth } from "../../Firebase";
+import UserContext from "../../store/user-context";
 
 type Props = {};
 
 // #f3f4f6
 const SideBar = (props: Props) => {
+
+	const userCtx = useContext(UserContext);
+
+
 	return (
 		<div className="bg-slate-50 min-w-[16rem] border-r-2 border-slate-200 p-3">
 			<Link to="/" className="flex p-3 mb-2">
@@ -25,8 +30,8 @@ const SideBar = (props: Props) => {
 			<div className="flex items-center my-4 p-2">
 				<div className="min-w-[3rem] min-h-[3rem] bg-blue-500 rounded-full"></div>
 				<div className="flex flex-col ml-4">
-					<h1 className="font-medium">Mokey Gan</h1>
-					<h2 className="font-medium text-slate-500">@mokeygan</h2>
+					<h1 className="font-medium">{userCtx.user.username}</h1>
+					<h2 className="font-medium text-slate-500">@{userCtx.user.username}</h2>
 				</div>
 			</div>
 			<hr />

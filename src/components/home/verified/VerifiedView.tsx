@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Post from "../posts/Post";
 import { BallTriangle } from "react-loader-spinner";
+import UserContext from "../../../store/user-context";
 
 type Props = {};
 
 const VerifiedView = (props: Props) => {
+	const userCtx = useContext(UserContext);
+
 	const [posts, setPosts] = useState<any[]>([]);
 
 	const fetchVerifiedPosts = async () => {
@@ -33,12 +36,16 @@ const VerifiedView = (props: Props) => {
 						return (
 							<Post
 								key={post.tweet_id}
+								investigatorIdentifier={0}
+								juryIdentifier={0}
 								id={post.tweet_id}
 								name={post.author_name}
 								username={post.author_username}
 								text={post.text}
-								verified={true}
+								verified={post.verified}
                                 verifiedByInvestigator={false}
+								role={userCtx.user.role}
+								image={post.author_profile_image_url}
 							/>
 						);
 					})

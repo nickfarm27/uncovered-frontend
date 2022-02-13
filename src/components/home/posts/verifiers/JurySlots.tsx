@@ -2,13 +2,39 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BlueButton from "../../../ui/BlueButton";
+import axios from "axios";
 
 type Props = {
 	id: string;
+	identifier: number;
 };
 
 const JurySlots = (props: Props) => {
 	const [juryView, setJuryView] = useState(true);
+
+	const [percentage, setPercentage] = useState(0);
+
+	const fetchUnverifiedPosts = async () => {
+		try {
+			const response = await axios.get(
+				"http://localhost:3030/post/unverified"
+			);
+			if (response.data.data) {
+				setPercentage(
+					response.data.data[props.identifier].jury_info.length
+				);
+				//console.log(percentage);
+				console.log(props.identifier)
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+		const timeout = setTimeout(() => fetchUnverifiedPosts(), 1000);
+		console.log(timeout);
+	}, []);
 
 	let color = "";
 	let jury = 3;
@@ -50,8 +76,8 @@ const JurySlots = (props: Props) => {
 				<div className="w-2/3">
 					<h1 className="font-medium">Participated Jury</h1>
 					<ProgressBar
-						completed={`${(jury / 5) * 100}`}
-						customLabel={`${jury}/5`}
+						completed={`${(percentage / 5) * 100}`}
+						customLabel={`${percentage}/5`}
 						bgColor={color}
 						baseBgColor="white"
 						labelAlignment="outside"

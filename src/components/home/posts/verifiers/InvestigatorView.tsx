@@ -12,7 +12,7 @@ type Props = {};
 const InvestigatorView = (props: Props) => {
 	const [selected, setSelected] = useState(0);
 	let jury = Boolean(false);
-	let verified = Boolean(true);
+
 
 	let Color = "";
 
