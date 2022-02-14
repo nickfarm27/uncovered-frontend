@@ -17,12 +17,10 @@ type Props = {};
 
 // #f3f4f6
 const SideBar = (props: Props) => {
-
 	const userCtx = useContext(UserContext);
 
-
 	return (
-		<div className="bg-slate-50 min-w-[16rem] border-r-2 border-slate-200 p-3">
+		<div className="bg-slate-50 min-w-[16rem] border-r-2 border-slate-200 p-3 relative z-20">
 			<Link to="/" className="flex p-3 mb-2">
 				<Logo className="h-10" />
 				<div className="logo text-4xl ml-4">uncovered</div>
@@ -30,8 +28,8 @@ const SideBar = (props: Props) => {
 			<div className="flex items-center my-4 p-2">
 				<div className="min-w-[3rem] min-h-[3rem] bg-blue-500 rounded-full"></div>
 				<div className="flex flex-col ml-4">
-					<h1 className="font-medium">{userCtx.user.username}</h1>
-					<h2 className="font-medium text-slate-500">@{userCtx.user.username}</h2>
+					<h1 className="font-medium">{userCtx.user ? userCtx.user.username : "NONE"}</h1>
+					<h2 className="font-medium text-slate-500">@{userCtx.user ? userCtx.user.username : "NONE"}</h2> 
 				</div>
 			</div>
 			<hr />

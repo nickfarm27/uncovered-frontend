@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext, useCallback, useRef } from "react";
 import axios from "axios";
 import AuthContext from "./auth-context";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -17,9 +17,8 @@ type Props = { children: React.ReactNode };
 export const UserContextProvider = (props: Props) => {
     const [currentUser, setCurrentUser] = useState<any | null>(null);
     const [loading, setLoading] = useState(true);
-
+    const unsub = useRef(() => {});
     const authCtx = useContext(AuthContext)
-    let unsubscribe = () => {}
 
     const getUserInfo = useCallback(
         async () => {
@@ -28,7 +27,7 @@ export const UserContextProvider = (props: Props) => {
                     const response = await axios.get(`http://localhost:3030/user/${authCtx.user.uid}`)
                     if (response.data.user) {
                         setCurrentUser(response.data.user)
-                        unsubscribe = onSnapshot(doc(get_Firestore, "users", authCtx.user.uid), (doc) => {
+                        unsub.current = onSnapshot(doc(get_Firestore, "users", authCtx.user.uid), (doc) => {
                             setCurrentUser(doc.data());
                         });
                         console.log("USER IS SET");
@@ -47,7 +46,7 @@ export const UserContextProvider = (props: Props) => {
         getUserInfo()
         setLoading(false)
 
-        return unsubscribe()
+        return unsub.current()
     }, [getUserInfo, authCtx.user]);
 
     return (

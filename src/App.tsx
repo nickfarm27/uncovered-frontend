@@ -22,7 +22,6 @@ import Review from "./components/profile/pages/tasks/Review";
 import UserContext from "./store/user-context";
 import UnverifiedView from "./components/home/unverified/UnverifiedView";
 import VerifiedView from "./components/home/verified/VerifiedView";
-import ReviewNews from "./components/home/posts/verifiers/InvestigatorView";
 import InvestigatorView from "./components/home/posts/verifiers/InvestigatorView";
 import JuryView from "./components/home/posts/verifiers/JuryView";
 

@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../../../../store/user-context";
 import BlueButton from "../../../ui/BlueButton";
 import ProgressBar from "../profile/ProgressBar";
+import axios from "axios"
 
 type Props = {};
 
 const Jury = (props: Props) => {
+	const userCtx = useContext(UserContext);
+	const navigate = useNavigate();
 	let color = "";
-	let eligible = Boolean(true);
-	const percentage = 100;
 
-	switch (eligible) {
+	switch (userCtx.user.numberOfVerifiedNews >= 50) {
 		case true:
 			color = "rgb(0, 204, 102)";
 			break;
@@ -18,8 +21,18 @@ const Jury = (props: Props) => {
 			break;
 	}
 
-	const submitHandler = () => {
-		console.log("Join");
+	const submitHandler = async () => {
+		console.log("Join Jury");
+		try {
+			const response = await axios.post("http://localhost:3030/user/upgrade/jury", {
+				uid: userCtx.user.uid,
+			})
+			if (response.data.message) {
+				navigate("/profile", { replace: true })
+			}
+		} catch (error) {
+			console.log("ERROR");
+		}
 	};
 	return (
 		<div>
@@ -30,8 +43,8 @@ const Jury = (props: Props) => {
 					</h1>
 
 					<ProgressBar
-						percentage={percentage}
-						text={`${percentage}%`}
+						percentage={(userCtx.user.numberOfVerifiedNews / 50) * 100}
+						text={`${userCtx.user.numberOfVerifiedNews > 50 ? 100 : (userCtx.user.numberOfVerifiedNews / 50) * 100}%`}
 						textSize="18px"
 						color={color}
 					/>
@@ -39,7 +52,7 @@ const Jury = (props: Props) => {
 			</div>
 
 			<div className="flex items-center justify-center ">
-				{eligible ? (
+				{userCtx.user.numberOfVerifiedNews >= 50 ? (
 					<div className="flex flex-col items-center justify-center w-2/3">
 						<h1 className="font-medium text-sm italic pt-8 pb-8 text-center">
 							Congratulations, you are eligible to be promoted to

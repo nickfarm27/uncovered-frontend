@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Captain from "../../../assets/Captain.png";
 import Warrior from "../../../assets/Warrior.png";
 import Wizard from "../../../assets/Wizard.png";
 import { motion } from "framer-motion";
 import Classes from "./Classes";
 import BlueButton from "../../../ui/BlueButton";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import UserContext from "../../../../store/user-context";
 
 type Props = {};
 
@@ -13,12 +15,29 @@ const Investigator = (props: Props) => {
 	const [activate1, setActivate1] = useState(false);
 	const [activate2, setActivate2] = useState(false);
 	const [activate3, setActivate3] = useState(false);
+	const userCtx = useContext(UserContext)
+	const navigate = useNavigate();
 
-	const submitHandler = () => {
+	const submitHandler = async () => {
 		console.log("Join");
+		try {
+			if (activate1 || activate2 || activate3) {
+				console.log("SEND DATA");
+				
+				const response = await axios.post("http://localhost:3030/user/upgrade/investigator", {
+					uid: userCtx.user.uid,
+					class: activate1 ? "CAPTAIN" : activate2 ? "WARRIOR" : "WIZARD"
+				})
+				if (response.data.message) {
+					navigate("/profile", { replace: true })
+				}
+			}
+		} catch (error) {
+			console.log("ERROR");
+		}
 	};
 	return (
-		<div className="flex flex-col gap-y-20">
+		<div className="flex flex-col gap-y-14">
 			<div className="flex justify-around m-6 items-end ">
 				<motion.div
 					onTap={(e) => {
@@ -79,7 +98,7 @@ const Investigator = (props: Props) => {
 					Investigators. (Note: This action is irreversible)
 				</h1>
 			</div>
-			<div className="flex items-center justify-center ">
+			<div className="flex items-center justify-center mb-14">
 				<BlueButton
 					text={"Upgrade to Investigator now!"}
 					submit={submitHandler}

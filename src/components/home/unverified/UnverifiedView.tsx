@@ -31,13 +31,6 @@ const UnverifiedView = (props: Props) => {
 		console.log(timeout);
 	}, []);
 
-	// let counter1 = [];
-	// for (let i = 0; i !== posts.length; i++) {
-	// 	counter1.push(i);
-	// }
-
-	
-
 	return (
 		<div className="flex justify-center pt-8">
 			<div className="flex flex-col w-1/2">
@@ -47,8 +40,6 @@ const UnverifiedView = (props: Props) => {
 						if (post.investigator_info.length === 5) {
 							status = true;
 						}
-
-						//console.log(post.author_profile_image_url)
 						return (
 							<Post
 								key={post.tweet_id}

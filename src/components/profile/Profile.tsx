@@ -12,18 +12,6 @@ const Profile = (props: Props) => {
 	const { pathname: pathName } = location;
 	const userCtx = useContext(UserContext);
 
-	const submitHandler = () => {
-		console.log("Upgrade Role");
-	};
-
-
-	let jury = Boolean(false);
-
-	if (userCtx.user.role == "JURY"){
-		jury = true
-	}
-
-
 	useEffect(() => {
 		switch (pathName) {
 			case "/profile":
@@ -69,19 +57,17 @@ const Profile = (props: Props) => {
 			<div className="w-full">
 				<div className="w-full flex justify-between border-b-2 border-slate-100 font-medium text-xl py-7 pl-10 items-center">
 					{title}
-
-					{ !jury ? (
+					{userCtx.user ? userCtx.user.role === "JURY" ? null : 
 						<div className="mr-8">
 							<Link to="upgrade">
 								<BlueButton
 									text="Upgrade Role"
-									submit={submitHandler}
+									submit={() => {}}
 								/>
 							</Link>
 						</div>
-					) : null}
+					: null}
 				</div>
-
 				<Outlet />
 			</div>
 		</div>
