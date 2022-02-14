@@ -46,6 +46,7 @@ const VerifiedView = (props: Props) => {
                                 verifiedByInvestigator={false}
 								role={userCtx.user.role}
 								image={post.author_profile_image_url}
+								post={post}
 							/>
 						);
 					})

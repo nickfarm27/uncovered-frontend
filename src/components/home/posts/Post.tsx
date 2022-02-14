@@ -12,7 +12,6 @@ import axios from "axios";
 // @ts-ignore
 import { Checkmark } from "react-checkmark";
 
-
 interface Props {
 	investigatorIdentifier: number;
 	juryIdentifier: number;
@@ -24,6 +23,7 @@ interface Props {
 	verifiedByInvestigator: boolean;
 	role: string;
 	image: string;
+	post: any;
 }
 
 const Post = (props: Props) => {
@@ -31,6 +31,7 @@ const Post = (props: Props) => {
 
 	const [selected, setSelected] = useState(0);
 	const [chosen, setChosen] = useState(false);
+	const [verified, setVerified] = useState(false);
 
 	let Color = "";
 	let tickColor = "";
@@ -56,14 +57,22 @@ const Post = (props: Props) => {
 		verifier = Boolean(true);
 	}
 
+	useEffect(() => {
+		if (
+			props.post.user_vote_real.includes(userCtx.user.uid) ||
+			props.post.user_vote_fake.includes(userCtx.user.uid)
+		) {
+			setVerified(true);
+		}
+	}, []);
 
-	console.log("image")
-	console.log(props.image)
+	//console.log("image")
+	//console.log(props.image)
 
 	return (
 		<motion.div whileHover={{ scale: 1.02, backgroundColor: "white" }}>
 			{verifier ? (
-				<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 cursor-pointer">
+				<div className="bg-zinc-100 flex flex-col items-start mb-4 box-border drop-shadow-lg rounded-xl p-6 cursor-pointer">
 					<Link to={`/${props.id}`}>
 						<div className="flex pb-4 self-start">
 							{props.image == null ? (
@@ -101,6 +110,7 @@ const Post = (props: Props) => {
 							<JurySlots
 								id={props.id}
 								identifier={props.juryIdentifier}
+								post={props.post}
 							/>
 						) : (
 							<InvestigatorSlots
@@ -108,6 +118,7 @@ const Post = (props: Props) => {
 								role={props.role}
 								identifier={props.investigatorIdentifier}
 								status={props.verifiedByInvestigator}
+								post={props.post}
 							/>
 						)}
 					</div>
@@ -116,11 +127,22 @@ const Post = (props: Props) => {
 				<motion.div
 					initial={{ backgroundColor: "white" }}
 					animate={{ backgroundColor: Color }}
-					className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 cursor-pointer"
+					className="bg-zinc-100 flex flex-col items-start mb-4 box-border drop-shadow-lg rounded-xl p-6 cursor-pointer"
 				>
 					<Link to={`/${props.id}`}>
 						<div className="flex pb-4 self-start">
-							<div className="box-border h-12 w-12 min-w-[3rem] rounded-full bg-black"></div>
+							{props.image == null ? (
+								<div className="box-border h-12 w-12 min-w-[3rem] rounded-full bg-black"></div>
+							) : (
+								<div className="box-border h-12 w-12 min-w-[3rem] rounded-full ">
+									<img
+										src={props.image}
+										alt="Award"
+										className="w-[3rem] object-contain items-center rounded-full"
+									/>
+								</div>
+							)}
+
 							<div className="flex flex-col pl-3">
 								<div className="flex gap-2">
 									<h1 className="font-semibold">
@@ -135,50 +157,58 @@ const Post = (props: Props) => {
 							</div>
 						</div>
 					</Link>
-					{!chosen ? (
-						<div className="w-full flex items-center justify-center">
-							{props.verified ? (
-								<TrustBar />
-							) : (
-								<div className="flex justify-around w-2/3">
-									<motion.div
-										onTap={(e) => {
-											setSelected(2);
-											setChosen(true);
-										}}
-										whileHover={{
-											scale: 1.02,
-											backgroundColor: "#008000",
-										}}
-										transition={{ duration: 0.2 }}
-										className="bg-green-500 rounded-xl w-1/3 cursor-pointer"
-									>
-										<h1 className="text-white font-medium p-4 text-center">
-											True
-										</h1>
-									</motion.div>
+					{!verified ? (
+						!chosen ? (
+							<div className="w-full flex items-center justify-center">
+								{props.verified ? (
+									<TrustBar />
+								) : (
+									<div className="flex justify-around w-2/3">
+										<motion.div
+											onTap={(e) => {
+												setSelected(2);
+												setChosen(true);
+											}}
+											whileHover={{
+												scale: 1.02,
+												backgroundColor: "#008000",
+											}}
+											transition={{ duration: 0.2 }}
+											className="bg-green-500 rounded-xl w-1/3 cursor-pointer"
+										>
+											<h1 className="text-white font-medium p-4 text-center">
+												True
+											</h1>
+										</motion.div>
 
-									<motion.div
-										onTap={(e) => {
-											setSelected(1);
-											setChosen(true);
-										}}
-										whileHover={{
-											scale: 1.02,
-											backgroundColor: "#b30000",
-										}}
-										transition={{ duration: 0.2 }}
-										className="bg-red-500 rounded-xl w-1/3 cursor-pointer"
-									>
-										<h1 className="text-white font-medium p-4 text-center">
-											False
-										</h1>
-									</motion.div>
-								</div>
-							)}
-						</div>
+										<motion.div
+											onTap={(e) => {
+												setSelected(1);
+												setChosen(true);
+											}}
+											whileHover={{
+												scale: 1.02,
+												backgroundColor: "#b30000",
+											}}
+											transition={{ duration: 0.2 }}
+											className="bg-red-500 rounded-xl w-1/3 cursor-pointer"
+										>
+											<h1 className="text-white font-medium p-4 text-center">
+												False
+											</h1>
+										</motion.div>
+									</div>
+								)}
+							</div>
+						) : (
+							<Checkmark color={tickColor} />
+						)
 					) : (
-						<Checkmark color={tickColor} />
+						<div className="w-full flex justify-center items-center ">
+							<h1 className="text-center font-semibold">
+								Pending verifications from verifiers
+							</h1>
+						</div>
 					)}
 				</motion.div>
 			)}

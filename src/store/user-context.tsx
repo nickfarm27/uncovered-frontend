@@ -19,6 +19,7 @@ export const UserContextProvider = (props: Props) => {
     const [loading, setLoading] = useState(true);
 
     const authCtx = useContext(AuthContext)
+    let unsubscribe = () => {}
 
     const getUserInfo = useCallback(
         async () => {
@@ -27,7 +28,7 @@ export const UserContextProvider = (props: Props) => {
                     const response = await axios.get(`http://localhost:3030/user/${authCtx.user.uid}`)
                     if (response.data.user) {
                         setCurrentUser(response.data.user)
-                        const unsubscribe = onSnapshot(doc(get_Firestore, "users", authCtx.user.uid), (doc) => {
+                        unsubscribe = onSnapshot(doc(get_Firestore, "users", authCtx.user.uid), (doc) => {
                             setCurrentUser(doc.data());
                         });
                         console.log("USER IS SET");
@@ -45,6 +46,8 @@ export const UserContextProvider = (props: Props) => {
     useEffect(() => {
         getUserInfo()
         setLoading(false)
+
+        return unsubscribe()
     }, [getUserInfo, authCtx.user]);
 
     return (

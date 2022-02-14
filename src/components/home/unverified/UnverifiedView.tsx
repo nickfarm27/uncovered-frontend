@@ -31,10 +31,10 @@ const UnverifiedView = (props: Props) => {
 		console.log(timeout);
 	}, []);
 
-	let counter1 = [];
-	for (let i = 0; i !== posts.length; i++) {
-		counter1.push(i);
-	}
+	// let counter1 = [];
+	// for (let i = 0; i !== posts.length; i++) {
+	// 	counter1.push(i);
+	// }
 
 	
 
@@ -42,7 +42,7 @@ const UnverifiedView = (props: Props) => {
 		<div className="flex justify-center pt-8">
 			<div className="flex flex-col w-1/2">
 				{posts.length !== 0 ? (
-					posts.map((post, counter1) => {
+					posts.map((post) => {
 						let status = Boolean(false);
 						if (post.investigator_info.length === 5) {
 							status = true;
@@ -52,8 +52,8 @@ const UnverifiedView = (props: Props) => {
 						return (
 							<Post
 								key={post.tweet_id}
-								investigatorIdentifier={counter1}
-								juryIdentifier={counter1}
+								investigatorIdentifier={post.investigator_ids.length}
+								juryIdentifier={post.jury_ids.length}
 								id={post.tweet_id}
 								name={post.author_name}
 								username={post.author_username}
@@ -62,6 +62,7 @@ const UnverifiedView = (props: Props) => {
 								verifiedByInvestigator={status}
 								role={userCtx.user.role}
 								image={post.author_profile_image_url}
+								post={post}
 							/>
 						);
 					})

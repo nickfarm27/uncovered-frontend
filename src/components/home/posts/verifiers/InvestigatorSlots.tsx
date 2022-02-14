@@ -1,46 +1,32 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BlueButton from "../../../ui/BlueButton";
 import InvestigatorView from "./InvestigatorView";
+import UserContext from "../../../../store/user-context";
 
 type Props = {
 	id: string;
 	role: string;
 	identifier: number;
 	status: Boolean;
+	post: any;
 };
 
 const InvestigatorSlots = (props: Props) => {
-	const [investigatorView, setInvestigatorView] = useState(true);
+	const userCtx = useContext(UserContext);
+	const [verified, setVerified] = useState(false);
 
 	let color = "";
-	
-
-	const [percentage, setPercentage] = useState(0);
-
-	const fetchUnverifiedPosts = async () => {
-		try {
-			const response = await axios.get(
-				"http://localhost:3030/post/unverified"
-			);
-			if (response.data.data) {
-				setPercentage(response.data.data[props.identifier].investigator_info.length)
-				console.log(percentage);
-			}
-		} catch (error) {
-			console.log(error)
-		}
-	};
 
 	useEffect(() => {
-		const timeout = setTimeout(() => fetchUnverifiedPosts(), 1000);
-		console.log(timeout);
+		if (props.post.investigator_ids.includes(userCtx.user.uid)) {
+			setVerified(true)
+		}
 	}, []);
 
-
-	switch (percentage) {
+	switch (props.post.investigator_ids.length) {
 		case 0:
 			color = "#DC0E0E";
 			break;
@@ -61,14 +47,6 @@ const InvestigatorSlots = (props: Props) => {
 			break;
 	}
 
-	useEffect(() => {
-		if (percentage === 5) {
-			setInvestigatorView(false);
-		}
-	}, [percentage]);
-
-	//console.log(investigatorView)
-
 	const submitHandler = () => {
 		console.log("verifynews!!!!");
 	};
@@ -79,10 +57,9 @@ const InvestigatorSlots = (props: Props) => {
 				<div className="w-2/3">
 					<h1 className="font-medium">Participated Investigators</h1>
 
-
 					<ProgressBar
-						completed={`${(percentage / 5) * 100}`}
-						customLabel={`${percentage}/5`}
+						completed={`${(props.post.investigator_ids.length / 5) * 100}`}
+						customLabel={`${props.post.investigator_ids.length}/5`}
 						bgColor={color}
 						baseBgColor="white"
 						labelAlignment="outside"
@@ -92,17 +69,25 @@ const InvestigatorSlots = (props: Props) => {
 				</div>
 			</div>
 
-			{(!props.status && props.role === "JURY") || !props.status ? (
-				<Link to={`/${props.id}/investigator`}>
-					<BlueButton
-						text="Verify this news!"
-						submit={submitHandler}
-					/>
-				</Link>
+			{!verified ? (
+				(!props.status && props.role === "JURY") || !props.status ? (
+					<Link to={`/${props.id}/investigator`}>
+						<BlueButton
+							text="Verify this news!"
+							submit={submitHandler}
+						/>
+					</Link>
+				) : (
+					<div className="w-2/3 flex justify-center items-center">
+						<h1 className="text-center font-semibold">
+							Waiting for verifications from jury
+						</h1>
+					</div>
+				)
 			) : (
 				<div className="w-2/3 flex justify-center items-center">
 					<h1 className="text-center font-semibold">
-						Waiting for verifications from jury
+						You already have verified this post
 					</h1>
 				</div>
 			)}

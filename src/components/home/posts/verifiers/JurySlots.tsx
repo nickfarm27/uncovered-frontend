@@ -1,45 +1,33 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BlueButton from "../../../ui/BlueButton";
 import axios from "axios";
+import UserContext from "../../../../store/user-context";
 
 type Props = {
 	id: string;
 	identifier: number;
+	post: any;
 };
 
 const JurySlots = (props: Props) => {
-	const [juryView, setJuryView] = useState(true);
+	const [verified, setVerified] = useState(false);
 
-	const [percentage, setPercentage] = useState(0);
-
-	const fetchUnverifiedPosts = async () => {
-		try {
-			const response = await axios.get(
-				"http://localhost:3030/post/unverified"
-			);
-			if (response.data.data) {
-				setPercentage(
-					response.data.data[props.identifier].jury_info.length
-				);
-				//console.log(percentage);
-				console.log(props.identifier)
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	const userCtx = useContext(UserContext);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => fetchUnverifiedPosts(), 1000);
-		console.log(timeout);
+		if (
+			props.post.jury_ids.includes(userCtx.user.uid) ||
+			props.post.investigator_ids.includes(userCtx.user.uid)
+		) {
+			setVerified(true);
+		}
 	}, []);
 
 	let color = "";
-	let jury = 3;
 
-	switch (jury) {
+	switch (props.post.jury_ids.length) {
 		case 0:
 			color = "#DC0E0E";
 			break;
@@ -60,12 +48,6 @@ const JurySlots = (props: Props) => {
 			break;
 	}
 
-	useEffect(() => {
-		if (jury === 5) {
-			setJuryView(false);
-		}
-	}, [jury]);
-
 	const submitHandler = () => {
 		console.log("juryTest");
 	};
@@ -76,8 +58,8 @@ const JurySlots = (props: Props) => {
 				<div className="w-2/3">
 					<h1 className="font-medium">Participated Jury</h1>
 					<ProgressBar
-						completed={`${(percentage / 5) * 100}`}
-						customLabel={`${percentage}/5`}
+						completed={`${(props.post.jury_ids.length / 5) * 100}`}
+						customLabel={`${props.post.jury_ids.length}/5`}
 						bgColor={color}
 						baseBgColor="white"
 						labelAlignment="outside"
@@ -87,14 +69,20 @@ const JurySlots = (props: Props) => {
 				</div>
 			</div>
 
-			{juryView ? (
+			{verified ? (
 				<Link to={`/${props.id}/jury`}>
 					<BlueButton
 						text="Verify this news!"
 						submit={submitHandler}
 					/>
 				</Link>
-			) : null}
+			) : (
+				<div className="w-2/3 flex justify-center items-center">
+					<h1 className="text-center font-semibold">
+						You already have verified this post
+					</h1>
+				</div>
+			)}
 		</div>
 	);
 };
