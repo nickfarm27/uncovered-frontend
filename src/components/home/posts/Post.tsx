@@ -29,9 +29,12 @@ interface Props {
 const Post = (props: Props) => {
 	const userCtx = useContext(UserContext);
 
+
 	const [selected, setSelected] = useState(0);
 	const [chosen, setChosen] = useState(false);
 	const [verified, setVerified] = useState(false);
+	const [choice, setChoice] = useState(false)
+
 
 	let Color = "";
 	let tickColor = "";
@@ -66,8 +69,19 @@ const Post = (props: Props) => {
 		}
 	}, []);
 
-	//console.log("image")
-	//console.log(props.image)
+
+	const addUserVote = async (vote: boolean) => {
+		try {
+			const response = await axios.post("http://localhost:3030/post/vote", {
+				pid: props.post.tweet_id,
+				uid: userCtx.user.uid,
+				vote: vote
+			})
+		
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	return (
 		<motion.div whileHover={{ scale: 1.02, backgroundColor: "white" }}>
@@ -168,6 +182,9 @@ const Post = (props: Props) => {
 											onTap={(e) => {
 												setSelected(2);
 												setChosen(true);
+												setChoice(true)
+												console.log("true")
+												addUserVote(true);
 											}}
 											whileHover={{
 												scale: 1.02,
@@ -185,6 +202,8 @@ const Post = (props: Props) => {
 											onTap={(e) => {
 												setSelected(1);
 												setChosen(true);
+												setChoice(false)
+												addUserVote(false);
 											}}
 											whileHover={{
 												scale: 1.02,

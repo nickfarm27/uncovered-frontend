@@ -24,7 +24,7 @@ const PostDetails = (props: Props) => {
 	useEffect(() => {
 		const timeout = setTimeout(() => getPostData(), 1000);
 		console.log("PostDetail");
-		console.log(timeout)
+		console.log(timeout);
 	}, []);
 
 	return (
@@ -37,7 +37,7 @@ const PostDetails = (props: Props) => {
 
 							<Dividers />
 						</div>
-						<div className="flex  justify-between w-full ">
+						<div className="flex justify-between w-full ">
 							<h1 className="font-medium">{post.author_name}</h1>
 							<h1 className="font-medium">
 								@{post.author_username}
@@ -45,7 +45,7 @@ const PostDetails = (props: Props) => {
 							<h1 className="font-medium">2h</h1>
 						</div>
 
-						<div className="mt-8">
+						<div className="mt-8 flex items-start w-full">
 							<h1 className="text-justify font-medium">
 								{post.text}
 							</h1>
@@ -61,7 +61,9 @@ const PostDetails = (props: Props) => {
 							<Dividers />
 						</div>
 						<div className="flex flex-col justify-between w-full ">
-							<h1 className="font-medium">Name: {post.author_name}</h1>
+							<h1 className="font-medium">
+								Name: {post.author_name}
+							</h1>
 							<h1 className="font-medium">Rating: 4.5</h1>
 							<h1 className="font-medium">
 								Total submitted tweets: 5
@@ -83,19 +85,13 @@ const PostDetails = (props: Props) => {
 				</div>
 			)}
 
-
-
 			{post ? (
 				post.verified ? (
 					<TrustIndex />
 				) : (
-					<SubmitReview jury={false} verified={!post.verified}/>
+					<SubmitReview jury={false} verified={!post.verified} />
 				)
 			) : null}
-
-
-
-
 		</div>
 	);
 };

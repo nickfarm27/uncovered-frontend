@@ -69,7 +69,7 @@ const JurySlots = (props: Props) => {
 				</div>
 			</div>
 
-			{verified ? (
+			{!verified ? (
 				<Link to={`/${props.id}/jury`}>
 					<BlueButton
 						text="Verify this news!"

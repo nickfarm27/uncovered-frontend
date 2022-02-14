@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Dividers from "@mui/material/Divider";
 import Slider from "@mui/material/Slider";
 import { motion } from "framer-motion";
 import { styled } from "@mui/material/styles";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BallTriangle } from "react-loader-spinner";
 import Reviews from "./Reviews";
+import Typography from "@mui/material/Typography";
+import UserContext from "../../../../store/user-context";
 
 type Props = {};
 
@@ -14,6 +16,17 @@ const JuryView = (props: Props) => {
 	const [selected, setSelected] = useState(0);
 	let jury = Boolean(true);
 	let investigatorFilled = Boolean(false);
+	const [value, setValue] = useState(0);
+	const userCtx = useContext(UserContext);
+	const navigate = useNavigate();
+	const textRef = useRef<HTMLTextAreaElement>(null);
+
+	const handleChange = (event: Event, newValue: number | number[]) => {
+		event.preventDefault();
+		if (typeof newValue === "number") {
+			setValue(newValue);
+		}
+	};
 
 	let Color = "";
 
@@ -49,44 +62,39 @@ const JuryView = (props: Props) => {
 		console.log(timeout);
 	}, []);
 
-	const PrettoSlider = styled(Slider)({
-		color: "#2563eb",
-		height: 8,
-		"& .MuiSlider-track": {
-			border: "none",
-		},
-		"& .MuiSlider-thumb": {
-			height: 24,
-			width: 24,
-			backgroundColor: "#fff",
-			border: "2px solid currentColor",
-			"&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-				boxShadow: "inherit",
-			},
-			"&:before": {
-				display: "none",
-			},
-		},
-		"& .MuiSlider-valueLabel": {
-			lineHeight: 1.2,
-			fontSize: 12,
-			background: "unset",
-			padding: 0,
-			width: 32,
-			height: 32,
-			borderRadius: "50% 50% 50% 0",
-			backgroundColor: "#2563eb",
-			transformOrigin: "bottom left",
-			transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-			"&:before": { display: "none" },
-			"&.MuiSlider-valueLabelOpen": {
-				transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-			},
-			"& > *": {
-				transform: "rotate(45deg)",
-			},
-		},
-	});
+	const addJuryReview = async (text: string) => {
+		try {
+			const response = await axios.post(
+				"http://localhost:3030/post/jury",
+				{
+					pid: post.tweet_id,
+					uid: userCtx.user.uid,
+					username: userCtx.user.username,
+					userRating:
+						userCtx.user.userRatings.reduce(
+							(a: any, b: any) => a + b,
+							0
+						) / userCtx.user.userRatings.length,
+					researchText: text,
+					grade: value,
+					juryCount: post.jury_ids.length,
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	console.log(value);
+	const submitHandler = (e: React.MouseEvent) => {
+		e.preventDefault();
+		console.log(value);
+
+		if (textRef.current) {
+			addJuryReview(textRef.current.value);
+		}
+		navigate(`/${post.tweet_id}`, { replace: true });
+	};
 
 	return (
 		<div>
@@ -111,7 +119,7 @@ const JuryView = (props: Props) => {
 								<h1 className="font-medium">2h</h1>
 							</div>
 
-							<div className="mt-8">
+							<div className="mt-8 w-full flex items-start">
 								<h1 className="text-justify font-medium">
 									{post.text}
 								</h1>
@@ -148,18 +156,20 @@ const JuryView = (props: Props) => {
 							</div>
 
 							{reviews.map((post) => {
+								let voting = "";
+								if (post.vote == true) {
+									voting = "True";
+								} else {
+									voting = "False";
+								}
+
 								return (
 									<Reviews
 										key={post.uid}
 										name={post.uid}
-										vote="True"
-										rating={4.5}
-										text="Lorem Ipsum is simply dummy text of the
-									printing and typesetting industry. Lorem
-									Ipsum has been the industry's standard dummy
-									text ever since the 1500s, when an unknown
-									printer took a galley of type and scrambled
-									it to make a type specimen book."
+										vote={voting}
+										rating={post.userRating}
+										text={post.researchText}
 									/>
 								);
 							})}
@@ -185,6 +195,7 @@ const JuryView = (props: Props) => {
 								placeholder="Type your review here and include all sources ...  "
 								rows={20}
 								className="w-full p-2 resize-none rounded-lg bg-blue-50"
+								ref={textRef}
 							></textarea>
 
 							{jury && !investigatorFilled ? (
@@ -193,11 +204,12 @@ const JuryView = (props: Props) => {
 										How trustable is this tweet on the scale
 										of 0 to 100?
 									</h1>
-									<PrettoSlider
+									<Slider
+										value={value}
 										className="mt-8"
 										valueLabelDisplay="auto"
-										aria-label="pretto slider"
 										defaultValue={20}
+										onChange={handleChange}
 									/>
 								</div>
 							) : (
@@ -242,6 +254,7 @@ const JuryView = (props: Props) => {
 							)}
 
 							<motion.button
+								onClick={submitHandler}
 								whileHover={{ scale: 1.02 }}
 								className="bg-[#2563eb] rounded-lg w-1/6 mt-8"
 							>
