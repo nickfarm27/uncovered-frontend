@@ -39,14 +39,14 @@ const Questions = (props: Props) => {
 
 	return (
 		<div className="flex justify-center items-center box-border h-screen ">
-			<div className="z-30 flex justify-center items-center w-full h-screen bg-[#9dbccf]  ">
+			<div className="z-30 flex justify-center items-center w-full h-screen bg-blue-200  ">
 				<div className="z-30 flex items-center w-1/4  ">
 					<motion.h1
 						initial="offscreen"
 						whileInView="onscreen"
 						viewport={{ once: true, amount: 0.8 }}
 						variants={titleVariants}
-						className=" text-center leading-loose text-5xl font-bold text-white"
+						className=" text-center leading-loose text-5xl font-bold text-black"
 					>
 						Questions?! Look Here
 					</motion.h1>

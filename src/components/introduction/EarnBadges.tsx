@@ -40,7 +40,7 @@ const Badges = (props: Props) => {
 	};
 
 	return (
-		<div className="flex box-border bg-[#9dbccf] h-screen ">
+		<div className="flex box-border bg-blue-200 h-screen ">
 			<motion.div
 				initial="offscreen"
 				whileInView="onscreen"
@@ -48,12 +48,12 @@ const Badges = (props: Props) => {
 				variants={titleVariants}
 				className="flex flex-col justify-evenly items-center w-2/3 "
 			>
-				<h1 className="text-5xl font-bold text-white h-1/3 flex  items-center">
+				<h1 className="text-5xl font-bold text-black h-1/3 flex  items-center">
 					Earn Dem' Badges
 				</h1>
 
 				<div className=" h-2/3 pt-8 w-3/4">
-					<h1 className="text-white text-xl text-justify p-8">
+					<h1 className="text-black text-xl text-justify p-8">
 						Lorem Ipsum is simply dummy text of the printing and
 						typesetting industry. Lorem Ipsum has been the
 						industry's standard dummy text ever since the 1500s,

@@ -43,13 +43,13 @@ const WhatWeUse = (props: Props) => {
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-evenly box-border bg-[#9dbccf] h-screen ">
+		<div className="flex flex-col items-center justify-evenly box-border bg-blue-200 h-screen ">
 			<motion.h1
 				initial="offscreen"
 				whileInView="onscreen"
 				viewport={{ once: true, amount: 0.8 }}
 				variants={titleVariants}
-				className="text-5xl font-bold text-white"
+				className="text-5xl font-bold text-black"
 			>
 				What We Use
 			</motion.h1>
@@ -76,7 +76,7 @@ const WhatWeUse = (props: Props) => {
 					<div className="box-border rounded-full h-56 w-56 bg-[#2563eb] p-8">
 						<img src={Blockchain} alt="Blockchain" />
 					</div>
-					<h1 className="text-2xl text-white mt-14 font-semibold">
+					<h1 className="text-2xl text-black mt-14 font-semibold">
 						Blockchain
 					</h1>
 				</motion.div>
@@ -95,7 +95,7 @@ const WhatWeUse = (props: Props) => {
 					<div className="box-border rounded-full h-56 w-56 bg-[#2563eb] p-14">
 						<img src={TrustIndex} alt="Trust Index" />
 					</div>
-					<h1 className="text-2xl text-white mt-14 font-semibold">
+					<h1 className="text-2xl text-black mt-14 font-semibold">
 						Trust Index
 					</h1>
 				</motion.div>
