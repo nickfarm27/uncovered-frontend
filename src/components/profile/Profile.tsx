@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Outlet, useLocation, Link } from "react-router-dom";
+import UserContext from "../../store/user-context";
 import BlueButton from "../ui/BlueButton";
 import SideBar from "./SideBar";
 
@@ -9,10 +10,19 @@ const Profile = (props: Props) => {
 	const [title, setTitle] = useState("Dashboard");
 	const location = useLocation();
 	const { pathname: pathName } = location;
+	const userCtx = useContext(UserContext);
 
 	const submitHandler = () => {
 		console.log("Upgrade Role");
 	};
+
+
+	let jury = Boolean(false);
+
+	if (userCtx.user.role == "JURY"){
+		jury = true
+	}
+
 
 	useEffect(() => {
 		switch (pathName) {
@@ -60,14 +70,16 @@ const Profile = (props: Props) => {
 				<div className="w-full flex justify-between border-b-2 border-slate-100 font-medium text-xl py-7 pl-10 items-center">
 					{title}
 
-					<div className="mr-8">
-						<Link to="upgrade">
-							<BlueButton
-								text="Upgrade Role"
-								submit={submitHandler}
-							/>
-						</Link>
-					</div>
+					{ !jury ? (
+						<div className="mr-8">
+							<Link to="upgrade">
+								<BlueButton
+									text="Upgrade Role"
+									submit={submitHandler}
+								/>
+							</Link>
+						</div>
+					) : null}
 				</div>
 
 				<Outlet />

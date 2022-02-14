@@ -11,6 +11,7 @@ import UserContext from "../../../store/user-context";
 import axios from "axios";
 // @ts-ignore
 import { Checkmark } from "react-checkmark";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 interface Props {
 	investigatorIdentifier: number;
@@ -29,14 +30,13 @@ interface Props {
 const Post = (props: Props) => {
 	const userCtx = useContext(UserContext);
 
-
 	const [selected, setSelected] = useState(0);
 	const [chosen, setChosen] = useState(false);
 	const [verified, setVerified] = useState(false);
-	const [choice, setChoice] = useState(false)
-
+	const [choice, setChoice] = useState(false);
 
 	let Color = "";
+	let color = "";
 	let tickColor = "";
 
 	switch (selected) {
@@ -69,18 +69,30 @@ const Post = (props: Props) => {
 		}
 	}, []);
 
-
 	const addUserVote = async (vote: boolean) => {
 		try {
-			const response = await axios.post("http://localhost:3030/post/vote", {
-				pid: props.post.tweet_id,
-				uid: userCtx.user.uid,
-				vote: vote
-			})
-		
+			const response = await axios.post(
+				"http://localhost:3030/post/vote",
+				{
+					pid: props.post.tweet_id,
+					uid: userCtx.user.uid,
+					vote: vote,
+				}
+			);
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	if (props.post.combined_score < 30) {
+		color = "#DC0E0E";
+	} else if (
+		props.post.combined_score < 70 &&
+		props.post.combined_score > 30
+	) {
+		color = "#F4EA21";
+	} else {
+		color = "#4EF421";
 	}
 
 	return (
@@ -118,7 +130,18 @@ const Post = (props: Props) => {
 
 					<div className="w-full flex items-center justify-center">
 						{props.verified ? (
-							<TrustBar />
+							<div className="w-full">
+								<ProgressBar
+									completed={Math.round(
+										props.post.combined_score
+									)}
+									bgColor={color}
+									baseBgColor="white"
+									labelAlignment="outside"
+									width="100%"
+									labelColor="black"
+								/>
+							</div>
 						) : props.verifiedByInvestigator &&
 						  props.role === "JURY" ? (
 							<JurySlots
@@ -171,64 +194,72 @@ const Post = (props: Props) => {
 							</div>
 						</div>
 					</Link>
-					{!verified ? (
-						!chosen ? (
-							<div className="w-full flex items-center justify-center">
-								{props.verified ? (
-									<TrustBar />
-								) : (
-									<div className="flex justify-around w-2/3">
-										<motion.div
-											onTap={(e) => {
-												setSelected(2);
-												setChosen(true);
-												setChoice(true)
-												console.log("true")
-												addUserVote(true);
-											}}
-											whileHover={{
-												scale: 1.02,
-												backgroundColor: "#008000",
-											}}
-											transition={{ duration: 0.2 }}
-											className="bg-green-500 rounded-xl w-1/3 cursor-pointer"
-										>
-											<h1 className="text-white font-medium p-4 text-center">
-												True
-											</h1>
-										</motion.div>
 
-										<motion.div
-											onTap={(e) => {
-												setSelected(1);
-												setChosen(true);
-												setChoice(false)
-												addUserVote(false);
-											}}
-											whileHover={{
-												scale: 1.02,
-												backgroundColor: "#b30000",
-											}}
-											transition={{ duration: 0.2 }}
-											className="bg-red-500 rounded-xl w-1/3 cursor-pointer"
-										>
-											<h1 className="text-white font-medium p-4 text-center">
-												False
-											</h1>
-										</motion.div>
-									</div>
-								)}
+					<div className="w-full flex items-center justify-center">
+						{props.verified ? (
+							<div className="w-full ">
+								<ProgressBar
+									completed={Math.round(
+										props.post.combined_score
+									)}
+									bgColor={color}
+									baseBgColor="white"
+									labelAlignment="outside"
+									width="100%"
+									labelColor="black"
+								/>
+							</div>
+						) : verified ? (
+							<div className="w-full flex justify-center">
+								<h1 className="font-semibold">
+									Pending verification from verifiers
+								</h1>
+							</div>
+						) : !chosen ? (
+							<div className="flex justify-around w-full items-center ">
+								<motion.div
+									onTap={(e) => {
+										setSelected(2);
+										setChosen(true);
+										setChoice(true);
+										console.log("true");
+										addUserVote(true);
+									}}
+									whileHover={{
+										scale: 1.02,
+										backgroundColor: "#008000",
+									}}
+									transition={{ duration: 0.2 }}
+									className="bg-green-500 rounded-xl w-1/4 cursor-pointer"
+								>
+									<h1 className="text-white font-medium p-4 text-center">
+										True
+									</h1>
+								</motion.div>
+
+								<motion.div
+									onTap={(e) => {
+										setSelected(1);
+										setChosen(true);
+										setChoice(false);
+										addUserVote(false);
+									}}
+									whileHover={{
+										scale: 1.02,
+										backgroundColor: "#b30000",
+									}}
+									transition={{ duration: 0.2 }}
+									className="bg-red-500 rounded-xl w-1/4 cursor-pointer"
+								>
+									<h1 className="text-white font-medium p-4 text-center">
+										False
+									</h1>
+								</motion.div>
 							</div>
 						) : (
 							<Checkmark color={tickColor} />
-						)
-					) : (
-						<div className="w-full flex justify-center items-center ">
-							<h1 className="text-center font-semibold">
-								Pending verifications from verifiers
-							</h1>
-						</div>
-					)}
+						)}
+					</div>
 				</motion.div>
 			)}
 		</motion.div>
