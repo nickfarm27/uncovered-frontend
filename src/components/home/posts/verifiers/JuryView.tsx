@@ -166,7 +166,7 @@ const JuryView = (props: Props) => {
 								return (
 									<Reviews
 										key={post.uid}
-										name={post.uid}
+										name={post.username}
 										vote={voting}
 										rating={post.userRating}
 										text={post.researchText}
@@ -179,7 +179,7 @@ const JuryView = (props: Props) => {
 					{/* RIGHT BOX */}
 					<motion.div
 						animate={{ backgroundColor: Color }}
-						className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 w-1/2 "
+						className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 w-1/2 h-max "
 					>
 						<div className="w-full mb-4">
 							<h1 className="font-semibold text-lg pb-2">
