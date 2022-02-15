@@ -6,14 +6,16 @@ import Badges from "../profile/Badges";
 import Award from "../../../assets/Award.png";
 import Newspaper from "../../../assets/Newspaper.png";
 import FeedPost from "./FeedPost";
+import axios from "axios"
 import UserContext from "../../../../store/user-context";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface Props {}
 
 const DashboardView = (props: Props) => {
 	const userCtx = useContext(UserContext);
 	const [wallet, setWallet] = useState(0);
+	const [ranking, setRanking] = useState(10);
 
 	let xpxPriceUSD = 0.00359326;
 	let xpxPriceMYR = xpxPriceUSD * 4.13;
@@ -33,11 +35,29 @@ const DashboardView = (props: Props) => {
 		}
 	};
 
+	const getLeaderboardData = async () => {
+		try {
+			const response = await axios.get("http://localhost:3030/user/leaderboard")
+			if (response.data.data && userCtx.user) {
+				const leaderboard = response.data.data
+				for (let i = 0; i < leaderboard.length; i++) {
+					if (leaderboard[i].uid === userCtx.user.uid) {
+						setRanking(i+1)
+					}
+				}
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	useEffect(() => {
-		setTimeout(() => fetchWallet(), 1000);
+		setTimeout(() => {
+			fetchWallet()
+			getLeaderboardData()
+		}, 1000);
 	}, [userCtx.user]);
 
-	const missionPercentage = 50;
 	return (
 		<div className="flex w-full h-4/6 p-6 gap-x-8 ">
 			<div className="flex flex-col w-1/2  gap-y-8 ">
@@ -78,7 +98,7 @@ const DashboardView = (props: Props) => {
 										Total Ranking:
 									</h1>
 									<h1 className="font-medium text-3xl">
-										#23
+										#{ranking}
 									</h1>
 								</div>
 							</div>
@@ -90,7 +110,7 @@ const DashboardView = (props: Props) => {
 					height="h-3/4"
 					width="w-full"
 					content={
-						<div>
+						<Link to="/profile/missions">
 							<h1 className="font-semibold text-lg pb-2">
 								Missions
 							</h1>
@@ -118,14 +138,14 @@ const DashboardView = (props: Props) => {
 
 								<div className="pt-4">
 									<ProgressBar
-										percentage={missionPercentage}
-										text={`${missionPercentage}/100`}
+										percentage={(1/7)*100}
+										text={`1/7`}
 										textSize="12px"
 										color={"rgb(34, 197, 94)"}
 									/>
 								</div>
 							</div>
-						</div>
+						</Link>
 					}
 				/>
 
@@ -168,7 +188,7 @@ const DashboardView = (props: Props) => {
 					height="h-3/6"
 					width="w-full"
 					content={
-						<div>
+						<Link to="/profile/rewards">
 							<h1 className="font-semibold text-lg pb-2 ">
 								Rewards
 							</h1>
@@ -197,7 +217,7 @@ const DashboardView = (props: Props) => {
 									</h1>
 								</div>
 							</div>
-						</div>
+						</Link>
 					}
 				/>
 
@@ -206,7 +226,7 @@ const DashboardView = (props: Props) => {
 					height="h-full"
 					width="w-full"
 					content={
-						<div>
+						<Link to="/profile/feed">
 							<h1 className="font-semibold text-lg pb-2">
 								My Feed
 							</h1>
@@ -240,7 +260,7 @@ const DashboardView = (props: Props) => {
 									</h1>
 								</div>
 							</div>
-						</div>
+						</Link>
 					}
 				/>
 			</div>

@@ -7,7 +7,6 @@ import ProgressBar from "../profile/ProgressBar";
 type Props = {};
 
 const MissionsView = (props: Props) => {
-	const missionPercentage = 50;
 	return (
 		<div className="flex flex-col gap-y-8 drop-shadow-xl rounded-lg p-6  ">
 			<div className="box-border bg-zinc-100 w-2/3 drop-shadow-lg rounded-xl p-6 ">
@@ -28,8 +27,8 @@ const MissionsView = (props: Props) => {
 					</div>
 					<div className = "p-4">
 						<ProgressBar
-							percentage={missionPercentage}
-							text={`${missionPercentage}/100`}
+							percentage={(1/7)*100}
+							text={`1/7`}
 							textSize="12px"
 							color={"rgb(34, 197, 94)"}
 						/>
