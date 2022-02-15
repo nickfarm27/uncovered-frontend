@@ -103,6 +103,11 @@ const InvestigatorView = (props: Props) => {
 			},
 		},
 	});
+	
+	let text = "News succesfully verified";
+	const notify = () => {
+		toast.success(text);
+	};
 
 	const addInvestigatorReview = async (text: string, vote: boolean) => {
 		try {
@@ -119,16 +124,17 @@ const InvestigatorView = (props: Props) => {
 						) / userCtx.user.userRatings.length,
 					researchText: text,
 					vote: vote,
+					userPublicKey: userCtx.user.publicKey,
+					invClass: userCtx.user.class
 				}
 			);
+			if (response.data.message) {
+				navigate(`/${post.tweet_id}`, { replace: true });
+				notify()
+			}
 		} catch (error) {
 			console.log(error);
 		}
-	};
-
-	let text = "News succesfully verified";
-	const notify = () => {
-		toast.success(text);
 	};
 
 	const submitHandler = (e: React.MouseEvent) => {
@@ -136,8 +142,6 @@ const InvestigatorView = (props: Props) => {
 		if (textRef.current) {
 			addInvestigatorReview(textRef.current.value, choice);
 		}
-		notify();
-		navigate(`/${post.tweet_id}`, { replace: true });
 	};
 
 	return (

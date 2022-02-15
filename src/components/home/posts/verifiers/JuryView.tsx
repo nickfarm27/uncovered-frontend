@@ -63,6 +63,12 @@ const JuryView = (props: Props) => {
 		console.log(timeout);
 	}, []);
 
+	
+	let text = "News succesfully verified";
+	const notify = () => {
+		toast.success(text);
+	};
+	
 	const addJuryReview = async (text: string) => {
 		try {
 			const response = await axios.post(
@@ -79,17 +85,17 @@ const JuryView = (props: Props) => {
 					researchText: text,
 					grade: value,
 					juryCount: post.jury_ids.length,
+					userPublicKey: userCtx.user.publicKey,
+					invClass: userCtx.user.class
 				}
 			);
-            notify();
+			if (response.data.message) {
+				navigate(`/${post.tweet_id}`, { replace: true });
+				notify()
+			}
 		} catch (error) {
 			console.log(error);
 		}
-	};
-
-	let text = "News succesfully verified";
-	const notify = () => {
-		toast.success(text);
 	};
 
 	const submitHandler = (e: React.MouseEvent) => {
@@ -98,8 +104,6 @@ const JuryView = (props: Props) => {
 		if (textRef.current) {
 			addJuryReview(textRef.current.value);
 		}
-		notify()
-		navigate(`/${post.tweet_id}`, { replace: true });
 	};
 
 	return (

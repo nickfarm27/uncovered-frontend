@@ -84,6 +84,7 @@ const Post = (props: Props) => {
 					pid: props.post.tweet_id,
 					uid: userCtx.user.uid,
 					vote: vote,
+					userPublicKey: userCtx.user.publicKey
 				}
 			);
 		} catch (error) {
