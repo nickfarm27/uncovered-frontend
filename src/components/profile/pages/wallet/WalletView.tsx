@@ -5,6 +5,7 @@ import BlueButton from "../../../ui/BlueButton";
 import axios from "axios";
 import UserContext from "../../../../store/user-context";
 import { motion } from "framer-motion";
+import { TransferTransaction } from "tsjs-xpx-chain-sdk";
 
 interface Props {}
 
@@ -14,13 +15,13 @@ const WalletView = (props: Props) => {
 		console.log("Wallet");
 	};
 
-	const [currencies, setcurrencies] = useState([])
-	const [price, setprice] = useState('0.00')
-	const [pastData, setpastData] = useState([])
-	const ws = useRef(false)
-	const url = 'https//api.pro.coinbase.com'
-
+	let amount = 0;
 	const [wallet, setWallet] = useState(0);
+	//const [amount, setAmount] = useState(0);
+	const [transactions, setTransactions] = useState<any>([]);
+
+	let xpxPriceUSD = 0.00359326;
+	let xpxPriceMYR = xpxPriceUSD * 4.13;
 
 	const fetchWallet = async () => {
 		if (userCtx.user) {
@@ -29,7 +30,21 @@ const WalletView = (props: Props) => {
 					`http://localhost:3030/blockchain/account/${userCtx.user.address}`
 				);
 				if (response.data.xpxAmount) {
-					setWallet(response.data.xpxAmount);
+					setWallet(response.data.xpxAmount / 100);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+
+			try {
+				const response = await axios.get(
+					`http://localhost:3030/blockchain/transactions/${userCtx.user.publicKey}`
+				);
+				if (response.data.transactions) {
+					setTransactions(response.data.transactions);
+					console.log(
+						response.data.transactions[0].transferTransaction.amount
+					);
 				}
 			} catch (error) {
 				console.log(error);
@@ -41,12 +56,11 @@ const WalletView = (props: Props) => {
 		setTimeout(() => fetchWallet(), 1000);
 	}, [userCtx.user]);
 
-	console.log(wallet);
 	return (
 		<div className="flex w-full h-full p-6 gap-x-8 ">
 			<div className="flex flex-col w-1/2 gap-y-8 ">
 				{/* First Box */}
-				<div className="box-border bg-zinc-100 w-full drop-shadow-lg rounded-xl p-6 ">
+				<div className="box-border w-full drop-shadow-lg rounded-xl p-6 bg-zinc-100 ">
 					<div className="flex justify-between">
 						<h1 className="font-semibold text-lg pb-2">
 							Wallet Balance
@@ -61,7 +75,7 @@ const WalletView = (props: Props) => {
 								{wallet} XPX Tokens
 							</h1>
 							<h1 className="font-semibold pb-6 text-3xl">
-								RM420.69
+								RM{(xpxPriceMYR * wallet).toFixed(2)}
 							</h1>
 
 							<motion.button
@@ -92,7 +106,7 @@ const WalletView = (props: Props) => {
 									United State Dollars (USD)
 								</h1>
 								<h1 className="font-semibold pb-2 text-3xl">
-									$0.0000017
+									${xpxPriceUSD}
 								</h1>
 							</div>
 
@@ -101,19 +115,12 @@ const WalletView = (props: Props) => {
 									Malaysian Ringgit (MYR)
 								</h1>
 								<h1 className="font-semibold pb-2 text-3xl">
-									RM0.0000054
+									RM{xpxPriceMYR.toFixed(8)}
 								</h1>
 							</div>
 						</div>
 
-						<div className="flex flex-col  w-1/2  items-center justify-between">
-							<h1 className="font-medium pb-2 ">
-								Changes in 24hr
-							</h1>
-							<h1 className="font-medium pb-8 text-green-500">
-								+5.00%
-							</h1>
-
+						<div className="flex flex-col  w-1/2  items-center justify-center">
 							<BlueButton
 								text="Visit CoinMarketCap.com"
 								submit={submitHandler}
@@ -136,48 +143,35 @@ const WalletView = (props: Props) => {
 					<Dividers />
 					<div className="flex flex-col items-center justify-center">
 						<div className="grid grid-rows-1 gap-y-4 pt-4 w-4/5 pr-2">
-							<Transactions
-								amount={50000}
-								type="Receive"
-								textColor="text-green-500"
-								backgroundColor="bg-green-200"
-							/>
-							<Transactions
-								amount={-50000}
-								type="Receive"
-								textColor="text-red-500"
-								backgroundColor="bg-red-200"
-							/>
-							<Transactions
-								amount={50000}
-								type="Receive"
-								textColor="text-green-500"
-								backgroundColor="bg-green-200"
-							/>
-							<Transactions
-								amount={-50000}
-								type="Receive"
-								textColor="text-red-500"
-								backgroundColor="bg-red-200"
-							/>
-							<Transactions
-								amount={50000}
-								type="Receive"
-								textColor="text-green-500"
-								backgroundColor="bg-green-200"
-							/>
-							<Transactions
-								amount={-50000}
-								type="Receive"
-								textColor="text-red-500"
-								backgroundColor="bg-red-200"
-							/>
+							{transactions.map(
+								(transaction: {
+									transferTransaction: { amount: number };
+								}) => {
+									amount =
+										amount +
+										transaction.transferTransaction.amount;
+
+									console.log(amount);
+
+									return (
+										<Transactions
+											amount={
+												transaction.transferTransaction
+													.amount
+											}
+											type="Receive"
+											textColor="text-green-500"
+											backgroundColor="bg-green-200"
+										/>
+									);
+								}
+							)}
 						</div>
 
 						<div className="w-1/2 pt-4 flex flex-col justify-center items-center ">
 							<h1 className="font-medium">Total Changes</h1>
 							<h1 className="font-medium text-green-500 text-2xl">
-								+4564564 XPX
+								+{amount} XPX
 							</h1>
 						</div>
 					</div>

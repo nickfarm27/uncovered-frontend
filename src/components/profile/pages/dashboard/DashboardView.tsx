@@ -187,19 +187,19 @@ const DashboardView = (props: Props) => {
 							<div className="flex flex-col justify-between ">
 								<div className="">
 									<FeedPost
-										title="Are Valorant players gay?"
+										title="Tweet 1"
 										status="Status: Unverified"
 										rating="Unknown"
 										color={0}
 									/>
 									<FeedPost
-										title="Are Valorant players gay?"
+										title="Tweet 2"
 										status="Status: Verified"
 										rating={`${60}/100%`}
 										color={2}
 									/>
 									<FeedPost
-										title="Are Valorant players gay?"
+										title="Tweet 3"
 										status="Status: Verified"
 										rating={`${80}/100%`}
 										color={3}

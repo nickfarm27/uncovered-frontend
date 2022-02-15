@@ -3,11 +3,23 @@ import Dividers from "@mui/material/Divider";
 import React from "react";
 
 type Props = {
-	post: any
+	post: any;
 };
 
 const TrustIndex = (props: Props) => {
-	
+	let color = "";
+
+	if (props.post.combined_score < 30) {
+		color = "#DC0E0E";
+	} else if (
+		props.post.combined_score < 70 &&
+		props.post.combined_score > 30
+	) {
+		color = "#F4EA21";
+	} else {
+		color = "#4EF421";
+	}
+
 	return (
 		<div className="bg-zinc-100 flex flex-col items-center mb-4 box-border drop-shadow-lg rounded-xl p-6 m-6 w-1/2 ">
 			<div className="w-full mb-4">
@@ -19,8 +31,10 @@ const TrustIndex = (props: Props) => {
 			<div className="flex flex-col justify-between w-full">
 				<h1 className="font-medium mb-2">Standard user rating</h1>
 				<ProgressBar
-					completed={(props.post.normal_user_score/50)*100}
-					customLabel={`${Math.round(props.post.normal_user_score)}/50`}
+					completed={(props.post.normal_user_score / 50) * 100}
+					customLabel={`${Math.round(
+						props.post.normal_user_score
+					)}/50`}
 					bgColor="#42b0f5"
 					baseBgColor="white"
 					labelAlignment="outside"
@@ -36,8 +50,10 @@ const TrustIndex = (props: Props) => {
 			<div className="flex flex-col justify-between w-full">
 				<h1 className="font-medium mb-2">Investigator rating</h1>
 				<ProgressBar
-					completed={(props.post.investigator_score/15)*100}
-					customLabel={`${Math.round(props.post.investigator_score)}/15`}
+					completed={(props.post.investigator_score / 15) * 100}
+					customLabel={`${Math.round(
+						props.post.investigator_score
+					)}/15`}
 					bgColor="#42f5e6"
 					baseBgColor="white"
 					labelAlignment="outside"
@@ -53,7 +69,7 @@ const TrustIndex = (props: Props) => {
 			<div className="flex flex-col justify-between w-full">
 				<h1 className="font-medium mb-2">Jury rating</h1>
 				<ProgressBar
-					completed={(props.post.jury_score/35)*100}
+					completed={(props.post.jury_score / 35) * 100}
 					customLabel={`${Math.round(props.post.jury_score)}/35`}
 					bgColor="#e0a848"
 					baseBgColor="white"
@@ -72,7 +88,7 @@ const TrustIndex = (props: Props) => {
 				<ProgressBar
 					completed={props.post.combined_score}
 					customLabel={`${Math.round(props.post.combined_score)}/100`}
-					bgColor="#21eb5a"
+					bgColor={color}
 					baseBgColor="white"
 					labelAlignment="outside"
 					width="90%"

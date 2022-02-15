@@ -121,7 +121,7 @@ const Post = (props: Props) => {
 									<h2 className="text-slate-500">
 										@{props.username}
 									</h2>
-									<h2 className="text-slate-500">· 2h</h2>
+									
 								</div>
 								<p className="font-medium">{props.text}</p>
 							</div>
@@ -188,7 +188,7 @@ const Post = (props: Props) => {
 									<h2 className="text-slate-500">
 										@{props.username}
 									</h2>
-									<h2 className="text-slate-500">· 2h</h2>
+									
 								</div>
 								<p className="font-medium">{props.text}</p>
 							</div>

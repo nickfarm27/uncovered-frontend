@@ -56,7 +56,7 @@ const PostDetails = (props: Props) => {
 							<h1 className="font-medium">
 								@{post.author_username}
 							</h1>
-							<h1 className="font-medium">2h</h1>
+							
 						</div>
 
 						<div className="mt-8 flex items-start w-full">
