@@ -40,25 +40,7 @@ const PostDetails = (props: Props) => {
 		const timeout = setTimeout(() => getPostData(), 1000);
 	}, []);
 
-	// //GET AUTHOR DATA
-	// const getAuthorData = async () => {
-	// 	const response = await axios.get(
-	// 		`http://localhost:3030/user/author/${post.author_id as string}`
-	// 	);
-	// 	if (response.data.data) {
-	// 		setAuthor(response.data.data);
-	// 		console.log(author);
-	// 	}
-	// };
-
-	// useEffect(() => {
-	// 	const timeout = setTimeout(() => getAuthorData(), 1000);
-	// }, []);
-	// console.log(
-	// 	author.trust_index_scores.reduce((a: any, b: any) => a + b, 0) /
-	// 		author.trust_index_scores.length
-	// );
-
+	
 	return (
 		<div className="flex w-full flex-grow min-h-full">
 			{post && author ? (

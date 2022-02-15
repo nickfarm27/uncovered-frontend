@@ -20,7 +20,7 @@ const TrustIndex = (props: Props) => {
 				<h1 className="font-medium mb-2">Standard user rating</h1>
 				<ProgressBar
 					completed={(props.post.normal_user_score/50)*100}
-					customLabel={`${Math.round((props.post.normal_user_score/50)*100)}/100`}
+					customLabel={`${Math.round(props.post.normal_user_score)}/50`}
 					bgColor="#42b0f5"
 					baseBgColor="white"
 					labelAlignment="outside"
@@ -37,7 +37,7 @@ const TrustIndex = (props: Props) => {
 				<h1 className="font-medium mb-2">Investigator rating</h1>
 				<ProgressBar
 					completed={(props.post.investigator_score/15)*100}
-					customLabel={`${Math.round((props.post.investigator_score/15)*100)}/100`}
+					customLabel={`${Math.round(props.post.investigator_score)}/15`}
 					bgColor="#42f5e6"
 					baseBgColor="white"
 					labelAlignment="outside"
@@ -54,7 +54,7 @@ const TrustIndex = (props: Props) => {
 				<h1 className="font-medium mb-2">Jury rating</h1>
 				<ProgressBar
 					completed={(props.post.jury_score/35)*100}
-					customLabel={`${Math.round((props.post.jury_score/35)*100)}/100`}
+					customLabel={`${Math.round(props.post.jury_score)}/35`}
 					bgColor="#e0a848"
 					baseBgColor="white"
 					labelAlignment="outside"

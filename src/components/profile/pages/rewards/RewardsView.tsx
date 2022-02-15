@@ -34,7 +34,7 @@ const RewardsView = (props: Props) => {
 					<Badges
 						image={Newspaper}
 						name="Contributor"
-						description="Submit 5 news tweet to Uncovered. Submit 5 news tweet to Uncovered."
+						description="Submit 5 news tweet to Uncovered."
 						earned={1}
 					/>
 					<Badges
@@ -87,7 +87,7 @@ const RewardsView = (props: Props) => {
 					<Badges
 						image={Level}
 						name="Consistency"
-						description="React level 25."
+						description="Reach level 25."
 						earned={0}
 					/>
 					<Badges

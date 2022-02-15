@@ -1,14 +1,47 @@
-import React from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Dividers from "@mui/material/Divider";
 import Transactions from "./Transactions";
 import BlueButton from "../../../ui/BlueButton";
+import axios from "axios";
+import UserContext from "../../../../store/user-context";
+import { motion } from "framer-motion";
 
 interface Props {}
 
 const WalletView = (props: Props) => {
+	const userCtx = useContext(UserContext);
 	const submitHandler = () => {
 		console.log("Wallet");
 	};
+
+	const [currencies, setcurrencies] = useState([])
+	const [price, setprice] = useState('0.00')
+	const [pastData, setpastData] = useState([])
+	const ws = useRef(false)
+	const url = 'https//api.pro.coinbase.com'
+
+	const [wallet, setWallet] = useState(0);
+
+	const fetchWallet = async () => {
+		if (userCtx.user) {
+			try {
+				const response = await axios.get(
+					`http://localhost:3030/blockchain/account/${userCtx.user.address}`
+				);
+				if (response.data.xpxAmount) {
+					setWallet(response.data.xpxAmount);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
+	useEffect(() => {
+		setTimeout(() => fetchWallet(), 1000);
+	}, [userCtx.user]);
+
+	console.log(wallet);
 	return (
 		<div className="flex w-full h-full p-6 gap-x-8 ">
 			<div className="flex flex-col w-1/2 gap-y-8 ">
@@ -25,15 +58,20 @@ const WalletView = (props: Props) => {
 						<div className="flex flex-col justify-between">
 							<h1 className="font-medium pb-2 ">Total Balance</h1>
 							<h1 className="font-medium pb-2 ">
-								2347383 XPX Tokens
+								{wallet} XPX Tokens
 							</h1>
 							<h1 className="font-semibold pb-6 text-3xl">
 								RM420.69
 							</h1>
-							<BlueButton
-								text="XPX Private Key: 97nnsv786HKHK7t78"
-								submit={submitHandler}
-							/>
+
+							<motion.button
+								whileHover={{ scale: 1.03 }}
+								className=" bg-blue-600 rounded-lg "
+							>
+								<h1 className="font-medium p-4 text-white text-xs">{`XPX Private Key: ${
+									userCtx.user && userCtx.user.address
+								}`}</h1>
+							</motion.button>
 						</div>
 					</div>
 				</div>

@@ -38,7 +38,7 @@ const LeaderboardView = (props: Props) => {
 				</div>
 			</div>
 			{users.length !== 0 && users.map((user, rank) => {
-				return <Ranking rank={rank+1} name={user.username} numberOfVerified={user.numberOfVerifiedNews} />
+				return <Ranking rank={rank+1} name={user.username} numberOfVerified={user.numberOfVerifiedNews} key={user.username} />
 			})}
 		</div>
 	);
