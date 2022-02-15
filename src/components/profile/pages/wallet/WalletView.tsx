@@ -30,7 +30,7 @@ const WalletView = (props: Props) => {
 					`http://localhost:3030/blockchain/account/${userCtx.user.address}`
 				);
 				if (response.data.xpxAmount) {
-					setWallet(response.data.xpxAmount / 100);
+					setWallet(response.data.xpxAmount / 1000000);
 				}
 			} catch (error) {
 				console.log(error);
@@ -82,7 +82,7 @@ const WalletView = (props: Props) => {
 								whileHover={{ scale: 1.03 }}
 								className=" bg-blue-600 rounded-lg "
 							>
-								<h1 className="font-medium p-4 text-white text-xs">{`XPX Private Key: ${
+								<h1 className="font-medium p-4 text-white text-xs">{`XPX Address: ${
 									userCtx.user && userCtx.user.address
 								}`}</h1>
 							</motion.button>
@@ -161,7 +161,7 @@ const WalletView = (props: Props) => {
 										<Transactions
 											amount={
 												transaction.transferTransaction
-													.amount / 100
+													.amount / 1000000
 											}
 											type="Receive"
 											textColor="text-green-500"
@@ -175,7 +175,7 @@ const WalletView = (props: Props) => {
 						<div className="w-1/2 pt-4 flex flex-col justify-center items-center ">
 							<h1 className="font-medium">Total Changes</h1>
 							<h1 className="font-medium text-green-500 text-2xl">
-								+{amount / 100} XPX
+								+{amount / 1000000} XPX
 							</h1>
 						</div>
 					</div>
