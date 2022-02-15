@@ -7,8 +7,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BallTriangle } from "react-loader-spinner";
 import Reviews from "./Reviews";
-import Typography from "@mui/material/Typography";
 import UserContext from "../../../../store/user-context";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {};
 
@@ -80,19 +81,24 @@ const JuryView = (props: Props) => {
 					juryCount: post.jury_ids.length,
 				}
 			);
+            notify();
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	console.log(value);
+	let text = "News succesfully verified";
+	const notify = () => {
+		toast.success(text);
+	};
+
 	const submitHandler = (e: React.MouseEvent) => {
 		e.preventDefault();
-		console.log(value);
 
 		if (textRef.current) {
 			addJuryReview(textRef.current.value);
 		}
+		notify()
 		navigate(`/${post.tweet_id}`, { replace: true });
 	};
 
@@ -116,7 +122,7 @@ const JuryView = (props: Props) => {
 								<h1 className="font-medium">
 									@{post.author_username}
 								</h1>
-								<h1 className="font-medium">2h</h1>
+								
 							</div>
 
 							<div className="mt-8 w-full flex items-start">
@@ -135,7 +141,9 @@ const JuryView = (props: Props) => {
 								<Dividers />
 							</div>
 							<div className="flex flex-col justify-between w-full ">
-								<h1 className="font-medium">Name: {post.author_name}</h1>
+								<h1 className="font-medium">
+									Name: {post.author_name}
+								</h1>
 								<h1 className="font-medium">Rating: 4.5</h1>
 								<h1 className="font-medium">
 									Total submitted tweets: 5

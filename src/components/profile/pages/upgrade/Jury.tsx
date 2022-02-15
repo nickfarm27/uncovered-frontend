@@ -4,6 +4,8 @@ import UserContext from "../../../../store/user-context";
 import BlueButton from "../../../ui/BlueButton";
 import ProgressBar from "../profile/ProgressBar";
 import axios from "axios"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {};
 
@@ -11,6 +13,12 @@ const Jury = (props: Props) => {
 	const userCtx = useContext(UserContext);
 	const navigate = useNavigate();
 	let color = "";
+
+	let text = "Role upgraded to jury";
+
+	const notify = () => {
+		toast.info(text);
+	};
 
 	switch (userCtx.user.numberOfVerifiedNews >= 50) {
 		case true:
@@ -28,6 +36,7 @@ const Jury = (props: Props) => {
 				uid: userCtx.user.uid,
 			})
 			if (response.data.message) {
+				notify()
 				navigate("/profile", { replace: true })
 			}
 		} catch (error) {

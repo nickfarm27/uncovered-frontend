@@ -7,6 +7,8 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BallTriangle } from "react-loader-spinner";
 import UserContext from "../../../../store/user-context";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {};
 
@@ -15,6 +17,9 @@ const InvestigatorView = (props: Props) => {
 	const [choice, setChoice] = useState(false);
 	const userCtx = useContext(UserContext);
 	const navigate = useNavigate();
+	const [author, setAuthor] = useState<any>([]);
+	const { postId } = useParams();
+	const [post, setPost] = useState<any>(null);
 
 	const textRef = useRef<HTMLTextAreaElement>(null);
 
@@ -34,15 +39,23 @@ const InvestigatorView = (props: Props) => {
 			break;
 	}
 
-	const { postId } = useParams();
-	const [post, setPost] = useState<any>(null);
-
 	const getPostData = async () => {
-		const response = await axios.get(
+		const response1 = await axios.get(
 			`http://localhost:3030/post/${postId as string}`
 		);
-		if (response.data.data) {
-			setPost(response.data.data);
+		if (response1.data.data) {
+			setPost(response1.data.data);
+		}
+
+		const response2 = await axios.get(
+			`http://localhost:3030/user/author/${
+				response1.data.data.author_id as string
+			}`
+		);
+
+		if (response2.data.author) {
+			setAuthor(response2.data.author);
+			console.log(author);
 		}
 	};
 
@@ -93,7 +106,6 @@ const InvestigatorView = (props: Props) => {
 
 	const addInvestigatorReview = async (text: string, vote: boolean) => {
 		try {
-
 			const response = await axios.post(
 				"http://localhost:3030/post/investigator",
 				{
@@ -114,11 +126,17 @@ const InvestigatorView = (props: Props) => {
 		}
 	};
 
+	let text = "News succesfully verified";
+	const notify = () => {
+		toast.success(text);
+	};
+
 	const submitHandler = (e: React.MouseEvent) => {
 		e.preventDefault();
 		if (textRef.current) {
 			addInvestigatorReview(textRef.current.value, choice);
 		}
+		notify();
 		navigate(`/${post.tweet_id}`, { replace: true });
 	};
 
@@ -143,7 +161,6 @@ const InvestigatorView = (props: Props) => {
 									<h1 className="font-medium">
 										@{post.author_username}
 									</h1>
-									<h1 className="font-medium">2h</h1>
 								</div>
 
 								<div className="mt-8 w-full flex items-start">
@@ -162,15 +179,35 @@ const InvestigatorView = (props: Props) => {
 									<Dividers />
 								</div>
 								<div className="flex flex-col justify-between w-full ">
-									<h1 className="font-medium">Name: {post.author_username}</h1>
-									<h1 className="font-medium">Rating: 4.5</h1>
 									<h1 className="font-medium">
-										Total submitted tweets: 5
+										Name: {author.author_username}
 									</h1>
 									<h1 className="font-medium">
-										Average trust index of submitted tweets:
-										65%
+										Rating: {author.author_rating}
 									</h1>
+									<h1 className="font-medium">
+										Total submitted tweets:{" "}
+										{author.no_of_posts}
+									</h1>
+									<div className="flex ">
+										{author.trust_index_scores &&
+										author.trust_index_scores.length ? (
+											<h1 className="font-medium">
+												Average trust index of submitted
+												tweets:
+												{` ${Math.round(
+													author.trust_index_scores.reduce(
+														(a: any, b: any) =>
+															a + b,
+														0
+													) /
+														author
+															.trust_index_scores
+															.length
+												)}%`}
+											</h1>
+										) : null}
+									</div>
 								</div>
 							</div>
 						</div>

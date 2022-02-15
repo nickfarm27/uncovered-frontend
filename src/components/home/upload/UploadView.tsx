@@ -1,39 +1,47 @@
-
 import React, { useContext, useRef } from "react";
 import BlueButton from "../../ui/BlueButton";
 import InputBox from "../../ui/InputBox";
-import axios from "axios"
+import axios from "axios";
 import UserContext from "../../../store/user-context";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {};
 
 const UploadView = (props: Props) => {
-	const userCtx = useContext(UserContext)
+	const userCtx = useContext(UserContext);
 	const linkRef = useRef<HTMLInputElement>(null);
-	const navigate = useNavigate()
-	
+	const navigate = useNavigate();
+
+	let text = "News submitted";
+
+	const notify = () => {
+		toast.success(text);
+	};
+
 	const uploadPost = async (url: string) => {
 		try {
 			const response = await axios.post("http://localhost:3030/post", {
 				url: url,
-				uid: userCtx.user.uid
-			})
+				uid: userCtx.user.uid,
+			});
 			console.log("RESPONSE: ", response.data.data.tweet_id);
 			if (response.data.data) {
-				navigate(`/${response.data.data.tweet_id}`)
+				navigate(`/${response.data.data.tweet_id}`);
+				notify();
 			} else {
 				// show error
 			}
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
 	const submitHandler = (event: React.MouseEvent) => {
-		event.preventDefault()
-		console.log("Verify");
-		uploadPost(linkRef.current?.value as string)
+		event.preventDefault();
+
+		uploadPost(linkRef.current?.value as string);
 	};
 
 	return (
@@ -43,9 +51,7 @@ const UploadView = (props: Props) => {
 					What news do you want to check today?
 				</h1>
 
-				<form
-					className="flex flex-col w-full items-center"
-				>
+				<form className="flex flex-col w-full items-center">
 					<InputBox
 						type="link"
 						id="link"

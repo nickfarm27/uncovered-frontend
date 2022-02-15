@@ -78,6 +78,7 @@ const Start = (props: Props) => {
 					online.
 				</motion.h1>
 
+
 				<motion.button
 					whileHover={{
 						scale: 1.1,
@@ -94,6 +95,8 @@ const Start = (props: Props) => {
 				>
 					Get Started!
 				</motion.button>
+
+
 			</div>
 		</div>
 	);

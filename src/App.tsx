@@ -24,6 +24,8 @@ import UnverifiedView from "./components/home/unverified/UnverifiedView";
 import VerifiedView from "./components/home/verified/VerifiedView";
 import InvestigatorView from "./components/home/posts/verifiers/InvestigatorView";
 import JuryView from "./components/home/posts/verifiers/JuryView";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	const history = window.history;
@@ -107,6 +109,17 @@ function App() {
 					}
 				/>
 			</Routes>
+			<ToastContainer
+				position="bottom-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
 		</div>
 	);
 }

@@ -9,6 +9,8 @@ import InvestigatorSlots from "./verifiers/InvestigatorSlots";
 import JurySlots from "./verifiers/JurySlots";
 import UserContext from "../../../store/user-context";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // @ts-ignore
 import { Checkmark } from "react-checkmark";
 import ProgressBar from "@ramonak/react-progress-bar";
@@ -29,15 +31,20 @@ interface Props {
 
 const Post = (props: Props) => {
 	const userCtx = useContext(UserContext);
-
 	const [selected, setSelected] = useState(0);
 	const [chosen, setChosen] = useState(false);
 	const [verified, setVerified] = useState(false);
-	const [choice, setChoice] = useState(false);
+	
 
 	let Color = "";
 	let color = "";
 	let tickColor = "";
+	let text = "News succesfully verified";
+
+	const notify = () => {
+		toast.success(text);
+	};
+
 
 	switch (selected) {
 		case 0:
@@ -221,9 +228,8 @@ const Post = (props: Props) => {
 									onTap={(e) => {
 										setSelected(2);
 										setChosen(true);
-										setChoice(true);
-										console.log("true");
 										addUserVote(true);
+										notify()
 									}}
 									whileHover={{
 										scale: 1.02,
@@ -241,8 +247,8 @@ const Post = (props: Props) => {
 									onTap={(e) => {
 										setSelected(1);
 										setChosen(true);
-										setChoice(false);
 										addUserVote(false);
+										notify()
 									}}
 									whileHover={{
 										scale: 1.02,

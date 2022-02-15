@@ -5,7 +5,7 @@ import BlueButton from "../../../ui/BlueButton";
 import axios from "axios";
 import UserContext from "../../../../store/user-context";
 import { motion } from "framer-motion";
-import { TransferTransaction } from "tsjs-xpx-chain-sdk";
+
 
 interface Props {}
 
@@ -119,16 +119,20 @@ const WalletView = (props: Props) => {
 								</h1>
 							</div>
 						</div>
+						<div className="w-full">
+							<a href="https://coinmarketcap.com/currencies/proximax/">
+								<div className="flex flex-col  w-full  items-center justify-center">
+									<BlueButton
+										text="Visit CoinMarketCap.com"
+										submit={submitHandler}
+									/>
 
-						<div className="flex flex-col  w-1/2  items-center justify-center">
-							<BlueButton
-								text="Visit CoinMarketCap.com"
-								submit={submitHandler}
-							/>
-							<h1 className="font-medium pt-2 text-center text-sm">
-								Please visit the following website for a more
-								accurate result
-							</h1>
+									<h1 className="font-medium pt-2 text-center text-sm">
+										Please visit the following website for a
+										more accurate result
+									</h1>
+								</div>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -157,7 +161,7 @@ const WalletView = (props: Props) => {
 										<Transactions
 											amount={
 												transaction.transferTransaction
-													.amount
+													.amount / 100
 											}
 											type="Receive"
 											textColor="text-green-500"
@@ -171,7 +175,7 @@ const WalletView = (props: Props) => {
 						<div className="w-1/2 pt-4 flex flex-col justify-center items-center ">
 							<h1 className="font-medium">Total Changes</h1>
 							<h1 className="font-medium text-green-500 text-2xl">
-								+{amount} XPX
+								+{amount / 100} XPX
 							</h1>
 						</div>
 					</div>

@@ -8,6 +8,8 @@ import BlueButton from "../../../ui/BlueButton";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../../../../store/user-context";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {};
 
@@ -17,6 +19,11 @@ const Investigator = (props: Props) => {
 	const [activate3, setActivate3] = useState(false);
 	const userCtx = useContext(UserContext)
 	const navigate = useNavigate();
+	let text = "Role upgraded to investigator";
+
+	const notify = () => {
+		toast.info(text);
+	};
 
 	const submitHandler = async () => {
 		console.log("Join");
@@ -29,6 +36,7 @@ const Investigator = (props: Props) => {
 					class: activate1 ? "CAPTAIN" : activate2 ? "WARRIOR" : "WIZARD"
 				})
 				if (response.data.message) {
+					notify()
 					navigate("/profile", { replace: true })
 				}
 			}
