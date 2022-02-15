@@ -29,13 +29,13 @@ const MissionCard = (props: Props) => {
 	let color = "";
 
 	switch (props.difficulty) {
-		case "easy":
+		case "EASY":
 			color = "text-green-500";
 			break;
-		case "medium":
+		case "MEDIUM":
 			color = "text-yellow-500";
 			break;
-		case "hard":
+		case "HARD":
 			color = "text-red-500";
 			break;
 	}
@@ -51,7 +51,7 @@ const MissionCard = (props: Props) => {
 					EXP to be earned: {props.exp}
 				</h1>
 				<h1 className={`font-medium  ${color}`}>
-					Difficulty:{props.difficulty}
+					Difficulty: {props.difficulty}
 				</h1>
 			</div>
 			{!chosen ? (

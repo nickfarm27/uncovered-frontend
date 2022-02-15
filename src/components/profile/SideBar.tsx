@@ -73,9 +73,9 @@ const SideBar = (props: Props) => {
 					/>
 				</motion.div>
 
-				<motion.div whileHover={{ scale: 1.05 }}>
+				{/* <motion.div whileHover={{ scale: 1.05 }}>
 					<Bars icon={BiTask} name="Tasks" link="/profile/tasks" />
-				</motion.div>
+				</motion.div> */}
 
 				<motion.div whileHover={{ scale: 1.05 }}>
 					<Bars

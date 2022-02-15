@@ -12,7 +12,20 @@ const ProfileView = (props: Props) => {
 	const userCtx = useContext(UserContext);
 
 	let experiencePoints = userCtx.user && userCtx.user.experiencePoints;
-	let juryPercentage = userCtx.user && (userCtx.user.numberOfVerifiedNews / 50) * 100;
+	let juryPercentage =
+		userCtx.user && (userCtx.user.numberOfVerifiedNews / 50) * 100;
+	let perks = "";
+
+	{ 
+	if ((userCtx.user && userCtx.user.class == "CAPTAIN")) {
+		perks = "+15% EXP";
+	} else if ((userCtx.user && userCtx.user.class == "WARRIOR")) {
+		perks = "+15% Rewards";
+	} else {
+		perks = "+7.5% EXP + 7.5% Rewards";
+	}
+
+}
 
 	let level = 0;
 	level = Math.floor(experiencePoints / 100);
@@ -22,8 +35,8 @@ const ProfileView = (props: Props) => {
 
 	// console.log(userCtx.user.role);
 
-	if(juryPercentage > 100){
-		juryPercentage = 100
+	if (juryPercentage > 100) {
+		juryPercentage = 100;
 	}
 
 	return (
@@ -86,15 +99,17 @@ const ProfileView = (props: Props) => {
 								Role: {userCtx.user && userCtx.user.role}
 							</h1>
 
-							{userCtx.user && !(userCtx.user.role === "NORMAL") ? (
+							{userCtx.user &&
+							!(userCtx.user.role === "NORMAL") ? (
 								<h1 className="font-medium pb-2">
 									Class: {userCtx.user.class}
 								</h1>
 							) : null}
 
-							{userCtx.user && !(userCtx.user.role === "NORMAL") ? (
+							{userCtx.user &&
+							!(userCtx.user.role === "NORMAL") ? (
 								<h1 className="font-medium pb-2">
-									Perks: +15% EXP
+									Perks: {perks}
 								</h1>
 							) : null}
 						</div>
@@ -121,7 +136,9 @@ const ProfileView = (props: Props) => {
 					<div className="h-1/3 ">
 						<h1 className="font-medium pb-2">
 							Total number of verified news:{" "}
-							{userCtx.user ? userCtx.user.numberOfVerifiedNews : null}
+							{userCtx.user
+								? userCtx.user.numberOfVerifiedNews
+								: null}
 						</h1>
 					</div>
 

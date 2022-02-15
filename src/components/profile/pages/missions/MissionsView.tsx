@@ -43,22 +43,22 @@ const MissionsView = (props: Props) => {
 				<Dividers />
 				<div className="grid grid-cols-3 gap-x-8 gap-y-8 p-8">
 					<MissionCard
-						title={"Full Attendance"}
-						description={"Login to Uncovered for a week straight."}
+						title={"Lawyer"}
+						description={"Verify 10 news."}
 						exp={500}
-						difficulty={"medium"}
+						difficulty={"MEDIUM"}
 					/>
 					<MissionCard
-						title={"Full Attendance"}
-						description={"Login to Uncovered for a week straight."}
+						title={"Hardworking"}
+						description={"Reach top 10 in the leaderboard."}
 						exp={5000}
-						difficulty={"easy"}
+						difficulty={"HARD"}
 					/>
 					<MissionCard
-						title={"Full Attendance"}
-						description={"Login to Uncovered for a week straight."}
-						exp={5000}
-						difficulty={"hard"}
+						title={"Rookie"}
+						description={"Verify 5 news."}
+						exp={50}
+						difficulty={"EASY"}
 					/>
 				</div>
 			</div>

@@ -22,7 +22,7 @@ const InvestigatorSlots = (props: Props) => {
 
 	useEffect(() => {
 		if (props.post.investigator_ids.includes(userCtx.user.uid)) {
-			setVerified(true)
+			setVerified(true);
 		}
 	}, []);
 
@@ -58,7 +58,9 @@ const InvestigatorSlots = (props: Props) => {
 					<h1 className="font-medium">Participated Investigators</h1>
 
 					<ProgressBar
-						completed={`${(props.post.investigator_ids.length / 5) * 100}`}
+						completed={`${
+							(props.post.investigator_ids.length / 5) * 100
+						}`}
 						customLabel={`${props.post.investigator_ids.length}/5`}
 						bgColor={color}
 						baseBgColor="white"
@@ -84,10 +86,17 @@ const InvestigatorSlots = (props: Props) => {
 						</h1>
 					</div>
 				)
-			) : (
+			) : (props.role == "INVESTIGATOR" && !props.status) ||
+			  (props.role == "JURY" && !props.status) ? (
 				<div className="w-2/3 flex justify-center items-center">
 					<h1 className="text-center font-semibold">
 						You already have verified this post
+					</h1>
+				</div>
+			) : (
+				<div className="w-2/3 flex justify-center items-center">
+					<h1 className="text-center font-semibold">
+						Waiting for verifications from jury
 					</h1>
 				</div>
 			)}
