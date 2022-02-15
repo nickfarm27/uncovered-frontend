@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
+import { Link } from "react-router-dom";
 
 interface Props {}
 
@@ -78,25 +79,24 @@ const Start = (props: Props) => {
 					online.
 				</motion.h1>
 
-
-				<motion.button
-					whileHover={{
-						scale: 1.1,
-						backgroundColor: "#00c2ff",
-						transition : {
-							duration: 0.1
-						}
-					}}
-					initial="offscreen"
-					whileInView="onscreen"
-					viewport={{ once: true, amount: 0.8 }}
-					variants={buttonVariants}
-					className="mt-16 rounded-lg font-bold py-4 px-10 bg-blue-600 text-white"
-				>
-					Get Started!
-				</motion.button>
-
-
+				<Link to="/login">
+					<motion.button
+						whileHover={{
+							scale: 1.1,
+							backgroundColor: "#00c2ff",
+							transition: {
+								duration: 0.1,
+							},
+						}}
+						initial="offscreen"
+						whileInView="onscreen"
+						viewport={{ once: true, amount: 0.8 }}
+						variants={buttonVariants}
+						className="mt-16 rounded-lg font-bold py-4 px-10 bg-blue-600 text-white"
+					>
+						Get Started!
+					</motion.button>
+				</Link>
 			</div>
 		</div>
 	);

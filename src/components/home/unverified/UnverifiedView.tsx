@@ -11,6 +11,7 @@ type Props = {};
 const UnverifiedView = (props: Props) => {
 	const userCtx = useContext(UserContext);
 
+	const [loading, setLoading] = useState(true);
 	const [posts, setPosts] = useState<any[]>([]);
 
 	const fetchUnverifiedPosts = async () => {
@@ -23,18 +24,29 @@ const UnverifiedView = (props: Props) => {
 				//console.log(response.data);
 			}
 		} catch (error) {}
+		setLoading(false);
 	};
 
 	useEffect(() => {
 		const timeout = setTimeout(() => fetchUnverifiedPosts(), 1000);
 		// console.log("Unverified");
 		console.log(timeout);
+		return setLoading(true);
 	}, []);
 
 	return (
 		<div className="flex justify-center pt-8">
 			<div className="flex flex-col w-1/2">
-				{posts.length !== 0 ? (
+				{loading ? (
+					<div className=" flex absolute top-0 bottom-0 left-0 right-0 w-full items-center justify-center">
+						<BallTriangle
+							height="100"
+							width="100"
+							color="#2563eb"
+							ariaLabel="loading"
+						/>
+					</div>
+				) : posts.length !== 0 ? (
 					posts.map((post) => {
 						let status = Boolean(false);
 						if (post.investigator_info.length === 5) {
@@ -58,13 +70,8 @@ const UnverifiedView = (props: Props) => {
 						);
 					})
 				) : (
-					<div className=" flex absolute top-0 bottom-0 left-0 right-0 w-full items-center justify-center">
-						<BallTriangle
-							height="100"
-							width="100"
-							color="#2563eb"
-							ariaLabel="loading"
-						/>
+					<div className="w-full flex justify-center p-6 bg-zinc-100 drop-shadow-lg rounded-xl">
+						<h1 className="font-semibold ">No post available</h1>
 					</div>
 				)}
 			</div>

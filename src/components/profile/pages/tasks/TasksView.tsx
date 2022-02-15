@@ -10,7 +10,7 @@ const TasksView = (props: Props) => {
 
 	return (
 		<div className="flex gap-x-8 drop-shadow-xl rounded-lg p-6 w-full ">
-			{userCtx.user && !(userCtx.user.role === "JURY") ? (
+			{userCtx.user && (userCtx.user.role === "JURY") ? (
 				<div className="box-border bg-zinc-100  drop-shadow-lg rounded-xl p-6 ">
 					<h1 className="font-semibold text-lg pb-2">
 						Verifier Ratings
@@ -33,7 +33,7 @@ const TasksView = (props: Props) => {
 					/>
 				</div>
 			) : 
-			<div className="w-full flex justify-center p-6 bg-zinc-100 drop-shadow-lg rounded-xl">
+			<div className="w-full flex justify-center p-6 bg-zinc-100 rounded-xl">
 			<h1 className="font-semibold ">No task available</h1>
 			</div>
 			
