@@ -150,7 +150,7 @@ const DashboardView = (props: Props) => {
 				/>
 
 				{/* Task */}
-				{userCtx.user && userCtx.user.role === "JURY" ? (
+				{userCtx.user && userCtx.user.role === "R" ? (
 					<Cards
 						height="h-3/4"
 						width="w-full"
@@ -240,18 +240,6 @@ const DashboardView = (props: Props) => {
 										status="Status: Unverified"
 										rating="Unknown"
 										color={0}
-									/>
-									<FeedPost
-										title="Tweet 2"
-										status="Status: Verified"
-										rating={`${60}/100%`}
-										color={2}
-									/>
-									<FeedPost
-										title="Tweet 3"
-										status="Status: Verified"
-										rating={`${80}/100%`}
-										color={3}
 									/>
 								</div>
 								<div className="flex justify-center">

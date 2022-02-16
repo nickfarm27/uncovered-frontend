@@ -104,21 +104,28 @@ const TrustIndex = (props: Props) => {
 					<div className="flex flex-col justify-center items-center">
 						<h1 className="text-red-500 font-semibold">0-30</h1>
 						<h1 className="text-red-500 font-semibold">
-							Untrusted
+							Fake
 						</h1>
 					</div>
 
 					<div className="flex flex-col justify-center items-center">
-						<h1 className="text-yellow-500 font-semibold">31-69</h1>
+						<h1 className="text-orange-500 font-semibold">31-50</h1>
+						<h1 className="text-orange-500 font-semibold">
+							Questionable
+						</h1>
+					</div>
+
+					<div className="flex flex-col justify-center items-center">
+						<h1 className="text-yellow-500 font-semibold">51-70</h1>
 						<h1 className="text-yellow-500 font-semibold">
-							Moderately Trusted
+							Acceptable
 						</h1>
 					</div>
 
 					<div className="flex flex-col justify-center items-center">
-						<h1 className="text-green-500 font-semibold">70-100</h1>
+						<h1 className="text-green-500 font-semibold">71-100</h1>
 						<h1 className="text-green-500 font-semibold">
-							Trusted
+							Legitimate
 						</h1>
 					</div>
 				</div>

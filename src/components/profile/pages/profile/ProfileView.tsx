@@ -120,7 +120,7 @@ const ProfileView = (props: Props) => {
 							</h1>
 							<ProgressBar
 								percentage={-experienceMeter}
-								text={`${-experienceMeter}%`}
+								text={`${-experienceMeter.toFixed(2)}%`}
 								textSize="18px"
 								color={"rgb(1, 90, 145)"}
 							/>
