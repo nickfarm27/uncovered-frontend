@@ -20,7 +20,7 @@ const WalletView = (props: Props) => {
 	//const [amount, setAmount] = useState(0);
 	const [transactions, setTransactions] = useState<any>([]);
 
-	let xpxPriceUSD = 0.00359326;
+	let xpxPriceUSD = 0.00319326;
 	let xpxPriceMYR = xpxPriceUSD * 4.13;
 
 	const fetchWallet = async () => {
